@@ -11,7 +11,7 @@
 
 
 <img width="1212" height="534" alt="image" src="https://github.com/user-attachments/assets/ba4c087b-b9c3-4822-a81d-64cf06619265" />
--> 첫 프롬프트에 대한 제미나이의 답
+-> 첫 프롬프트에 대한 클로드의 답
 
 <img width="1119" height="459" alt="image" src="https://github.com/user-attachments/assets/f9723e55-fa9d-483d-85d1-a01a88159653" />
 -> 두번째 프롬프트 입력에 대한 답을 하기전 기본규칙설명 후 답
