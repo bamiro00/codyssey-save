@@ -1,6 +1,10 @@
-[LLM 모델 비교·선정 보고서.docx](https://github.com/user-attachments/files/28836354/LLM.docx)
-[시스템 설계 문서.docx](https://github.com/user-attachments/files/28836361/default.docx)
-[실행 로그 - 대화 로그.docx](https://github.com/user-attachments/files/28836369/-.docx)
+[LLM 모델 비교·선정 보고서.docx](https://github.com/user-attachments/files/28923857/LLM.docx)
+
+[시스템 설계 문서.docx](https://github.com/user-attachments/files/28923859/default.docx)
+
+[실행 로그 - 대화 로그.docx](https://github.com/user-attachments/files/28923862/-.docx)
+
+[부록_대화 원문.docx](https://github.com/user-attachments/files/28923863/_.docx)
 
 과제 주제는 **「LLM 기반 화장품 리뷰 요약 및 마케팅 문구 생성 자동화」**로 친숙한 화장품 분야로 주제를 잡았습니다. 
 화장품 분야는 리뷰가 마케팅에 매우 중요하다고 생각했습니다. 고객 리뷰에는 사용감, 만족도, 아쉬운 점, 피부 타입별 반응이 들어 있기 때문에 제품 홍보 문구를 만들 때 중요한 자료가 됩니다.
