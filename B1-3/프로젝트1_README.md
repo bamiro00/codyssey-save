@@ -1,5 +1,10 @@
 # 노코드 자동화 기초 위크플로우 설계
 
+[프로젝트 1. 자동화 도구 비교 구현.pdf](https://github.com/user-attachments/files/29546953/1.pdf)
+
+[화장품 고객 문의 접수 폼(응답).xlsx](https://github.com/user-attachments/files/29546962/default.xlsx)
+
+
 ### 프로젝트1. Make와 Zapier를 활용한 화장품 고객 문의 자동 분류 시스템 비교
 본 프로젝트에서는 동일한 자동화 업무를 Make와 Zapier 두 가지 자동화 플랫폼으로 각각 구현하고, 구현 과정과 기능을 비교 분석하였다.
 자동화 대상은 화장품 고객 문의 접수 시스템으로, Google Form을 통해 접수된 문의를 Google Sheets에 저장한 후 문의 유형에 따라 자동으로 담당 부서를 지정하고 문의 유형별 시트로 자동 분류되도록 구현하였다.
