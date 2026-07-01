@@ -1,6 +1,6 @@
 # 노코드 자동화 기초 위크플로우 설계
 
-[프로젝트 1. 자동화 도구 비교 구현.pdf](https://github.com/user-attachments/files/29546953/1.pdf)
+[프로젝트 1. 자동화 도구 비교 구현.pdf](https://github.com/user-attachments/files/29550502/1.pdf)
 
 [화장품 고객 문의 접수 폼(응답).xlsx](https://github.com/user-attachments/files/29546962/default.xlsx)
 
