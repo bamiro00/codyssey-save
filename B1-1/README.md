@@ -1,4 +1,4 @@
-# **ChatGPT에게 일을 제대로 시키는 법 배우기**
+# ChatGPT에게 일을 제대로 시키는 법 배우기/ LLM 기반 업무 자동화
 
 [LLM 모델 비교·선정 보고서.docx](https://github.com/user-attachments/files/28923857/LLM.docx)
 
