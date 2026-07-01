@@ -18,11 +18,13 @@
 
 제품은 **브링그린 티트리 시카 수딩 토너**를 기준으로 했습니다. 실제 제품 정보를 사용한 이유는 AI가 제품 정보에 없는 성분이나 효능을 만들어내는지 쉽게 검증하기 위해서입니다. 다만 고객 리뷰는 실제 리뷰를 그대로 쓰지 않고, 개인정보나 저작권 문제를 피하기 위해 가상 리뷰로 만들었습니다.
 
--> ver1 프롬프트에 대한 클로드의 답변
+---
+
+## ver1 프롬프트에 대한 클로드의 답변
 
 <img width="1212" height="534" alt="image" src="https://github.com/user-attachments/assets/ba4c087b-b9c3-4822-a81d-64cf06619265" />
 
--> ver2 프롬프트에 대한 답변
+## ver2 프롬프트에 대한 답변
 
 <img width="413" height="431" alt="image" src="https://github.com/user-attachments/assets/a529635d-ecaa-46cd-b4ee-3b1654cf1c2f" />
 <img width="1111" height="398" alt="image" src="https://github.com/user-attachments/assets/8ffcd2c8-7831-42bd-982d-96949c1e6942" />
@@ -31,7 +33,7 @@
 
 ---
 
-최종모델 **Claude Haiku 4.5**
+## 최종모델 **Claude Haiku 4.5**
 
 **선정 근거 1. 제품 정보와 사용 가능 표현을 명확히 구분함**
 
@@ -51,6 +53,6 @@ Claude는 가상 리뷰를 작성한 뒤 긍정 키워드, 아쉬운 표현, 반
 Claude의 결과는 표와 항목 구분이 명확하여 모델 비교 보고서, 시스템 설계 문서, 실행 로그로 정리하기 쉽다. 또한 과제에서 요구하는 검증 전략과 안전성 검토 항목을 문서화하기에 적합하다.
 
 ---
-## 추가과제 멀티모달 확장(업무 결과의 시각화)
+## 추가과제_ 멀티모달 확장(업무 결과의 시각화)
 
 <img width="1536" height="1024" alt="ChatGPT Image 2026년 6월 14일 오후 08_09_00" src="https://github.com/user-attachments/assets/dbf25fc3-a237-46d6-9b7f-0607de2c1163" />
