@@ -1,5 +1,9 @@
 # AI 기반 브랜드 광고 패키지 - 냥심저격
 
+https://youtube.com/shorts/d7PFztQsHU4
+
+[AI 기반 브랜드 광고 패키지_냥심저격.pdf](https://github.com/user-attachments/files/29788262/AI._.pdf)
+
 ## 프로젝트 개요
 
 이 프로젝트는 프리미엄 고양이 간식 브랜드 **“냥심저격”** 을 가상 브랜드로 설정하고, 생성형 AI를 활용해 브랜드 광고 패키지를 제작한 작업이다. 
