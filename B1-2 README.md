@@ -84,6 +84,9 @@
 
 ### 장면 목적
 
+<img width="329" height="547" alt="image" src="https://github.com/user-attachments/assets/75d94113-a3d5-4ce2-8542-5cb1b8f9b205" />
+
+
 고양이 심사위원이 등장하며 광고의 세계관을 소개합니다.  
 정장을 입은 턱시도 고양이가 오늘의 간식을 심사하는 콘셉트를 보여주고, “까다로운 입맛도 합격 간식만”이라는 기준을 제시합니다.
 
@@ -130,6 +133,8 @@
 <summary><strong>Chapter 2. 일반 츄르 불합격</strong></summary>
 
 ### 장면 목적
+
+<img width="339" height="550" alt="image" src="https://github.com/user-attachments/assets/5d7bd0c8-bc99-4b4e-86ef-edad943eb338" />
 
 아무 간식이나 합격하지 않는 고양이의 까다로운 기준을 보여줍니다.  
 일반 츄르를 제시했지만, 고양이는 먼저 냄새를 확인한 뒤 마음에 들지 않아 고개를 돌립니다.
@@ -180,6 +185,8 @@
 
 ### 장면 목적
 
+<img width="366" height="549" alt="image" src="https://github.com/user-attachments/assets/fbebc563-6a65-4761-9efc-0ee6cc861986" />
+
 일반 간식과 달리 냥심저격 제품에는 고양이의 반응이 달라지는 장면을 보여줍니다.  
 제품을 맛본 뒤 “이건 좀 다른데?”라는 미묘한 관심과 긍정 반응을 만듭니다.
 
@@ -229,6 +236,8 @@
 
 ### 장면 목적
 
+<img width="367" height="551" alt="image" src="https://github.com/user-attachments/assets/a75b65ea-4792-499a-b2a3-a77ea1989f0c" />
+
 냥심저격이 까다로운 심사를 통과했음을 명확하게 보여주는 광고의 핵심 피크 장면입니다.  
 고양이가 직접 도장을 찍으며 “합격 간식”이라는 메시지를 시각적으로 강화합니다.
 
@@ -276,6 +285,8 @@
 <summary><strong>Chapter 5. 제품 선택 엔딩</strong></summary>
 
 ### 장면 목적
+
+<img width="365" height="551" alt="image" src="https://github.com/user-attachments/assets/1b3431b0-e63a-420a-b658-2103fe84d203" />
 
 합격 판정 이후 고양이가 실제로 냥심저격을 선택해 먹는 장면으로 브랜드를 각인합니다.  
 최종적으로 “냥심저격은 고양이가 직접 인정한 합격 간식”이라는 메시지를 마무리합니다.
