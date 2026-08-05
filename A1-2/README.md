@@ -451,9 +451,83 @@ Markdown 파일에서는 사람이 읽기 좋은 최종 여행 리포트를 확�
 
 ---
 
-## 18. 보안 주의사항
+## 18. HTTP 요청 방식 선택 이유
 
-- API 키를 코드에 직접 작성하지 않습니다.
-- 실제 API 키를 README에 작성하지 않습니다.
-- 결과 파일이나 실행 로그에도 API 키가 포함되지 않도록 합니다.
-- `.env`를 GitHub에 업로드하지 않습니다.
+### Kakao Local API
+
+Kakao Local API의 장소 검색은 서버에 새로운 데이터를 생성하거나 기존 데이터를 변경하는 작업이 아니라, 검색 조건에 맞는 장소 정보를 조회하는 작업이므로 `GET` 요청을 사용한다.
+
+검색할 도시와 검색 개수는 다음과 같이 쿼리 매개변수로 전달한다.
+
+```python
+params = {
+    "query": f"{normalized_city} 맛집",
+    "size": KAKAO_LOCAL_API_CONFIG["default_result_size"]
+}
+```
+
+실제 요청은 다음과 같이 처리한다.
+
+```python
+response = requests.get(
+    url,
+    headers=headers,
+    params=params,
+    timeout=KAKAO_LOCAL_API_CONFIG["timeout_seconds"]
+)
+```
+
+- `GET`은 장소나 맛집처럼 서버에 저장된 기존 정보를 조회할 때 사용한다.
+- `POST`는 서버에 새로운 데이터를 생성하거나 요청 본문에 데이터를 담아 처리할 때 주로 사용한다.
+- 이 프로그램은 Kakao Local API에서 장소 정보를 조회하는 것이 목적이므로 `GET` 요청이 적합하다.
+- Kakao REST API 키는 `Authorization: KakaoAK {REST_API_KEY}` 형식의 요청 헤더로 전달한다.
+- `401` 또는 `403` 오류가 발생하면 REST API 키 형식, Kakao Local API 사용 권한 및 애플리케이션 설정을 확인한다.
+
+### Google Gemini API
+
+Google Gemini API는 사용자가 입력한 여행 날짜를 바탕으로 여행 추천 JSON과 최종 여행 리포트를 생성하는 데 사용한다.
+
+프로그램에서는 `google-genai` 공식 SDK의 `generate_content()`를 호출한다.
+
+```python
+response = client.models.generate_content(
+    model="gemini-3.6-flash",
+    contents=prompt
+)
+```
+
+Gemini 호출은 단순 데이터 조회가 아니라 프롬프트를 서버에 전달하여 새로운 응답 콘텐츠를 생성하는 작업이다. 다만 프로그램에서 `requests.post()`를 직접 작성하지 않고, `google-genai` SDK가 필요한 HTTP 요청과 응답 처리를 내부에서 수행한다.
+
+Gemini의 첫 번째 응답은 다음 단계에서 사용할 수 있도록 JSON으로 처리한다.
+
+```text
+사용자가 입력한 날짜
+        ↓
+Gemini 여행 지역 추천 JSON
+        ↓
+Kakao Local 맛집 검색
+        ↓
+Gemini 최종 여행 리포트 생성
+```
+
+Gemini 응답은 다음 필수 항목을 검사한다.
+
+- `recommended_cities`: 문자열로 구성된 지역 목록
+- `weather`: 문자열 형식의 날씨 요약
+- `events`: 문자열로 구성된 행사·축제 목록
+- `reason`: 문자열 형식의 추천 이유
+
+JSON 파싱 또는 스키마 검증에 실패하면 오류 내용을 출력하고, 필수 JSON 형식으로 최대 1회만 다시 요청한다.
+
+---
+
+## 19. 보안 주의사항
+
+- API 키를 Python 코드에 직접 작성하지 않는다.
+- 실제 API 키를 README에 작성하지 않는다.
+- Gemini API 키와 Kakao REST API 키는 `.env` 파일 또는 운영 환경변수에서 불러온다.
+- `.env` 파일은 `.gitignore`에 등록하여 GitHub에 업로드하지 않는다.
+- 실행 로그, JSON 결과 파일 및 Markdown 리포트에 API 키가 포함되지 않도록 주의한다.
+- API 키를 교체하더라도 Python 코드를 수정하지 않고 환경변수만 변경할 수 있도록 관리한다.
+- GitHub Actions와 같은 CI/CD 환경에서는 저장소의 보안 변수 또는 환경변수 기능을 이용해 API 키를 주입한다.
+- API 키가 외부에 노출된 경우 해당 키를 즉시 폐기하고 새 키를 발급한다.

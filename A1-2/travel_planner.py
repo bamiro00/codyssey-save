@@ -11,6 +11,15 @@ import requests
 # .env 파일의 환경변수를 불러옵니다.
 load_dotenv()
 
+KAKAO_LOCAL_API_CONFIG = {
+    "search_url": os.getenv(
+        "KAKAO_LOCAL_SEARCH_URL",
+        "https://dapi.kakao.com/v2/local/search/keyword.json"
+    ),
+    "authorization_prefix": "KakaoAK",
+    "default_result_size": 5,
+    "timeout_seconds": 10
+}
 
 def parse_args():
     """터미널에서 여행 날짜를 입력받습니다."""
@@ -82,6 +91,103 @@ def clean_json_text(text):
 
     return text.strip()
 
+def validate_recommendation_schema(recommendation):
+    """Gemini 추천 결과의 필수 키, 타입, 값 구조를 검증합니다."""
+
+    if not isinstance(recommendation, dict):
+        raise ValueError(
+            "Gemini 추천 결과는 JSON 객체여야 합니다."
+        )
+
+    required_keys = [
+        "recommended_cities",
+        "weather",
+        "events",
+        "reason"
+    ]
+
+    for key in required_keys:
+        if key not in recommendation:
+            raise ValueError(
+                f"Gemini 추천 결과에 필수 키가 없습니다: {key}"
+            )
+
+    cities = recommendation["recommended_cities"]
+
+    if not isinstance(cities, list):
+        raise ValueError(
+            "recommended_cities는 리스트여야 합니다."
+        )
+
+    if not 2 <= len(cities) <= 3:
+        raise ValueError(
+            "recommended_cities에는 2~3개 지역이 있어야 합니다."
+        )
+
+    if not all(
+        isinstance(city, str) and city.strip()
+        for city in cities
+    ):
+        raise ValueError(
+            "recommended_cities의 모든 항목은 "
+            "비어 있지 않은 문자열이어야 합니다."
+        )
+
+    normalized_cities = [
+        city.strip()
+        for city in cities
+    ]
+
+    if len(set(normalized_cities)) != len(normalized_cities):
+        raise ValueError(
+            "recommended_cities에 중복된 지역이 있습니다."
+        )
+
+    weather = recommendation["weather"]
+
+    if not isinstance(weather, str) or not weather.strip():
+        raise ValueError(
+            "weather는 비어 있지 않은 문자열이어야 합니다."
+        )
+
+    events = recommendation["events"]
+
+    if not isinstance(events, list):
+        raise ValueError(
+            "events는 리스트여야 합니다."
+        )
+
+    if not 1 <= len(events) <= 3:
+        raise ValueError(
+            "events에는 1~3개의 항목이 있어야 합니다."
+        )
+
+    if not all(
+        isinstance(event, str) and event.strip()
+        for event in events
+    ):
+        raise ValueError(
+            "events의 모든 항목은 "
+            "비어 있지 않은 문자열이어야 합니다."
+        )
+
+    reason = recommendation["reason"]
+
+    if not isinstance(reason, str) or not reason.strip():
+        raise ValueError(
+            "reason은 비어 있지 않은 문자열이어야 합니다."
+        )
+
+    recommendation["recommended_cities"] = normalized_cities
+    recommendation["weather"] = weather.strip()
+    recommendation["events"] = [
+        event.strip()
+        for event in events
+    ]
+    recommendation["reason"] = reason.strip()
+
+    return recommendation
+
 
 def generate_recommendation(date_text, gemini_api_key):
     """Gemini API로 국내 여행 지역 3곳을 추천받고 JSON으로 변환합니다."""
@@ -139,24 +245,15 @@ JSON 이외의 설명이나 Markdown 코드 블록은 작성하지 마세요.
         cleaned_text = clean_json_text(response.text)
         recommendation = json.loads(cleaned_text)
 
-        for key in required_keys:
-            if key not in recommendation:
-                raise ValueError(f"필수 항목 누락: {key}")
+        return validate_recommendation_schema(recommendation)
 
-        cities = recommendation["recommended_cities"]
+    except (json.JSONDecodeError, ValueError) as error:
+          print(
+              f" - JSON 형식 또는 스키마 확인 실패: {error}"
+       )
+          print(" - 필수 형식으로 1회 재요청합니다.")
 
-        if not isinstance(cities, list):
-            raise ValueError("recommended_cities가 배열이 아닙니다.")
-
-        if len(cities) < 2 or len(cities) > 3:
-            raise ValueError("추천 지역은 2~3개여야 합니다.")
-
-        return recommendation
-
-    except (json.JSONDecodeError, ValueError):
-        print(" - JSON 형식 확인 실패, 1회 재요청합니다.")
-
-    # 첫 응답에 문제가 있을 때 최대 1회만 재요청
+  # 첫 응답에 문제가 있을 때 최대 1회만 재요청
     retry_prompt = f"""
 이전 응답을 정상적인 JSON으로 처리할 수 없었습니다.
 
@@ -194,45 +291,115 @@ JSON 이외의 설명이나 Markdown 코드 블록은 작성하지 마세요.
     cleaned_text = clean_json_text(retry_response.text)
     recommendation = json.loads(cleaned_text)
 
-    for key in required_keys:
-        if key not in recommendation:
-            raise ValueError(
-                f"재요청 결과에도 필수 항목이 없습니다: {key}"
-            )
+    try:
+        return validate_recommendation_schema(recommendation)
 
-    cities = recommendation["recommended_cities"]
-
-    if not isinstance(cities, list):
+    except ValueError as error:
         raise ValueError(
-            "재요청 결과의 recommended_cities가 배열이 아닙니다."
-        )
+            f"재요청 결과의 스키마도 올바르지 않습니다: {error}"
+        ) from error
 
-    if len(cities) < 2 or len(cities) > 3:
-        raise ValueError(
-            "재요청 결과의 추천 지역은 2~3개여야 합니다."
-        )
+def normalize_city_name(city):
+    """도시명을 Kakao Local 검색에 적합한 형태로 정규화합니다."""
 
-    return recommendation
+    if not isinstance(city, str):
+        raise ValueError("도시명은 문자열이어야 합니다.")
+
+    city = " ".join(city.strip().split())
+
+    if not city:
+        raise ValueError("도시명이 비어 있습니다.")
+
+    # 자주 사용되는 행정구역 명칭과 축약 표현을 통일합니다.
+    city_aliases = {
+        "서울특별시": "서울",
+        "서울시": "서울",
+        "부산광역시": "부산",
+        "부산시": "부산",
+        "대구광역시": "대구",
+        "대구시": "대구",
+        "인천광역시": "인천",
+        "인천시": "인천",
+        "광주광역시": "광주",
+        "광주시": "광주",
+        "대전광역시": "대전",
+        "대전시": "대전",
+        "울산광역시": "울산",
+        "울산시": "울산",
+        "세종특별자치시": "세종",
+        "세종시": "세종",
+        "제주특별자치도": "제주",
+        "제주도": "제주",
+        "강원특별자치도": "강원",
+        "강원도": "강원",
+        "전북특별자치도": "전북",
+        "전라북도": "전북",
+        "전라남도": "전남",
+        "경상북도": "경북",
+        "경상남도": "경남",
+        "충청북도": "충북",
+        "충청남도": "충남"
+    }
+
+    if city in city_aliases:
+        return city_aliases[city]
+
+    # 예: "강원특별자치도 강릉시" → "강릉"
+    # 예: "경상북도 경주시" → "경주"
+    city_parts = city.split()
+
+    if len(city_parts) >= 2:
+        city = city_parts[-1]
+
+    administrative_suffixes = [
+        "특별자치시",
+        "특별자치도",
+        "특별시",
+        "광역시",
+        "자치시",
+        "자치도",
+        "시",
+        "군",
+        "구"
+    ]
+
+    for suffix in administrative_suffixes:
+        if city.endswith(suffix) and len(city) > len(suffix):
+            city = city[:-len(suffix)]
+            break
+
+    city = city.strip()
+
+    if not city:
+        raise ValueError("도시명을 검색어로 변환할 수 없습니다.")
+
+    return city
 
 def search_restaurants(city, kakao_api_key):
     """Kakao Local API를 사용하여 추천 지역의 맛집 5곳을 검색합니다."""
-    url = "https://dapi.kakao.com/v2/local/search/keyword.json"
+
+    url = KAKAO_LOCAL_API_CONFIG["search_url"]
 
     headers = {
-        "Authorization": f"KakaoAK {kakao_api_key}"
-    }
+        "Authorization": (
+            f"{KAKAO_LOCAL_API_CONFIG['authorization_prefix']} "
+            f"{kakao_api_key}"
+       )
+   }
+
+    normalized_city = normalize_city_name(city)
 
     params = {
-        "query": f"{city} 맛집",
-        "size": 5
-    }
+    "query": f"{normalized_city} 맛집",
+    "size": KAKAO_LOCAL_API_CONFIG["default_result_size"]
+}
 
     response = requests.get(
         url,
         headers=headers,
         params=params,
-        timeout=10
-    )
+        timeout=KAKAO_LOCAL_API_CONFIG["timeout_seconds"]
+  )
 
     # 실패했을 때 카카오가 보내는 상세 오류 내용을 확인합니다.
     if response.status_code != 200:
@@ -269,8 +436,10 @@ def generate_final_report(
     date_text,
     recommendation,
     restaurants,
+    errors,
     gemini_api_key
 ):
+    
     """1차 추천 정보와 맛집 정보를 이용해 최종 여행 리포트를 생성합니다."""
     client = genai.Client(api_key=gemini_api_key)
 
@@ -363,7 +532,21 @@ recommended_cities에 포함된 추천 지역 2~3곳을 모두 표시하고,
         contents=prompt
     )
 
-    return response.text.strip()
+    report_text = response.text.strip()
+
+    if errors:
+        error_lines = "\n".join(
+            f"- {str(error)}"
+            for error in errors
+        )
+    else:
+        error_lines = "- 기록된 오류 없음"
+
+    return (
+        f"{report_text}\n\n"
+        "## 오류 요약\n"
+        f"{error_lines}\n"
+    )
 
 
 def save_results(date_text, recommendation, restaurants, final_report, errors=None):
@@ -610,6 +793,7 @@ def main():
             args.date,
             recommendation,
             restaurants,
+            errors,
             gemini_api_key
         )
 
