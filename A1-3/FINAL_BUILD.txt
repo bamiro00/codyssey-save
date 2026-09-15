@@ -1,0 +1,13 @@
+pet-food-match-ai FINAL SUBMISSION BUILD
+
+Deployment: https://pet-food-match-ai.vercel.app
+AI model: gemini-3.6-flash
+Seed catalog: 30 products (15 dog + 15 cat)
+
+Final package notes:
+- Latest agreed compare.py, app.js, style.css retained.
+- README and service planning documents updated to final deployed state.
+- Evidence files renamed to ASCII-safe filenames for Windows ZIP extraction.
+- README and service-plan.md link to the actual evidence filenames.
+- Python and JavaScript syntax checks passed.
+- __pycache__ and .pyc files removed.
