@@ -2537,3 +2537,443 @@ body {
   content: none !important;
   display: none !important;
 }
+
+/* ===== Result readability & AI explanation refresh ===== */
+.result-panel {
+  color:#183c5d;
+}
+
+.result-head h2,
+.result-head p,
+.selected-card,
+.evidence-card,
+.table-wrap {
+  color:#183c5d;
+}
+
+.selected-cards {
+  gap:14px;
+}
+
+.selected-card {
+  position:relative;
+  padding:16px 16px 15px;
+  border:1px solid #d5e5f0;
+  background:#fbfdff;
+  box-shadow:0 8px 20px rgba(26,73,111,.04);
+}
+
+.selected-card::before {
+  content:"";
+  position:absolute;
+  top:0;
+  left:14px;
+  right:14px;
+  height:3px;
+  border-radius:0 0 4px 4px;
+  background:linear-gradient(90deg,#2d7cb5,#4bb9a8);
+}
+
+.selected-card .badge {
+  color:#2d5d84;
+  background:#eaf4fb;
+  border:1px solid #d6e8f4;
+  font-weight:750;
+}
+
+.selected-brand {
+  margin-top:9px;
+  color:#244d70;
+  font-size:.78rem;
+  font-weight:800;
+}
+
+.selected-product-name {
+  margin-top:7px;
+  min-height:50px;
+}
+
+.product-name-ko,
+.product-name-en {
+  display:block;
+}
+
+.product-name-ko {
+  color:#0e3558;
+  font-size:.88rem;
+  line-height:1.45;
+  font-weight:850;
+  letter-spacing:-.015em;
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+}
+
+.product-name-ko.compact {
+  font-size:.75rem;
+}
+
+.product-name-en {
+  margin-top:3px;
+  color:#71879a;
+  font-size:.67rem;
+  line-height:1.42;
+  font-weight:600;
+  word-break:normal;
+  overflow-wrap:anywhere;
+}
+
+.selected-card p {
+  margin:9px 0 0;
+  color:#73889b;
+  font-size:.68rem;
+  font-weight:650;
+}
+
+.table-wrap {
+  border:1px solid #dfeaf3;
+  border-radius:12px;
+  overflow:auto;
+}
+
+.table-wrap table {
+  background:#fff;
+}
+
+.table-wrap th,
+.table-wrap td {
+  color:#32536f;
+  border-bottom:1px solid #e5eef5;
+}
+
+.table-wrap thead th {
+  background:#edf5fa;
+  color:#173d60;
+  font-weight:850;
+}
+
+.table-wrap tbody th {
+  background:#f8fbfd;
+  color:#214d72;
+  font-weight:800;
+  white-space:nowrap;
+}
+
+.table-wrap td {
+  background:#fff;
+  font-weight:600;
+}
+
+.product-table-head .product-name-ko,
+.product-table-head .product-name-en {
+  max-width:240px;
+}
+
+.notice {
+  color:#875019;
+  font-weight:650;
+}
+
+.evidence-panels {
+  gap:14px;
+}
+
+.evidence-card {
+  padding:16px;
+  border:1px solid #dbe8f1;
+  background:#fff;
+  box-shadow:0 8px 20px rgba(26,73,111,.035);
+}
+
+.evidence-product-name {
+  margin-bottom:13px;
+  padding-bottom:11px;
+  border-bottom:1px solid #e7eef4;
+}
+
+.evidence-group {
+  margin-top:12px;
+  padding-left:10px;
+  border-left:3px solid transparent;
+}
+
+.evidence-group:first-of-type {
+  margin-top:0;
+}
+
+.evidence-group strong {
+  display:block;
+  margin-bottom:6px;
+  font-size:.74rem;
+  color:#234963;
+}
+
+.evidence-manufacturer {
+  border-left-color:#38aa96;
+}
+
+.evidence-positive {
+  border-left-color:#4b91d1;
+}
+
+.evidence-mixed {
+  border-left-color:#df8a54;
+}
+
+.keyword-list {
+  gap:6px;
+  margin:0;
+}
+
+.keyword {
+  padding:4px 8px;
+  border:1px solid transparent;
+  font-size:.64rem;
+  line-height:1.3;
+  font-weight:750;
+}
+
+.keyword-manufacturer {
+  background:#e7f7f2;
+  border-color:#bee8dc;
+  color:#146f62;
+}
+
+.keyword-positive {
+  background:#eaf3fd;
+  border-color:#c9def2;
+  color:#235f94;
+}
+
+.keyword-mixed {
+  background:#fff1e7;
+  border-color:#f0d1bc;
+  color:#9a5429;
+}
+
+.keyword-empty {
+  background:#f2f5f7;
+  border-color:#e0e6eb;
+  color:#82909d;
+}
+
+.ai-box {
+  align-items:flex-start;
+  padding:18px;
+  border:1px solid #dbe9f1;
+  background:linear-gradient(135deg,#edf7ff 0%,#f3fbf7 100%);
+}
+
+.ai-box>span {
+  flex:0 0 38px;
+  box-shadow:0 5px 14px rgba(25,90,145,.16);
+}
+
+.ai-box h3 {
+  color:#133d63;
+  font-size:1rem;
+}
+
+.ai-content {
+  margin-top:10px;
+}
+
+.ai-verdict {
+  padding:14px 15px 15px;
+  border:1px solid #cfe3f2;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 8px 20px rgba(31,85,126,.04);
+}
+
+.ai-verdict-label {
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:999px;
+  background:#dceeff;
+  color:#1d6098;
+  font-size:.62rem;
+  font-weight:850;
+}
+
+.ai-verdict-title {
+  margin:8px 0 6px !important;
+  color:#0f3b62 !important;
+  font-size:.92rem !important;
+}
+
+.ai-product-name {
+  margin-bottom:8px;
+}
+
+.ai-product-name strong,
+.ai-product-name span {
+  display:block;
+}
+
+.ai-product-name strong {
+  color:#115d94;
+  font-size:.84rem;
+  line-height:1.45;
+  word-break:keep-all;
+}
+
+.ai-product-name span {
+  margin-top:2px;
+  color:#74889b;
+  font-size:.66rem;
+  line-height:1.4;
+}
+
+.ai-verdict-copy {
+  color:#314f68 !important;
+  font-size:.74rem !important;
+  line-height:1.7;
+}
+
+.ai-insight-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:9px;
+  margin-top:10px;
+}
+
+.ai-insight {
+  min-width:0;
+  padding:12px 12px 13px;
+  border:1px solid #dfe9f0;
+  border-radius:11px;
+  background:rgba(255,255,255,.82);
+}
+
+.ai-insight h4 {
+  margin:0 0 7px !important;
+  font-size:.71rem !important;
+  line-height:1.35;
+}
+
+.ai-insight p {
+  color:#456177 !important;
+  font-size:.69rem !important;
+  line-height:1.65;
+}
+
+.ai-insight.nutrition {
+  border-top:3px solid #4c92ce;
+}
+
+.ai-insight.nutrition h4 {
+  color:#245f93 !important;
+}
+
+.ai-insight.manufacturer {
+  border-top:3px solid #43aa98;
+}
+
+.ai-insight.manufacturer h4 {
+  color:#1e7466 !important;
+}
+
+.ai-insight.reviews {
+  border-top:3px solid #de8a56;
+}
+
+.ai-insight.reviews h4 {
+  color:#9a542b !important;
+}
+
+.ai-alternative-card,
+.ai-check-card {
+  margin-top:10px;
+  padding:12px 13px;
+  border-radius:10px;
+}
+
+.ai-alternative-card {
+  border:1px solid #eadfc5;
+  background:#fffaf0;
+}
+
+.ai-alternative-head {
+  margin-bottom:5px;
+  color:#956523;
+  font-size:.65rem;
+  font-weight:850;
+}
+
+.ai-alternative-card>strong {
+  display:block;
+  color:#674718;
+  font-size:.74rem;
+}
+
+.ai-alternative-en {
+  display:block;
+  margin-top:2px;
+  color:#9a8567;
+  font-size:.63rem;
+}
+
+.ai-alternative-card p {
+  margin-top:7px !important;
+  color:#66563d !important;
+  font-size:.69rem !important;
+  line-height:1.65;
+}
+
+.ai-check-card {
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:9px 12px;
+  align-items:start;
+  border:1px solid #d9e4ec;
+  background:#f7fafc;
+}
+
+.ai-check-card strong {
+  color:#385c76;
+  font-size:.67rem;
+  white-space:nowrap;
+}
+
+.ai-check-card p {
+  color:#5a7184 !important;
+  font-size:.68rem !important;
+  line-height:1.6;
+}
+
+.ai-disclaimer {
+  margin-top:12px !important;
+  padding-top:10px;
+  border-top:1px solid rgba(78,112,139,.15);
+  color:#7a8d9d !important;
+  line-height:1.5;
+}
+
+@media (max-width:900px) {
+  .ai-insight-grid {
+    grid-template-columns:1fr;
+  }
+  .selected-product-name {
+    min-height:0;
+  }
+}
+
+@media (max-width:620px) {
+  .result-panel {
+    margin:18px 8px 12px;
+    padding:14px;
+  }
+  .ai-box {
+    gap:9px;
+    padding:13px;
+  }
+  .ai-box>span {
+    width:34px;
+    height:34px;
+    flex-basis:34px;
+  }
+  .ai-check-card {
+    grid-template-columns:1fr;
+    gap:5px;
+  }
+}
