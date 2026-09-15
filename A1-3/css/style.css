@@ -2977,3 +2977,508 @@ body {
     gap:5px;
   }
 }
+
+/* =========================================================
+   FINAL MOBILE LAYOUT OVERRIDES
+   Desktop layout is intentionally left unchanged.
+   ========================================================= */
+@media (max-width: 800px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .shell {
+    width: calc(100% - 28px) !important;
+    max-width: 100% !important;
+  }
+
+  /* Header */
+  .nav-row {
+    min-height: 0;
+    padding: 9px 0 7px;
+    grid-template-columns: 1fr !important;
+    gap: 7px;
+  }
+
+  .brand {
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .brand strong {
+    font-size: .98rem;
+  }
+
+  .brand small {
+    font-size: .64rem;
+  }
+
+  .nav-links {
+    grid-column: 1 !important;
+    width: 100%;
+    gap: 3px;
+    padding: 6px 0 0;
+    justify-content: space-between;
+    overflow: visible;
+  }
+
+  .nav-links a {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 7px 5px;
+    text-align: center;
+    font-size: .66rem;
+    white-space: nowrap;
+  }
+
+  /* Hero: keep text, data card and pet image in normal flow on mobile. */
+  .hero-grid {
+    display: block !important;
+    min-height: 0 !important;
+    padding-bottom: 18px;
+  }
+
+  .hero-copy {
+    position: relative;
+    z-index: 5;
+    padding: 34px 0 14px !important;
+  }
+
+  .hero h1 {
+    max-width: 100%;
+    margin-top: 4px;
+    font-size: clamp(2.65rem, 13.5vw, 3.35rem);
+    line-height: 1.03;
+    letter-spacing: -.05em;
+  }
+
+  .desc {
+    max-width: none;
+    margin: 24px 0 20px;
+    font-size: .86rem;
+    line-height: 1.75;
+  }
+
+  .primary {
+    padding: 12px 19px;
+    font-size: .84rem;
+  }
+
+  .benefits {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px !important;
+    margin-top: 20px;
+  }
+
+  .benefits > div {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px;
+    padding: 8px 4px;
+    text-align: center;
+    font-size: .64rem;
+    line-height: 1.4;
+  }
+
+  .benefits > div span {
+    min-width: 0;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+
+  .benefits br {
+    display: none;
+  }
+
+  .benefits i {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+  }
+
+  .hero-art {
+    position: relative !important;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 2px 0 0;
+    padding: 0;
+    overflow: visible !important;
+  }
+
+  .data-card {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    width: min(100%, 330px) !important;
+    margin: 0 auto 2px;
+    padding: 15px 16px;
+    border-radius: 17px;
+    transform: none !important;
+    order: 1;
+  }
+
+  .hero-pets {
+    position: relative !important;
+    left: 50% !important;
+    right: auto !important;
+    bottom: auto !important;
+    top: auto !important;
+    width: 128% !important;
+    max-width: 520px !important;
+    height: auto !important;
+    margin: -4px 0 -8px;
+    transform: translateX(-50%) !important;
+    order: 2;
+  }
+
+  /* Compare form */
+  .compare-section {
+    padding-top: 10px;
+  }
+
+  .compare-shell {
+    border-radius: 22px;
+  }
+
+  .compare-heading {
+    min-height: 0;
+    padding: 24px 18px 18px !important;
+  }
+
+  .compare-heading h2 {
+    font-size: 1.85rem;
+  }
+
+  .leaf-deco,
+  .compare-slogan {
+    display: none !important;
+  }
+
+  .compare-card {
+    margin: 0 10px 12px;
+    padding: 18px 14px;
+    border-radius: 18px;
+  }
+
+  .top-grid,
+  .picker-grid,
+  .custom-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px !important;
+  }
+
+  .pet-toggle {
+    width: 100%;
+  }
+
+  .pet-toggle label {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .pet-toggle span {
+    width: 100%;
+    min-width: 0 !important;
+  }
+
+  .picker-title {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 4px 9px;
+  }
+
+  .actions {
+    margin-top: 16px;
+  }
+
+  .add,
+  .compare-btn {
+    width: 100%;
+  }
+
+  .compare-btn {
+    align-self: stretch !important;
+    text-align: center;
+  }
+
+  .suggestions {
+    top: 66px;
+    max-height: 230px;
+  }
+
+  /* Result */
+  .result-panel {
+    margin: 18px 8px 12px !important;
+    padding: 14px !important;
+    border-radius: 16px;
+  }
+
+  .result-head {
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .selected-cards,
+  .evidence-panels {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .table-wrap {
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table-wrap table {
+    min-width: 620px;
+  }
+
+  .ai-box {
+    gap: 9px;
+    padding: 13px;
+  }
+
+  .ai-insight-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* How it works: vertical, but less excessively tall. */
+  .how-section {
+    padding: 44px 0 42px;
+  }
+
+  .how-head {
+    margin-bottom: 20px;
+  }
+
+  .how-head h2 {
+    font-size: 1.9rem;
+  }
+
+  .steps {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+  }
+
+  .steps article {
+    padding: 8px 0;
+  }
+
+  .steps i {
+    width: 70px;
+    height: 70px;
+  }
+
+  .steps i svg {
+    width: 34px;
+    height: 34px;
+  }
+
+  .steps article > b {
+    margin-top: 8px;
+  }
+
+  .steps p {
+    max-width: 290px;
+    margin-top: 8px;
+  }
+
+  .steps em {
+    padding: 0 !important;
+    margin: 0 auto;
+    font-size: 28px;
+    line-height: .8;
+    transform: rotate(90deg) !important;
+  }
+
+  /* About: force a clean single-column stack. */
+  .about-section {
+    min-height: 0 !important;
+    padding: 46px 0 38px !important;
+    overflow: hidden;
+  }
+
+  .about-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    min-height: 0 !important;
+    gap: 20px !important;
+    align-items: start !important;
+  }
+
+  .about-copy {
+    width: 100%;
+    max-width: none !important;
+    min-width: 0;
+    order: 1;
+  }
+
+  .about-copy h2 {
+    margin-bottom: 14px;
+    font-size: 2rem;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+
+  .about-copy p {
+    max-width: none !important;
+    font-size: .82rem;
+    line-height: 1.85;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .about-copy a {
+    margin-top: 14px;
+  }
+
+  .footer-art {
+    position: relative !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: flex-end;
+    order: 2;
+    width: 100% !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    margin: 2px 0 0 !important;
+    overflow: visible !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .footer-art .about-pets {
+    display: block !important;
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    width: min(100%, 360px) !important;
+    max-width: 360px !important;
+    height: auto !important;
+    margin: 0 auto !important;
+    transform: none !important;
+    object-fit: contain !important;
+    opacity: 1 !important;
+  }
+
+  .footer-art::before,
+  .footer-art::after,
+  .quote::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  .quote {
+    position: relative !important;
+    right: auto !important;
+    left: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    order: 3;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 18px 19px !important;
+    border-radius: 18px;
+  }
+
+  .quote strong {
+    font-size: .88rem;
+    line-height: 1.65;
+  }
+}
+
+@media (max-width: 520px) {
+  .shell {
+    width: calc(100% - 24px) !important;
+  }
+
+  .hero-copy {
+    padding-top: 28px !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.55rem, 13.8vw, 3.1rem);
+  }
+
+  .desc {
+    font-size: .82rem;
+  }
+
+  .benefits {
+    gap: 5px !important;
+  }
+
+  .benefits > div {
+    padding: 7px 2px;
+    font-size: .60rem;
+  }
+
+  .hero-pets {
+    width: 138% !important;
+    max-width: 500px !important;
+  }
+
+  .compare-heading {
+    padding: 22px 15px 16px !important;
+  }
+
+  .compare-heading h2 {
+    font-size: 1.7rem;
+  }
+
+  .compare-card {
+    margin-inline: 7px;
+    padding: 17px 12px;
+  }
+
+  .result-head {
+    flex-direction: column;
+  }
+
+  .result-head h2 {
+    font-size: 1.45rem;
+  }
+
+  .result-head > p {
+    margin: 2px 0 0;
+  }
+
+  .ai-box > span {
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    font-size: .74rem;
+  }
+
+  .ai-box h3 {
+    font-size: .9rem;
+  }
+
+  .how-head h2 {
+    font-size: 1.75rem;
+  }
+
+  .about-copy h2 {
+    font-size: 1.9rem;
+  }
+
+  .footer-art .about-pets {
+    width: min(100%, 330px) !important;
+    max-width: 330px !important;
+  }
+}
