@@ -3482,3 +3482,53 @@ body {
     max-width: 330px !important;
   }
 }
+
+/* =========================================================
+   Mobile final alignment polish
+   - Center hero pet image
+   - Center About quote card text
+   Desktop remains unchanged
+========================================================= */
+@media (max-width: 800px) {
+  .hero-art {
+    align-items: center !important;
+  }
+
+  .hero-pets {
+    left: auto !important;
+    right: auto !important;
+    margin: -4px auto -8px !important;
+    transform: none !important;
+    object-position: center center !important;
+    align-self: center !important;
+  }
+
+  .quote {
+    text-align: center !important;
+  }
+
+  .quote > span,
+  .quote strong,
+  .quote small {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .quote strong {
+    max-width: 280px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-pets {
+    width: 124% !important;
+    max-width: 470px !important;
+  }
+
+  .quote {
+    padding: 22px 20px !important;
+  }
+}
