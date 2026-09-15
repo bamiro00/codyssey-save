@@ -1,0 +1,3270 @@
+{
+  "schema_version": "2.0",
+  "catalog_name": "Pet Food Compare AI - Seed Catalog V2",
+  "catalog_status": "SEED_CATALOG_V2_LOCKED",
+  "created_on": "2026-09-09",
+  "data_lineage": {
+    "nutrition_sources": [
+      "pet_food_compare_ai_dog_catalog_v1.json",
+      "pet_food_compare_ai_cat_catalog_v1.json"
+    ],
+    "review_source": "pet_food_compare_ai_review_layer_v1.json",
+    "merge_policy": "영양성분 원본값은 유지하고 제조사 강조 키워드와 리뷰 레이어를 중첩 추가했다."
+  },
+  "summary": {
+    "total_products": 30,
+    "dog_products": 15,
+    "cat_products": 15,
+    "review_confidence": {
+      "medium": 8,
+      "high": 21,
+      "low": 1
+    },
+    "nutrition_basis_counts": {
+      "guaranteed_analysis": 11,
+      "dry_matter_average": 9,
+      "registered_analysis": 10
+    },
+    "kcal_not_publicly_available_or_missing": [
+      "C01",
+      "C02",
+      "C06",
+      "C11",
+      "C12"
+    ]
+  },
+  "comparison_policy": {
+    "nutrition_basis": {
+      "same_basis": "단백질/지방/섬유 수치 직접 비교 가능.",
+      "different_basis": "수치 우열 비교 금지. 기준 차이를 사용자에게 설명하고 kcal/kg, Life Stage, 대상연령, 제품 목적 등 공통 비교항목을 우선한다."
+    },
+    "energy": "kcal/kg가 확인된 제품끼리만 열량을 직접 비교한다. null 값은 추정하거나 해외 포뮬러 값으로 대체하지 않는다.",
+    "manufacturer_keywords": "제조사 공식 포지셔닝을 설명하는 보조자료이며 효능 입증으로 취급하지 않는다.",
+    "review_keywords": "구매후기에서 반복된 경험을 요약하는 보조자료이며 추천 점수의 핵심 근거 또는 의학적 효능 근거로 사용하지 않는다.",
+    "review_confidence": {
+      "high": "리뷰 요약에 적극 활용 가능하나 영양학적 우열 근거로는 사용하지 않음.",
+      "medium": "보조 설명에 제한적으로 활용.",
+      "low": "표본 부족 안내 후 참고 수준으로만 활용."
+    },
+    "recommendation_wording": {
+      "allowed": [
+        "현재 입력한 조건에서는 이 제품을 우선 비교해볼 만합니다.",
+        "등록된 정보 기준으로 현재 조건과 상대적으로 잘 맞습니다."
+      ],
+      "forbidden": [
+        "이 사료가 최고입니다.",
+        "무조건 이 제품을 먹이세요.",
+        "이 사료를 먹으면 살이 빠집니다.",
+        "질병 치료 효과가 있습니다."
+      ]
+    }
+  },
+  "products": [
+    {
+      "product_id": "D01",
+      "brand": "ACANA",
+      "product_name": "Adult Dog Recipe",
+      "category": "basic",
+      "life_stage": "adult",
+      "target_age": "adult",
+      "food_type": "dry",
+      "nutrition_basis": "guaranteed_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 29,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 17,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 5,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 12,
+          "qualifier": "max"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3510,
+        "energy_type": "ME",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked",
+      "official_url": "https://apac.acana.com/ko-KR/ap-ns-aca-adult.html",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "성견 유지",
+          "동물성 원료 중심",
+          "WholePrey",
+          "기호성"
+        ],
+        "tags": [
+          "adult_maintenance",
+          "animal_ingredient_rich",
+          "wholeprey",
+          "palatability"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://apac.acana.com/ko-KR/ap-ns-aca-adult.html",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Feefo / Bern Pet Foods",
+        "source_region": "UK",
+        "review_count_visible": 20,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.feefo.com/en-US/reviews/bern-pet-foods/products/acana-adult-dog?displayFeedbackType=PRODUCT&parentSku=21305&timeFrame=ALL",
+        "confidence": "medium",
+        "positive_keywords": [
+          "기호성",
+          "소화/변 상태",
+          "장기 급여",
+          "활력"
+        ],
+        "mixed_keywords": [
+          "가격/구매비용",
+          "개체별 선호"
+        ],
+        "neutral_keywords": [
+          "배송",
+          "재구매"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "아카나",
+      "product_name_ko": "어덜트 독 레시피",
+      "display_brand": "아카나 / ACANA",
+      "display_name": "어덜트 독 레시피 / Adult Dog Recipe",
+      "search_aliases": [
+        "ACANA",
+        "ACANA Adult Dog Recipe",
+        "ACANA 어덜트 독 레시피",
+        "Adult Dog Recipe",
+        "acana",
+        "adult dog recipe",
+        "아카나",
+        "아카나 Adult Dog Recipe",
+        "아카나 어덜트 독 레시피",
+        "어덜트 독 레시피"
+      ]
+    },
+    {
+      "product_id": "D02",
+      "brand": "ORIJEN",
+      "product_name": "Original",
+      "category": "basic",
+      "life_stage": "all_life_stages",
+      "target_age": "all_life_stages",
+      "food_type": "dry",
+      "nutrition_basis": "guaranteed_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 38,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 18,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 5,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 12,
+          "qualifier": "max"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3860,
+        "energy_type": "ME",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked_kr_apac_ns",
+      "official_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ns-original.html",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "전연령",
+          "85% 동물성 원료",
+          "WholePrey",
+          "동결건조 코팅"
+        ],
+        "tags": [
+          "all_life_stages",
+          "animal_ingredient_85pct",
+          "wholeprey",
+          "freeze_dried_coating"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ns-original.html",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 2191,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/orijen-original-grain-free-dry-dog/product-reviews/128816",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "원료/품질",
+          "피모",
+          "활력"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "냄새",
+          "개체별 기호성 차이"
+        ],
+        "neutral_keywords": [
+          "알갱이 크기",
+          "장기 급여"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "오리젠",
+      "product_name_ko": "오리지널",
+      "display_brand": "오리젠 / ORIJEN",
+      "display_name": "오리지널 / Original",
+      "search_aliases": [
+        "ORIJEN",
+        "ORIJEN Original",
+        "ORIJEN 오리지널",
+        "Original",
+        "original",
+        "orijen",
+        "오리젠",
+        "오리젠 Original",
+        "오리젠 오리지널",
+        "오리지널"
+      ]
+    },
+    {
+      "product_id": "D03",
+      "brand": "Hill's",
+      "brand_line": "Science Diet",
+      "product_name": "Adult Small Bites Chicken & Barley",
+      "category": "basic",
+      "life_stage": "adult",
+      "target_age": "1-6 years",
+      "food_type": "dry",
+      "nutrition_basis": "dry_matter_average",
+      "nutrients": {
+        "protein_pct": {
+          "value": 24,
+          "qualifier": "average_dry_matter"
+        },
+        "fat_pct": {
+          "value": 15.1,
+          "qualifier": "average_dry_matter"
+        },
+        "fiber_pct": {
+          "value": 1.7,
+          "qualifier": "average_dry_matter"
+        },
+        "moisture_pct": {
+          "value": null,
+          "qualifier": "not_published_in_table"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3683,
+        "energy_type": "kcal_per_kg",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked",
+      "official_url": "https://www.hillspet.co.kr/dog-food/science-diet-adult-small-bites-dry",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "1~6세 성견",
+          "작은 키블",
+          "제지방 근육",
+          "소화·면역·장 건강",
+          "피부·모질"
+        ],
+        "tags": [
+          "adult_1_6",
+          "small_kibble",
+          "lean_muscle",
+          "digestive_immune_gut",
+          "skin_coat"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://www.hillspet.co.kr/dog-food/science-diet-adult-small-bites-dry",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 2107,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/hills-science-diet-adult-small-bites/dp/1040718",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "소화",
+          "작은 알갱이",
+          "영양/품질"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "알갱이 크기 선호 차이"
+        ],
+        "neutral_keywords": [
+          "재구매",
+          "배송"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "힐스",
+      "product_name_ko": "어덜트 스몰 바이트 치킨 & 보리",
+      "display_brand": "힐스 / Hill's",
+      "display_name": "어덜트 스몰 바이트 치킨 & 보리 / Adult Small Bites Chicken & Barley",
+      "search_aliases": [
+        "Adult Small Bites Chicken & Barley",
+        "Hill's",
+        "Hill's Adult Small Bites Chicken & Barley",
+        "Hill's 어덜트 스몰 바이트 치킨 & 보리",
+        "adult small bites chicken & barley",
+        "hill's",
+        "hills",
+        "science diet",
+        "사이언스 다이어트",
+        "어덜트 스몰 바이트 치킨 & 보리",
+        "힐스",
+        "힐스 Adult Small Bites Chicken & Barley",
+        "힐스 사이언스 다이어트",
+        "힐스 어덜트 스몰 바이트 치킨 & 보리"
+      ]
+    },
+    {
+      "product_id": "D04",
+      "brand": "ORIJEN",
+      "product_name": "Six Fish",
+      "category": "basic",
+      "life_stage": "all_life_stages",
+      "target_age": "all_life_stages",
+      "food_type": "dry",
+      "nutrition_basis": "guaranteed_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 39,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 19,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 5,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 12,
+          "qualifier": "max"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3760,
+        "energy_type": "ME",
+        "source_status": "owner_verified_current_formula"
+      },
+      "formula_status": "locked_current_formula",
+      "official_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ds-six-fish-dog.html",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "생선 중심",
+          "85% 동물성 원료",
+          "피부·모질",
+          "소화 건강",
+          "면역 건강"
+        ],
+        "tags": [
+          "fish_based",
+          "animal_ingredient_85pct",
+          "skin_coat",
+          "digestive_health",
+          "immune_health"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ds-six-fish-dog.html",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 1136,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/orijen-six-fish-grain-free-dry-dog/product-reviews/133945",
+        "confidence": "high",
+        "positive_keywords": [
+          "피모",
+          "소화",
+          "원료/품질",
+          "기호성"
+        ],
+        "mixed_keywords": [
+          "강한 냄새",
+          "기호성 편차",
+          "가스/무른변 등 적응 반응",
+          "가격"
+        ],
+        "neutral_keywords": [
+          "생선 단백질 선호",
+          "사료 전환"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "오리젠",
+      "product_name_ko": "식스 피쉬",
+      "display_brand": "오리젠 / ORIJEN",
+      "display_name": "식스 피쉬 / Six Fish",
+      "search_aliases": [
+        "ORIJEN",
+        "ORIJEN Six Fish",
+        "ORIJEN 식스 피쉬",
+        "Six Fish",
+        "orijen",
+        "six fish",
+        "식스 피쉬",
+        "오리젠",
+        "오리젠 Six Fish",
+        "오리젠 식스 피쉬"
+      ]
+    },
+    {
+      "product_id": "D05",
+      "brand": "ACANA",
+      "product_name": "Highest Protein Wild Prairie",
+      "category": "basic",
+      "life_stage": "all_life_stages",
+      "target_age": "all_life_stages",
+      "food_type": "dry",
+      "nutrition_basis": "guaranteed_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 35,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 17,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 6,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 12,
+          "qualifier": "max"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3850,
+        "energy_type": "ME",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked",
+      "official_url": "https://apac.acana.com/en-KR/ap-ns-aca-wild-prairie.html",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "전연령",
+          "고단백",
+          "70% 동물성 원료",
+          "그레인프리"
+        ],
+        "tags": [
+          "all_life_stages",
+          "high_protein",
+          "animal_ingredient_70pct",
+          "grain_free"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://apac.acana.com/en-KR/ap-ns-aca-wild-prairie.html",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Kiwoko",
+        "source_region": "ES",
+        "review_count_visible": 38,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.kiwoko.com/perros/comida-para-perros/pienso-seco-para-perros/pienso-natural/acana-hp-wild-prairie-pienso-para-perros/ACAAW00_M.html",
+        "confidence": "medium",
+        "positive_keywords": [
+          "기호성",
+          "소화",
+          "사료 전환 적응",
+          "원료/영양 구성"
+        ],
+        "mixed_keywords": [
+          "개체별 기호성 차이"
+        ],
+        "neutral_keywords": [
+          "장기 급여",
+          "재구매"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "아카나",
+      "product_name_ko": "하이스트 프로틴 와일드 프레리",
+      "display_brand": "아카나 / ACANA",
+      "display_name": "하이스트 프로틴 와일드 프레리 / Highest Protein Wild Prairie",
+      "search_aliases": [
+        "ACANA",
+        "ACANA Highest Protein Wild Prairie",
+        "ACANA 하이스트 프로틴 와일드 프레리",
+        "Highest Protein Wild Prairie",
+        "acana",
+        "highest protein wild prairie",
+        "아카나",
+        "아카나 Highest Protein Wild Prairie",
+        "아카나 하이스트 프로틴 와일드 프레리",
+        "하이스트 프로틴 와일드 프레리"
+      ]
+    },
+    {
+      "product_id": "D06",
+      "brand": "ACANA",
+      "product_name": "Senior Recipe",
+      "category": "senior",
+      "life_stage": "senior",
+      "target_age": "senior",
+      "food_type": "dry",
+      "nutrition_basis": "guaranteed_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 33,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 14,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 6,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 12,
+          "qualifier": "max"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3325,
+        "energy_type": "ME",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked",
+      "official_url": "https://apac.acana.com/ko-KR/ap-ns-aca-senior.html",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "시니어",
+          "건강 체중",
+          "소화",
+          "피부·모질",
+          "면역"
+        ],
+        "tags": [
+          "senior",
+          "healthy_weight",
+          "digestion",
+          "skin_coat",
+          "immune"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://apac.acana.com/ko-KR/ap-ns-aca-senior.html",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Feefo / ACANA Pet Foods",
+        "source_region": "UK",
+        "review_count_visible": 7,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.feefo.com/en-US/reviews/acana-pet-foods/products/acana-senior-recipe?displayFeedbackType=PRODUCT&parentSku=9223&timeFrame=ALL",
+        "confidence": "low",
+        "positive_keywords": [
+          "기호성",
+          "시니어 전환",
+          "체중관리 목적 사용"
+        ],
+        "mixed_keywords": [
+          "표본 부족"
+        ],
+        "neutral_keywords": [
+          "재구매"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "아카나",
+      "product_name_ko": "시니어 레시피",
+      "display_brand": "아카나 / ACANA",
+      "display_name": "시니어 레시피 / Senior Recipe",
+      "search_aliases": [
+        "ACANA",
+        "ACANA Senior Recipe",
+        "ACANA 시니어 레시피",
+        "Senior Recipe",
+        "acana",
+        "senior recipe",
+        "시니어 레시피",
+        "아카나",
+        "아카나 Senior Recipe",
+        "아카나 시니어 레시피"
+      ]
+    },
+    {
+      "product_id": "D07",
+      "brand": "ORIJEN",
+      "product_name": "Senior",
+      "category": "senior",
+      "life_stage": "senior",
+      "target_age": "senior",
+      "food_type": "dry",
+      "nutrition_basis": "guaranteed_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 38,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 15,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 6,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 12,
+          "qualifier": "max"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3710,
+        "energy_type": "ME",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked",
+      "official_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ns-senior.html",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "시니어",
+          "근육 유지",
+          "건강 체중",
+          "관절"
+        ],
+        "tags": [
+          "senior",
+          "muscle_maintenance",
+          "healthy_weight",
+          "joint_support"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ns-senior.html",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 911,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/orijen-senior-grain-free-dry-dog-food/product-reviews/29724",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "원료/품질",
+          "피모",
+          "소화"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "개체별 소화 적합성",
+          "기호성 편차"
+        ],
+        "neutral_keywords": [
+          "시니어 전환",
+          "알갱이 크기"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "오리젠",
+      "product_name_ko": "시니어",
+      "display_brand": "오리젠 / ORIJEN",
+      "display_name": "시니어 / Senior",
+      "search_aliases": [
+        "ORIJEN",
+        "ORIJEN Senior",
+        "ORIJEN 시니어",
+        "Senior",
+        "orijen",
+        "senior",
+        "시니어",
+        "오리젠",
+        "오리젠 Senior",
+        "오리젠 시니어"
+      ]
+    },
+    {
+      "product_id": "D08",
+      "brand": "Hill's",
+      "brand_line": "Science Diet",
+      "product_name": "Adult 7+ Small Bites (Chicken, Wheat, Barley)",
+      "category": "senior",
+      "life_stage": "senior",
+      "target_age": "7+ years",
+      "food_type": "dry",
+      "nutrition_basis": "dry_matter_average",
+      "nutrients": {
+        "protein_pct": {
+          "value": 19,
+          "qualifier": "average_dry_matter"
+        },
+        "fat_pct": {
+          "value": 13.7,
+          "qualifier": "average_dry_matter"
+        },
+        "fiber_pct": {
+          "value": 2.4,
+          "qualifier": "average_dry_matter"
+        },
+        "moisture_pct": {
+          "value": null,
+          "qualifier": "not_published_in_table"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3558,
+        "energy_type": "kcal_per_kg",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked",
+      "official_url": "https://www.hillspet.co.kr/dog-food/science-diet-mature-adult-small-bites-dry",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "7세+",
+          "작은 키블",
+          "노령기 에너지",
+          "소화·면역·장 건강"
+        ],
+        "tags": [
+          "senior_7plus",
+          "small_kibble",
+          "senior_energy",
+          "digestive_immune_gut"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://www.hillspet.co.kr/dog-food/science-diet-mature-adult-small-bites-dry",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 1824,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/hills-science-diet-adult-7-small/product-reviews/184539",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "작은 알갱이",
+          "시니어 급여",
+          "소화"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "개체별 기호성",
+          "포장/배송"
+        ],
+        "neutral_keywords": [
+          "재구매",
+          "알갱이 크기"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "힐스",
+      "product_name_ko": "어덜트 7+ 스몰 바이트",
+      "display_brand": "힐스 / Hill's",
+      "display_name": "어덜트 7+ 스몰 바이트 / Adult 7+ Small Bites (Chicken, Wheat, Barley)",
+      "search_aliases": [
+        "Adult 7+ Small Bites (Chicken, Wheat, Barley)",
+        "Hill's",
+        "Hill's Adult 7+ Small Bites (Chicken, Wheat, Barley)",
+        "Hill's 어덜트 7+ 스몰 바이트",
+        "adult 7+ small bites (chicken, wheat, barley)",
+        "hill's",
+        "hills",
+        "science diet",
+        "사이언스 다이어트",
+        "어덜트 7+ 스몰 바이트",
+        "힐스",
+        "힐스 Adult 7+ Small Bites (Chicken, Wheat, Barley)",
+        "힐스 사이언스 다이어트",
+        "힐스 어덜트 7+ 스몰 바이트"
+      ]
+    },
+    {
+      "product_id": "D09",
+      "brand": "Hill's",
+      "brand_line": "Science Diet",
+      "product_name": "Adult 7+ Perfect Digestion Small Bites (Chicken, Whole Oats, Brown Rice)",
+      "category": "senior",
+      "life_stage": "senior",
+      "target_age": "7+ years",
+      "food_type": "dry",
+      "nutrition_basis": "dry_matter_average",
+      "nutrients": {
+        "protein_pct": {
+          "value": 21,
+          "qualifier": "average_dry_matter"
+        },
+        "fat_pct": {
+          "value": 13,
+          "qualifier": "average_dry_matter"
+        },
+        "fiber_pct": {
+          "value": 2.2,
+          "qualifier": "average_dry_matter"
+        },
+        "moisture_pct": {
+          "value": null,
+          "qualifier": "not_published_in_table"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3559,
+        "energy_type": "kcal_per_kg",
+        "source_status": "official_verified"
+      },
+      "manufacturer_positioning": [
+        "digestion",
+        "microbiome"
+      ],
+      "formula_status": "locked",
+      "official_url": "https://www.hillspet.co.kr/dog-food/science-diet-mature-adult-7-perfect-digestion-small-bites-dry",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "7세+",
+          "퍼펙트 다이제스천",
+          "마이크로바이옴",
+          "작은 키블"
+        ],
+        "tags": [
+          "senior_7plus",
+          "perfect_digestion",
+          "microbiome",
+          "small_kibble"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://www.hillspet.co.kr/dog-food/science-diet-mature-adult-7-perfect-digestion-small-bites-dry",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 119,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/hills-science-diet-adult-7-perfect/dp/293267",
+        "confidence": "high",
+        "positive_keywords": [
+          "소화",
+          "변 상태",
+          "작은 알갱이",
+          "기호성"
+        ],
+        "mixed_keywords": [
+          "일부 개체의 설사/부적응",
+          "큰 포장 단위",
+          "가격"
+        ],
+        "neutral_keywords": [
+          "사료 전환",
+          "시니어 급여"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "힐스",
+      "product_name_ko": "어덜트 7+ 퍼펙트 다이제스천 스몰 바이트",
+      "display_brand": "힐스 / Hill's",
+      "display_name": "어덜트 7+ 퍼펙트 다이제스천 스몰 바이트 / Adult 7+ Perfect Digestion Small Bites (Chicken, Whole Oats, Brown Rice)",
+      "search_aliases": [
+        "Adult 7+ Perfect Digestion Small Bites (Chicken, Whole Oats, Brown Rice)",
+        "Hill's",
+        "Hill's Adult 7+ Perfect Digestion Small Bites (Chicken, Whole Oats, Brown Rice)",
+        "Hill's 어덜트 7+ 퍼펙트 다이제스천 스몰 바이트",
+        "adult 7+ perfect digestion small bites (chicken, whole oats, brown rice)",
+        "hill's",
+        "hills",
+        "science diet",
+        "사이언스 다이어트",
+        "어덜트 7+ 퍼펙트 다이제스천 스몰 바이트",
+        "힐스",
+        "힐스 Adult 7+ Perfect Digestion Small Bites (Chicken, Whole Oats, Brown Rice)",
+        "힐스 사이언스 다이어트",
+        "힐스 어덜트 7+ 퍼펙트 다이제스천 스몰 바이트"
+      ]
+    },
+    {
+      "product_id": "D10",
+      "brand": "Harim",
+      "brand_line": "The Real",
+      "product_name": "Grain-Free Oven-Baked Chicken Senior",
+      "category": "senior",
+      "life_stage": "senior",
+      "target_age": "7+ years",
+      "food_type": "dry",
+      "nutrition_basis": "registered_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 24,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 14,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 4,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 10,
+          "qualifier": "max"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3645,
+        "energy_type": "kcal_per_kg",
+        "source_status": "owner_confirmed_from_buyer_review_data"
+      },
+      "formula_status": "locked_for_assignment",
+      "official_url": "https://harimpetfood.com/product/%EB%8D%94%EB%A6%AC%EC%96%BC-%EA%B7%B8%EB%A0%88%EC%9D%B8%ED%94%84%EB%A6%AC-%EC%98%A4%EB%B8%90%EB%B2%A0%EC%9D%B4%ED%81%AC%EB%93%9C-%EB%8B%AD%EA%B3%A0%EA%B8%B0-%EC%8B%9C%EB%8B%88%EC%96%B4/1302/",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "시니어",
+          "오븐베이크드",
+          "그레인프리",
+          "닭고기"
+        ],
+        "tags": [
+          "senior",
+          "oven_baked",
+          "grain_free",
+          "chicken"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://harimpetfood.com/product/%EB%8D%94%EB%A6%AC%EC%96%BC-%EA%B7%B8%EB%A0%88%EC%9D%B8%ED%94%84%EB%A6%AC-%EC%98%A4%EB%B8%90%EB%B2%A0%EC%9D%B4%ED%81%AC%EB%93%9C-%EB%8B%AD%EA%B3%A0%EA%B8%B0-%EC%8B%9C%EB%8B%88%EC%96%B4/1302/",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Fitpet + Harim official review board",
+        "source_region": "KR",
+        "review_count_visible": 269,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.fitpetmall.com/mall/products/1000001637",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "노령견이 먹기 편함",
+          "부드러운 식감",
+          "재구매"
+        ],
+        "mixed_keywords": [
+          "개체별 기호성 차이"
+        ],
+        "neutral_keywords": [
+          "오븐베이크드",
+          "알갱이 크기"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "하림",
+      "product_name_ko": "더리얼 그레인프리 오븐베이크드 닭고기 시니어",
+      "display_brand": "하림 / Harim",
+      "display_name": "더리얼 그레인프리 오븐베이크드 닭고기 시니어 / Grain-Free Oven-Baked Chicken Senior",
+      "search_aliases": [
+        "Grain-Free Oven-Baked Chicken Senior",
+        "Harim",
+        "Harim Grain-Free Oven-Baked Chicken Senior",
+        "Harim 더리얼 그레인프리 오븐베이크드 닭고기 시니어",
+        "grain-free oven-baked chicken senior",
+        "harim",
+        "더리얼 그레인프리 오븐베이크드 닭고기 시니어",
+        "하림",
+        "하림 Grain-Free Oven-Baked Chicken Senior",
+        "하림 더리얼 그레인프리 오븐베이크드 닭고기 시니어"
+      ]
+    },
+    {
+      "product_id": "D11",
+      "brand": "ACANA",
+      "product_name": "Light & Fit Recipe",
+      "category": "weight_management",
+      "life_stage": "adult",
+      "target_age": "adult",
+      "food_type": "dry",
+      "nutrition_basis": "guaranteed_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 35,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 11,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 8,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 12,
+          "qualifier": "max"
+        },
+        "omega6_pct": {
+          "value": 2.2,
+          "qualifier": "min"
+        },
+        "omega3_pct": {
+          "value": 0.4,
+          "qualifier": "min"
+        },
+        "dha_pct": {
+          "value": 0.1,
+          "qualifier": "min"
+        },
+        "epa_pct": {
+          "value": 0.1,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3070,
+        "energy_type": "ME",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked_kr_ns",
+      "official_url": "https://apac.acana.com/ko-KR/ap-ns-aca-light-fit.html",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "체중관리",
+          "저칼로리",
+          "고단백",
+          "포만감"
+        ],
+        "tags": [
+          "weight_management",
+          "lower_calorie",
+          "high_protein",
+          "satiety"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://apac.acana.com/ko-KR/ap-ns-aca-light-fit.html",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 209,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/acana-light-fit-recipe-grain-free/dp/285990",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "체중관리 목적 사용",
+          "원료/품질",
+          "포만감 관련 체감"
+        ],
+        "mixed_keywords": [
+          "알갱이 크기",
+          "체중 변화 개인차",
+          "가격"
+        ],
+        "neutral_keywords": [
+          "급여량 조절",
+          "사료 전환"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "아카나",
+      "product_name_ko": "라이트 & 핏 레시피",
+      "display_brand": "아카나 / ACANA",
+      "display_name": "라이트 & 핏 레시피 / Light & Fit Recipe",
+      "search_aliases": [
+        "ACANA",
+        "ACANA Light & Fit Recipe",
+        "ACANA 라이트 & 핏 레시피",
+        "Light & Fit Recipe",
+        "acana",
+        "light & fit recipe",
+        "라이트 & 핏 레시피",
+        "아카나",
+        "아카나 Light & Fit Recipe",
+        "아카나 라이트 & 핏 레시피"
+      ]
+    },
+    {
+      "product_id": "D12",
+      "brand": "ORIJEN",
+      "product_name": "Fit & Trim",
+      "category": "weight_management",
+      "life_stage": "adult",
+      "target_age": "adult",
+      "food_type": "dry",
+      "nutrition_basis": "guaranteed_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 40,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 13,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 8,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 12,
+          "qualifier": "max"
+        },
+        "omega6_pct": {
+          "value": 2.2,
+          "qualifier": "min"
+        },
+        "omega3_pct": {
+          "value": 0.9,
+          "qualifier": "min"
+        },
+        "dha_pct": {
+          "value": 0.25,
+          "qualifier": "min"
+        },
+        "epa_pct": {
+          "value": 0.15,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3530,
+        "energy_type": "ME",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked_kr_ns",
+      "official_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ns-fittrim.html",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "체형관리",
+          "고단백",
+          "근육 유지",
+          "WholePrey"
+        ],
+        "tags": [
+          "body_condition",
+          "high_protein",
+          "muscle_maintenance",
+          "wholeprey"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ns-fittrim.html",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 233,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/orijen-fit-trim-grain-free-dry-dog/product-reviews/285963",
+        "confidence": "high",
+        "positive_keywords": [
+          "체중관리 목적 사용",
+          "피모",
+          "원료/품질",
+          "기호성"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "개체별 위장 반응",
+          "급여량 조절"
+        ],
+        "neutral_keywords": [
+          "사료 전환",
+          "알갱이"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "오리젠",
+      "product_name_ko": "핏 & 트림",
+      "display_brand": "오리젠 / ORIJEN",
+      "display_name": "핏 & 트림 / Fit & Trim",
+      "search_aliases": [
+        "Fit & Trim",
+        "ORIJEN",
+        "ORIJEN Fit & Trim",
+        "ORIJEN 핏 & 트림",
+        "fit & trim",
+        "orijen",
+        "오리젠",
+        "오리젠 Fit & Trim",
+        "오리젠 핏 & 트림",
+        "핏 & 트림"
+      ]
+    },
+    {
+      "product_id": "D13",
+      "brand": "Hill's",
+      "brand_line": "Science Diet",
+      "product_name": "Adult Perfect Weight & Joint Support Chicken & Brown Rice Recipe",
+      "category": "weight_management",
+      "life_stage": "adult",
+      "target_age": "1+ years",
+      "food_type": "dry",
+      "nutrition_basis": "dry_matter_average",
+      "nutrients": {
+        "protein_pct": {
+          "value": 28.7,
+          "qualifier": "average_dry_matter"
+        },
+        "fat_pct": {
+          "value": 14.2,
+          "qualifier": "average_dry_matter"
+        },
+        "fiber_pct": {
+          "value": 15,
+          "qualifier": "average_dry_matter"
+        },
+        "moisture_pct": {
+          "value": null,
+          "qualifier": "not_published_in_table"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3204,
+        "energy_type": "kcal_per_kg",
+        "source_status": "official_verified"
+      },
+      "manufacturer_positioning": [
+        "weight_management",
+        "joint_support"
+      ],
+      "formula_status": "locked",
+      "official_url": "https://www.hillspet.co.kr/dog-food/science-diet-adult-perfect-weight-joint-support-dry",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "체중관리",
+          "관절 지원",
+          "활동성",
+          "제지방 근육"
+        ],
+        "tags": [
+          "weight_management",
+          "joint_support",
+          "mobility",
+          "lean_muscle"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://www.hillspet.co.kr/dog-food/science-diet-adult-perfect-weight-joint-support-dry",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 348,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/hills-science-diet-perfect-weight/product-reviews/819470",
+        "confidence": "high",
+        "positive_keywords": [
+          "체중관리 목적 사용",
+          "기호성",
+          "활동성 관련 체감",
+          "피모"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "개체별 알레르기/부적응",
+          "기호성 편차"
+        ],
+        "neutral_keywords": [
+          "관절 지원 기대",
+          "사료 전환"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "힐스",
+      "product_name_ko": "어덜트 퍼펙트 웨이트 & 조인트 서포트 치킨 & 현미",
+      "display_brand": "힐스 / Hill's",
+      "display_name": "어덜트 퍼펙트 웨이트 & 조인트 서포트 치킨 & 현미 / Adult Perfect Weight & Joint Support Chicken & Brown Rice Recipe",
+      "search_aliases": [
+        "Adult Perfect Weight & Joint Support Chicken & Brown Rice Recipe",
+        "Hill's",
+        "Hill's Adult Perfect Weight & Joint Support Chicken & Brown Rice Recipe",
+        "Hill's 어덜트 퍼펙트 웨이트 & 조인트 서포트 치킨 & 현미",
+        "adult perfect weight & joint support chicken & brown rice recipe",
+        "hill's",
+        "hills",
+        "science diet",
+        "사이언스 다이어트",
+        "어덜트 퍼펙트 웨이트 & 조인트 서포트 치킨 & 현미",
+        "힐스",
+        "힐스 Adult Perfect Weight & Joint Support Chicken & Brown Rice Recipe",
+        "힐스 사이언스 다이어트",
+        "힐스 어덜트 퍼펙트 웨이트 & 조인트 서포트 치킨 & 현미"
+      ]
+    },
+    {
+      "product_id": "D14",
+      "brand": "Hill's",
+      "brand_line": "Science Diet",
+      "product_name": "Adult Light Small Bites (Chicken, Wheat, Barley)",
+      "category": "weight_management",
+      "life_stage": "adult",
+      "target_age": "1-6 years",
+      "food_type": "dry",
+      "nutrition_basis": "dry_matter_average",
+      "nutrients": {
+        "protein_pct": {
+          "value": 25.3,
+          "qualifier": "average_dry_matter"
+        },
+        "fat_pct": {
+          "value": 8.4,
+          "qualifier": "average_dry_matter"
+        },
+        "fiber_pct": {
+          "value": 12.4,
+          "qualifier": "average_dry_matter"
+        },
+        "moisture_pct": {
+          "value": null,
+          "qualifier": "not_published_in_table"
+        }
+      },
+      "energy": {
+        "kcal_kg": 2987,
+        "energy_type": "kcal_per_kg",
+        "source_status": "official_verified"
+      },
+      "manufacturer_positioning": [
+        "low_calorie",
+        "low_activity_weight_management"
+      ],
+      "formula_status": "locked",
+      "official_url": "https://www.hillspet.co.kr/dog-food/science-diet-adult-light-small-bites-dry",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "저칼로리",
+          "활동량 적은 성견",
+          "체중관리",
+          "작은 키블"
+        ],
+        "tags": [
+          "low_calorie",
+          "low_activity_adult",
+          "weight_management",
+          "small_kibble"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://www.hillspet.co.kr/dog-food/science-diet-adult-light-small-bites-dry",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 1007,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/hills-science-diet-adult-light-small/product-reviews/29983",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "체중관리 목적 사용",
+          "작은 알갱이",
+          "장기 급여"
+        ],
+        "mixed_keywords": [
+          "알갱이가 너무 작다는 의견",
+          "가격",
+          "개체별 기호성"
+        ],
+        "neutral_keywords": [
+          "급여량",
+          "재구매"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "힐스",
+      "product_name_ko": "어덜트 라이트 스몰 바이트",
+      "display_brand": "힐스 / Hill's",
+      "display_name": "어덜트 라이트 스몰 바이트 / Adult Light Small Bites (Chicken, Wheat, Barley)",
+      "search_aliases": [
+        "Adult Light Small Bites (Chicken, Wheat, Barley)",
+        "Hill's",
+        "Hill's Adult Light Small Bites (Chicken, Wheat, Barley)",
+        "Hill's 어덜트 라이트 스몰 바이트",
+        "adult light small bites (chicken, wheat, barley)",
+        "hill's",
+        "hills",
+        "science diet",
+        "사이언스 다이어트",
+        "어덜트 라이트 스몰 바이트",
+        "힐스",
+        "힐스 Adult Light Small Bites (Chicken, Wheat, Barley)",
+        "힐스 사이언스 다이어트",
+        "힐스 어덜트 라이트 스몰 바이트"
+      ]
+    },
+    {
+      "product_id": "D15",
+      "brand": "Harim",
+      "brand_line": "가장 맛있는 시간 30일",
+      "product_name": "Smart Balance UP Diet",
+      "category": "weight_management",
+      "life_stage": "adult",
+      "target_age": "adult",
+      "food_type": "dry",
+      "nutrition_basis": "registered_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 23,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 7,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 6,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 10,
+          "qualifier": "max"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3238,
+        "kcal_cup": 240,
+        "cup_weight_g_approx": 74,
+        "energy_type": "kcal_per_kg",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked",
+      "official_url": "https://harimpetfood.com/product/0410%EC%83%9D%EC%82%B0-%EA%B0%80%EC%9E%A5%EB%A7%9B%EC%9E%88%EB%8A%94%EC%8B%9C%EA%B0%8430%EC%9D%BC-%EC%8A%A4%EB%A7%88%ED%8A%B8-%EB%B0%9C%EB%9E%80%EC%8A%A4-up-%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8-500g/1038/",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "체중관리",
+          "저지방 포지셔닝",
+          "성견"
+        ],
+        "tags": [
+          "weight_management",
+          "lower_fat_positioning",
+          "adult"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://harimpetfood.com/product/0410%EC%83%9D%EC%82%B0-%EA%B0%80%EC%9E%A5%EB%A7%9B%EC%9E%88%EB%8A%94%EC%8B%9C%EA%B0%8430%EC%9D%BC-%EC%8A%A4%EB%A7%88%ED%8A%B8-%EB%B0%9C%EB%9E%80%EC%8A%A4-up-%EB%8B%A4%EC%9D%B4%EC%96%B4%ED%8A%B8-500g/1038/",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Harim official review board",
+        "source_region": "KR",
+        "review_count_visible": null,
+        "visible_reviews_sampled": null,
+        "source_url": "https://harimpetfood.com/article/%EC%83%81%ED%92%88-%EC%82%AC%EC%9A%A9%ED%9B%84%EA%B8%B0/4/217487/",
+        "confidence": "medium",
+        "positive_keywords": [
+          "기호성",
+          "신선함",
+          "재구매",
+          "체중관리 목적 사용"
+        ],
+        "mixed_keywords": [
+          "다소 딱딱한 식감",
+          "기호성 편차"
+        ],
+        "neutral_keywords": [
+          "다른 사료와 혼합 급여",
+          "생산일/신선도"
+        ],
+        "notes": "8개 이상 직접 확인된 후기 기준; 의학적 효능 주장은 제외",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "하림",
+      "product_name_ko": "스마트 밸런스 UP 다이어트",
+      "display_brand": "하림 / Harim",
+      "display_name": "스마트 밸런스 UP 다이어트 / Smart Balance UP Diet",
+      "search_aliases": [
+        "Harim",
+        "Harim Smart Balance UP Diet",
+        "Harim 스마트 밸런스 UP 다이어트",
+        "Smart Balance UP Diet",
+        "harim",
+        "smart balance up diet",
+        "스마트 밸런스 UP 다이어트",
+        "하림",
+        "하림 Smart Balance UP Diet",
+        "하림 스마트 밸런스 UP 다이어트"
+      ]
+    },
+    {
+      "product_id": "C01",
+      "brand": "Royal Canin",
+      "product_name": "Fit",
+      "category": "basic",
+      "life_stage": "adult",
+      "target_age": "12+ months",
+      "food_type": "dry",
+      "nutrition_basis": "registered_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 30,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 13,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 5.3,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 6.5,
+          "qualifier": "max"
+        },
+        "ash_pct": {
+          "value": 8,
+          "qualifier": "max"
+        },
+        "calcium_pct": {
+          "value": 0.96,
+          "qualifier": "min"
+        },
+        "phosphorus_pct": {
+          "value": 0.83,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": null,
+        "source_status": "not_publicly_disclosed"
+      },
+      "formula_status": "locked_current_kr_retail",
+      "source_url": "https://brand.naver.com/royalcanin/products/13523481944",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "성묘 체형 유지",
+          "헤어볼"
+        ],
+        "tags": [
+          "adult_body_condition",
+          "hairball"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://brand.naver.com/royalcanin/products/13523481944",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Zooplus",
+        "source_region": "EU/UK",
+        "review_count_visible": 1710,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.zooplus.com/shop/cats/dry_cat_food/royal_canin/adult/126956",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "장기 급여",
+          "알갱이 선호",
+          "재구매"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "개체별 기호성"
+        ],
+        "neutral_keywords": [
+          "실내/외 성묘 급여",
+          "포장 단위"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "로얄캐닌",
+      "product_name_ko": "핏",
+      "display_brand": "로얄캐닌 / Royal Canin",
+      "display_name": "핏 / Fit",
+      "search_aliases": [
+        "Fit",
+        "Royal Canin",
+        "Royal Canin Fit",
+        "Royal Canin 핏",
+        "fit",
+        "royal canin",
+        "royalcanin",
+        "로얄 캐닌",
+        "로얄캐닌",
+        "로얄캐닌 Fit",
+        "로얄캐닌 핏",
+        "핏"
+      ]
+    },
+    {
+      "product_id": "C02",
+      "brand": "Royal Canin",
+      "product_name": "Indoor",
+      "category": "basic",
+      "life_stage": "adult",
+      "target_age": "12+ months",
+      "food_type": "dry",
+      "nutrition_basis": "registered_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 25,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 11,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 4.9,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 6.5,
+          "qualifier": "max"
+        },
+        "ash_pct": {
+          "value": 8.2,
+          "qualifier": "max"
+        },
+        "calcium_pct": {
+          "value": 0.88,
+          "qualifier": "min"
+        },
+        "phosphorus_pct": {
+          "value": 0.64,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": null,
+        "source_status": "not_publicly_disclosed"
+      },
+      "formula_status": "locked_current_kr_retail",
+      "source_url": "https://brand.naver.com/royalcanin/products/13523484840",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "실내묘",
+          "체중관리",
+          "변 냄새",
+          "헤어볼"
+        ],
+        "tags": [
+          "indoor_cat",
+          "weight_management",
+          "stool_odor",
+          "hairball"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://brand.naver.com/royalcanin/products/13523484840",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 1202,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/royal-canin-feline-health-nutrition/product-reviews/29845",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "장기 급여",
+          "피모",
+          "품질"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "개체별 기호성",
+          "원료에 대한 소비자 의견"
+        ],
+        "neutral_keywords": [
+          "냄새",
+          "알갱이 크기"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "로얄캐닌",
+      "product_name_ko": "인도어",
+      "display_brand": "로얄캐닌 / Royal Canin",
+      "display_name": "인도어 / Indoor",
+      "search_aliases": [
+        "Indoor",
+        "Royal Canin",
+        "Royal Canin Indoor",
+        "Royal Canin 인도어",
+        "indoor",
+        "royal canin",
+        "royalcanin",
+        "로얄 캐닌",
+        "로얄캐닌",
+        "로얄캐닌 Indoor",
+        "로얄캐닌 인도어",
+        "인도어"
+      ]
+    },
+    {
+      "product_id": "C03",
+      "brand": "ORIJEN",
+      "product_name": "Guardian 8",
+      "category": "basic",
+      "life_stage": "adult",
+      "target_age": "adult",
+      "food_type": "dry",
+      "nutrition_basis": "guaranteed_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 40,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 18,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 4,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 10,
+          "qualifier": "max"
+        },
+        "ash_pct": {
+          "value": 9,
+          "qualifier": "max"
+        },
+        "calcium_pct": {
+          "value": 1.4,
+          "qualifier": "min"
+        },
+        "phosphorus_pct": {
+          "value": 1.1,
+          "qualifier": "min"
+        },
+        "magnesium_pct": {
+          "value": 0.1,
+          "qualifier": "max"
+        },
+        "taurine_pct": {
+          "value": 0.1,
+          "qualifier": "min"
+        },
+        "omega6_pct": {
+          "value": 3.0,
+          "qualifier": "min"
+        },
+        "omega3_pct": {
+          "value": 1.2,
+          "qualifier": "min"
+        },
+        "dha_pct": {
+          "value": 0.35,
+          "qualifier": "min"
+        },
+        "epa_pct": {
+          "value": 0.35,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3980,
+        "energy_type": "ME",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked_kr_apac_ns",
+      "source_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ns-guardian-8.html",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "8대 건강 영역",
+          "면역",
+          "소화",
+          "피부·모질",
+          "심장",
+          "근육",
+          "관절·뼈",
+          "뇌",
+          "눈"
+        ],
+        "tags": [
+          "eight_health_areas",
+          "immune",
+          "digestion",
+          "skin_coat",
+          "heart",
+          "muscle",
+          "joint_bone",
+          "brain",
+          "eye"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ns-guardian-8.html",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 347,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/orijen-guardian-8-free-run-chicken/product-reviews/337378",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "원료/품질",
+          "피모",
+          "활력 관련 체감"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "냄새",
+          "개체별 기호성"
+        ],
+        "neutral_keywords": [
+          "사료 전환",
+          "체중 관련 관심"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "오리젠",
+      "product_name_ko": "가디언 8",
+      "display_brand": "오리젠 / ORIJEN",
+      "display_name": "가디언 8 / Guardian 8",
+      "search_aliases": [
+        "Guardian 8",
+        "ORIJEN",
+        "ORIJEN Guardian 8",
+        "ORIJEN 가디언 8",
+        "guardian 8",
+        "orijen",
+        "가디언 8",
+        "오리젠",
+        "오리젠 Guardian 8",
+        "오리젠 가디언 8"
+      ]
+    },
+    {
+      "product_id": "C04",
+      "brand": "Hill's",
+      "brand_line": "Science Diet",
+      "product_name": "Adult Indoor Chicken Recipe",
+      "category": "basic",
+      "life_stage": "adult",
+      "target_age": "1-6 years",
+      "food_type": "dry",
+      "nutrition_basis": "dry_matter_average",
+      "nutrients": {
+        "protein_pct": {
+          "value": 36.1,
+          "qualifier": "average_dry_matter"
+        },
+        "fat_pct": {
+          "value": 14.8,
+          "qualifier": "average_dry_matter"
+        },
+        "fiber_pct": {
+          "value": 8.5,
+          "qualifier": "average_dry_matter"
+        },
+        "calcium_pct": {
+          "value": 0.92,
+          "qualifier": "average_dry_matter"
+        },
+        "phosphorus_pct": {
+          "value": 0.77,
+          "qualifier": "average_dry_matter"
+        },
+        "potassium_pct": {
+          "value": 0.75,
+          "qualifier": "average_dry_matter"
+        },
+        "sodium_pct": {
+          "value": 0.45,
+          "qualifier": "average_dry_matter"
+        },
+        "magnesium_pct": {
+          "value": 0.087,
+          "qualifier": "average_dry_matter"
+        },
+        "taurine_pct": {
+          "value": 0.22,
+          "qualifier": "average_dry_matter"
+        },
+        "omega3_pct": {
+          "value": 0.6,
+          "qualifier": "average_dry_matter"
+        },
+        "omega6_pct": {
+          "value": 3.71,
+          "qualifier": "average_dry_matter"
+        },
+        "carnitine_ppm": {
+          "value": 551,
+          "qualifier": "average"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3492,
+        "energy_type": "kcal_per_kg",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked",
+      "source_url": "https://www.hillspet.co.kr/cat-food/science-diet-adult-indoor-dry",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "실내묘",
+          "에너지",
+          "소화·면역·장 건강",
+          "피부·모질"
+        ],
+        "tags": [
+          "indoor_cat",
+          "energy",
+          "digestive_immune_gut",
+          "skin_coat"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://www.hillspet.co.kr/cat-food/science-diet-adult-indoor-dry",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 1890,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/hills-science-diet-adult-indoor/dp/34081",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "소화/변 상태",
+          "피모",
+          "실내묘 장기 급여"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "개체별 기호성",
+          "포장/배송"
+        ],
+        "neutral_keywords": [
+          "알갱이 크기",
+          "습식과 병행"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "힐스",
+      "product_name_ko": "어덜트 인도어 치킨 레시피",
+      "display_brand": "힐스 / Hill's",
+      "display_name": "어덜트 인도어 치킨 레시피 / Adult Indoor Chicken Recipe",
+      "search_aliases": [
+        "Adult Indoor Chicken Recipe",
+        "Hill's",
+        "Hill's Adult Indoor Chicken Recipe",
+        "Hill's 어덜트 인도어 치킨 레시피",
+        "adult indoor chicken recipe",
+        "hill's",
+        "hills",
+        "science diet",
+        "사이언스 다이어트",
+        "어덜트 인도어 치킨 레시피",
+        "힐스",
+        "힐스 Adult Indoor Chicken Recipe",
+        "힐스 사이언스 다이어트",
+        "힐스 어덜트 인도어 치킨 레시피"
+      ]
+    },
+    {
+      "product_id": "C05",
+      "brand": "Purina Pro Plan",
+      "product_name": "Adult Cat Salmon",
+      "category": "basic",
+      "life_stage": "adult",
+      "target_age": "12+ months",
+      "food_type": "dry",
+      "nutrition_basis": "registered_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 34,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 15,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 3.0,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 9.0,
+          "qualifier": "max"
+        },
+        "ash_pct": {
+          "value": 8.5,
+          "qualifier": "max"
+        },
+        "calcium_pct": {
+          "value": 1.2,
+          "qualifier": "min"
+        },
+        "phosphorus_pct": {
+          "value": 1.0,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3700,
+        "energy_type": "ME",
+        "source_status": "package_detail_verified"
+      },
+      "formula_status": "locked_current_kr_pack",
+      "source_url": "https://smartstore.naver.com/itzgroom/products/12696940376",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "성묘",
+          "연어",
+          "소화·면역"
+        ],
+        "tags": [
+          "adult",
+          "salmon",
+          "digestive_immune"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://smartstore.naver.com/itzgroom/products/12696940376",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 779,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/purina-pro-plan-adult-salmon-rice/dp/52868",
+        "confidence": "medium",
+        "positive_keywords": [
+          "기호성",
+          "소화",
+          "피모",
+          "연어 맛 선호"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "개체별 기호성",
+          "원료 관련 소비자 의견"
+        ],
+        "neutral_keywords": [
+          "사료 전환",
+          "건식 선호"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "퓨리나 프로플랜",
+      "product_name_ko": "어덜트 캣 연어",
+      "display_brand": "퓨리나 프로플랜 / Purina Pro Plan",
+      "display_name": "어덜트 캣 연어 / Adult Cat Salmon",
+      "search_aliases": [
+        "Adult Cat Salmon",
+        "Purina Pro Plan",
+        "Purina Pro Plan Adult Cat Salmon",
+        "Purina Pro Plan 어덜트 캣 연어",
+        "adult cat salmon",
+        "purina",
+        "purina pro plan",
+        "어덜트 캣 연어",
+        "퓨리나",
+        "퓨리나 프로플랜",
+        "퓨리나 프로플랜 Adult Cat Salmon",
+        "퓨리나 프로플랜 어덜트 캣 연어"
+      ]
+    },
+    {
+      "product_id": "C06",
+      "brand": "Royal Canin",
+      "product_name": "Indoor 7+",
+      "category": "senior",
+      "life_stage": "senior",
+      "target_age": "7+ years",
+      "food_type": "dry",
+      "nutrition_basis": "registered_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 25,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 11,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 4.6,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 6.5,
+          "qualifier": "max"
+        },
+        "ash_pct": {
+          "value": 7.7,
+          "qualifier": "max"
+        },
+        "calcium_pct": {
+          "value": 0.728,
+          "qualifier": "min"
+        },
+        "phosphorus_pct": {
+          "value": 0.59,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": null,
+        "source_status": "not_publicly_disclosed"
+      },
+      "formula_status": "locked_current_kr_retail",
+      "source_url": "https://brand.naver.com/royalcanin/products/13523478262",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "7세+",
+          "실내묘",
+          "노년기 활력"
+        ],
+        "tags": [
+          "senior_7plus",
+          "indoor_cat",
+          "senior_vitality"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://brand.naver.com/royalcanin/products/13523478262",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 338,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/royal-canin-feline-health-nutrition/product-reviews/37563",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "작은 알갱이",
+          "시니어/실내묘 급여",
+          "사료 전환"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "원료 구성에 대한 소비자 의견",
+          "개체별 기호성"
+        ],
+        "neutral_keywords": [
+          "알갱이 크기",
+          "연령 전환"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "로얄캐닌",
+      "product_name_ko": "인도어 7+",
+      "display_brand": "로얄캐닌 / Royal Canin",
+      "display_name": "인도어 7+ / Indoor 7+",
+      "search_aliases": [
+        "Indoor 7+",
+        "Royal Canin",
+        "Royal Canin Indoor 7+",
+        "Royal Canin 인도어 7+",
+        "indoor 7+",
+        "royal canin",
+        "royalcanin",
+        "로얄 캐닌",
+        "로얄캐닌",
+        "로얄캐닌 Indoor 7+",
+        "로얄캐닌 인도어 7+",
+        "인도어 7+"
+      ]
+    },
+    {
+      "product_id": "C07",
+      "brand": "Royal Canin",
+      "product_name": "Ageing 11+",
+      "category": "senior",
+      "life_stage": "senior",
+      "target_age": "11+ years",
+      "food_type": "dry",
+      "nutrition_basis": "registered_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 28,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 15,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 3.9,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 6.5,
+          "qualifier": "max"
+        },
+        "ash_pct": {
+          "value": 6.7,
+          "qualifier": "max"
+        },
+        "calcium_pct": {
+          "value": 0.63,
+          "qualifier": "min"
+        },
+        "phosphorus_pct": {
+          "value": 0.54,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": 4033,
+        "energy_type": "ME",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked",
+      "source_url": "https://www.royalcanin.com/kr/cats/products/retail-products/ageing-11%2B-2561",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "11세+",
+          "HealthyAge7",
+          "노령묘"
+        ],
+        "tags": [
+          "senior_11plus",
+          "healthyage7",
+          "senior_cat"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://www.royalcanin.com/kr/cats/products/retail-products/ageing-11%2B-2561",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 65,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/royal-canin-feline-health-nutrition/dp/3861638",
+        "confidence": "medium",
+        "positive_keywords": [
+          "기호성",
+          "부드럽고 씹기 쉬운 알갱이",
+          "소화",
+          "노령묘 급여"
+        ],
+        "mixed_keywords": [
+          "개체별 기호성",
+          "가격",
+          "원료 구성에 대한 의견"
+        ],
+        "neutral_keywords": [
+          "구버전 12+와 비교",
+          "사료 전환"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "로얄캐닌",
+      "product_name_ko": "에이징 11+",
+      "display_brand": "로얄캐닌 / Royal Canin",
+      "display_name": "에이징 11+ / Ageing 11+",
+      "search_aliases": [
+        "Ageing 11+",
+        "Royal Canin",
+        "Royal Canin Ageing 11+",
+        "Royal Canin 에이징 11+",
+        "ageing 11+",
+        "royal canin",
+        "royalcanin",
+        "로얄 캐닌",
+        "로얄캐닌",
+        "로얄캐닌 Ageing 11+",
+        "로얄캐닌 에이징 11+",
+        "에이징 11+"
+      ]
+    },
+    {
+      "product_id": "C08",
+      "brand": "ORIJEN",
+      "product_name": "Guardian Senior",
+      "category": "senior",
+      "life_stage": "senior",
+      "target_age": "7+ years",
+      "food_type": "dry",
+      "nutrition_basis": "guaranteed_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 40,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 15,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 4,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 10,
+          "qualifier": "max"
+        },
+        "omega6_pct": {
+          "value": 2.5,
+          "qualifier": "min"
+        },
+        "omega3_pct": {
+          "value": 1.3,
+          "qualifier": "min"
+        },
+        "dha_pct": {
+          "value": 0.15,
+          "qualifier": "min"
+        },
+        "epa_pct": {
+          "value": 0.1,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3830,
+        "energy_type": "ME",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked_apac",
+      "source_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ds-guardian-senior.html",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "7세+",
+          "8대 건강 영역",
+          "면역",
+          "소화",
+          "피부·모질",
+          "심장",
+          "눈",
+          "근육·체중",
+          "관절·뼈",
+          "인지"
+        ],
+        "tags": [
+          "senior_7plus",
+          "eight_health_areas",
+          "immune",
+          "digestion",
+          "skin_coat",
+          "heart",
+          "eye",
+          "muscle_weight",
+          "joint_bone",
+          "cognition"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ds-guardian-senior.html",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 248,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/orijen-guardian-senior-7-grain-free/product-reviews/755526",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "소화",
+          "피모",
+          "시니어 급여"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "초기 구토/적응 반응",
+          "개체별 기호성"
+        ],
+        "neutral_keywords": [
+          "사료 전환",
+          "알갱이/씹기"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "오리젠",
+      "product_name_ko": "가디언 시니어",
+      "display_brand": "오리젠 / ORIJEN",
+      "display_name": "가디언 시니어 / Guardian Senior",
+      "search_aliases": [
+        "Guardian Senior",
+        "ORIJEN",
+        "ORIJEN Guardian Senior",
+        "ORIJEN 가디언 시니어",
+        "guardian senior",
+        "orijen",
+        "가디언 시니어",
+        "오리젠",
+        "오리젠 Guardian Senior",
+        "오리젠 가디언 시니어"
+      ]
+    },
+    {
+      "product_id": "C09",
+      "brand": "Hill's",
+      "brand_line": "Science Diet",
+      "product_name": "Adult 7+ Indoor Chicken Recipe",
+      "category": "senior",
+      "life_stage": "senior",
+      "target_age": "7+ years",
+      "food_type": "dry",
+      "nutrition_basis": "dry_matter_average",
+      "nutrients": {
+        "protein_pct": {
+          "value": 34.2,
+          "qualifier": "average_dry_matter"
+        },
+        "fat_pct": {
+          "value": 16.0,
+          "qualifier": "average_dry_matter"
+        },
+        "fiber_pct": {
+          "value": 8.4,
+          "qualifier": "average_dry_matter"
+        },
+        "calcium_pct": {
+          "value": 0.8,
+          "qualifier": "average_dry_matter"
+        },
+        "phosphorus_pct": {
+          "value": 0.65,
+          "qualifier": "average_dry_matter"
+        },
+        "potassium_pct": {
+          "value": 0.78,
+          "qualifier": "average_dry_matter"
+        },
+        "sodium_pct": {
+          "value": 0.38,
+          "qualifier": "average_dry_matter"
+        },
+        "magnesium_pct": {
+          "value": 0.081,
+          "qualifier": "average_dry_matter"
+        },
+        "taurine_pct": {
+          "value": 0.3,
+          "qualifier": "average_dry_matter"
+        },
+        "omega3_pct": {
+          "value": 0.55,
+          "qualifier": "average_dry_matter"
+        },
+        "omega6_pct": {
+          "value": 3.73,
+          "qualifier": "average_dry_matter"
+        },
+        "carnitine_ppm": {
+          "value": 550,
+          "qualifier": "average"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3574,
+        "energy_type": "kcal_per_kg",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked",
+      "source_url": "https://www.hillspet.co.kr/cat-food/science-diet-mature-adult-indoor-dry",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "7세+",
+          "실내묘",
+          "소화·면역·장 건강"
+        ],
+        "tags": [
+          "senior_7plus",
+          "indoor_cat",
+          "digestive_immune_gut"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://www.hillspet.co.kr/cat-food/science-diet-mature-adult-indoor-dry",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 778,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/hills-science-diet-adult-7-indoor/product-reviews/29975",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "시니어/실내묘 급여",
+          "품질",
+          "소화"
+        ],
+        "mixed_keywords": [
+          "알갱이가 크다는 의견",
+          "가격",
+          "개체별 기호성"
+        ],
+        "neutral_keywords": [
+          "건식 선호",
+          "사료 전환"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "힐스",
+      "product_name_ko": "어덜트 7+ 인도어 치킨 레시피",
+      "display_brand": "힐스 / Hill's",
+      "display_name": "어덜트 7+ 인도어 치킨 레시피 / Adult 7+ Indoor Chicken Recipe",
+      "search_aliases": [
+        "Adult 7+ Indoor Chicken Recipe",
+        "Hill's",
+        "Hill's Adult 7+ Indoor Chicken Recipe",
+        "Hill's 어덜트 7+ 인도어 치킨 레시피",
+        "adult 7+ indoor chicken recipe",
+        "hill's",
+        "hills",
+        "science diet",
+        "사이언스 다이어트",
+        "어덜트 7+ 인도어 치킨 레시피",
+        "힐스",
+        "힐스 Adult 7+ Indoor Chicken Recipe",
+        "힐스 사이언스 다이어트",
+        "힐스 어덜트 7+ 인도어 치킨 레시피"
+      ]
+    },
+    {
+      "product_id": "C10",
+      "brand": "Purina Pro Plan",
+      "product_name": "Adult 7+ Cat",
+      "category": "senior",
+      "life_stage": "senior",
+      "target_age": "7+ years",
+      "food_type": "dry",
+      "nutrition_basis": "registered_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 35,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 17,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 3.0,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 9.0,
+          "qualifier": "max"
+        },
+        "ash_pct": {
+          "value": 8.5,
+          "qualifier": "max"
+        },
+        "calcium_pct": {
+          "value": 1.2,
+          "qualifier": "min"
+        },
+        "phosphorus_pct": {
+          "value": 1.0,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3800,
+        "energy_type": "ME",
+        "source_status": "package_detail_verified"
+      },
+      "formula_status": "locked_current_kr_pack",
+      "source_url": "https://smartstore.naver.com/itzgroom/products/12770570712",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "7세+",
+          "노령묘"
+        ],
+        "tags": [
+          "senior_7plus",
+          "senior_cat"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://smartstore.naver.com/itzgroom/products/12770570712",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Mamacat",
+        "source_region": "KR",
+        "review_count_visible": 23,
+        "visible_reviews_sampled": null,
+        "source_url": "https://m.mamacat.co.kr/product/%ED%94%84%EB%A1%9C%ED%94%8C%EB%9E%9C-%EC%BA%A3-%EA%B3%A0%EC%96%91%EC%9D%B4%EC%82%AC%EB%A3%8C-%EC%8B%9C%EB%8B%88%EC%96%B4-7%EC%84%B8-%EC%9D%B4%EC%83%81-%EB%85%B8%EB%A0%B9%EB%AC%98-15kg/20533/category/4443/display/1/",
+        "confidence": "medium",
+        "positive_keywords": [
+          "기호성",
+          "노령묘 수용성",
+          "바삭한 식감",
+          "재구매"
+        ],
+        "mixed_keywords": [
+          "일부 노령묘는 덜 선호",
+          "개체별 기호성 차이"
+        ],
+        "neutral_keywords": [
+          "샘플 후 본품 구매",
+          "연령 전환"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "퓨리나 프로플랜",
+      "product_name_ko": "어덜트 7+ 캣",
+      "display_brand": "퓨리나 프로플랜 / Purina Pro Plan",
+      "display_name": "어덜트 7+ 캣 / Adult 7+ Cat",
+      "search_aliases": [
+        "Adult 7+ Cat",
+        "Purina Pro Plan",
+        "Purina Pro Plan Adult 7+ Cat",
+        "Purina Pro Plan 어덜트 7+ 캣",
+        "adult 7+ cat",
+        "purina",
+        "purina pro plan",
+        "어덜트 7+ 캣",
+        "퓨리나",
+        "퓨리나 프로플랜",
+        "퓨리나 프로플랜 Adult 7+ Cat",
+        "퓨리나 프로플랜 어덜트 7+ 캣"
+      ]
+    },
+    {
+      "product_id": "C11",
+      "brand": "Royal Canin",
+      "product_name": "Light Weight Care",
+      "category": "weight_management",
+      "life_stage": "adult",
+      "target_age": "12+ months",
+      "food_type": "dry",
+      "nutrition_basis": "registered_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 34,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 8,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 11.3,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 6.5,
+          "qualifier": "max"
+        },
+        "ash_pct": {
+          "value": 8.2,
+          "qualifier": "max"
+        },
+        "calcium_pct": {
+          "value": 0.96,
+          "qualifier": "min"
+        },
+        "phosphorus_pct": {
+          "value": 0.72,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": null,
+        "source_status": "not_publicly_disclosed"
+      },
+      "formula_status": "locked_current_kr_retail",
+      "source_url": "https://brand.naver.com/royalcanin/products/13523483219",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "체중관리",
+          "포만감",
+          "L-카르니틴"
+        ],
+        "tags": [
+          "weight_management",
+          "satiety",
+          "l_carnitine"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://brand.naver.com/royalcanin/products/13523483219",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Zooplus",
+        "source_region": "UK/EU",
+        "review_count_visible": 36,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.zooplus.co.uk/feedback/shop/cats/dry_cat_food/royal_canin/care_nutrition/13469",
+        "confidence": "medium",
+        "positive_keywords": [
+          "기호성",
+          "체중관리 목적 사용",
+          "재구매"
+        ],
+        "mixed_keywords": [
+          "일부 고양이 거부",
+          "가격",
+          "체중 변화 개인차"
+        ],
+        "neutral_keywords": [
+          "급여량 조절"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "로얄캐닌",
+      "product_name_ko": "라이트 웨이트 케어",
+      "display_brand": "로얄캐닌 / Royal Canin",
+      "display_name": "라이트 웨이트 케어 / Light Weight Care",
+      "search_aliases": [
+        "Light Weight Care",
+        "Royal Canin",
+        "Royal Canin Light Weight Care",
+        "Royal Canin 라이트 웨이트 케어",
+        "light weight care",
+        "royal canin",
+        "royalcanin",
+        "라이트 웨이트 케어",
+        "로얄 캐닌",
+        "로얄캐닌",
+        "로얄캐닌 Light Weight Care",
+        "로얄캐닌 라이트 웨이트 케어"
+      ]
+    },
+    {
+      "product_id": "C12",
+      "brand": "Purina ONE",
+      "product_name": "Healthy Weight",
+      "category": "weight_management",
+      "life_stage": "adult",
+      "target_age": "1+ years",
+      "food_type": "dry",
+      "nutrition_basis": "registered_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 37,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 9,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 6,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 12,
+          "qualifier": "max"
+        },
+        "ash_pct": {
+          "value": 8.5,
+          "qualifier": "max"
+        },
+        "calcium_pct": {
+          "value": 0.6,
+          "qualifier": "min"
+        },
+        "phosphorus_pct": {
+          "value": 0.5,
+          "qualifier": "min"
+        },
+        "taurine_pct": {
+          "value": 0.1,
+          "qualifier": "min"
+        },
+        "magnesium_pct": {
+          "value": 0.1,
+          "qualifier": "max"
+        },
+        "carnitine_mg_kg": {
+          "value": 200,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": null,
+        "source_status": "not_publicly_disclosed"
+      },
+      "formula_status": "locked_current_kr_pack",
+      "source_url": "https://smartstore.naver.com/itzgroom/products/12770540472",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "건강 체중",
+          "낮은 칼로리",
+          "포만감",
+          "L-카르니틴"
+        ],
+        "tags": [
+          "healthy_weight",
+          "lower_calorie",
+          "satiety",
+          "l_carnitine"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://smartstore.naver.com/itzgroom/products/12770540472",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Purina Korea official store + 11st",
+        "source_region": "KR",
+        "review_count_visible": 127,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.purinapetcare.co.kr/shop/product_view.php?pd_idx=1019&stx=",
+        "confidence": "medium",
+        "positive_keywords": [
+          "기호성",
+          "작은 알갱이",
+          "향이 강하지 않음",
+          "체중관리 목적 사용"
+        ],
+        "mixed_keywords": [
+          "개체별 기호성 차이"
+        ],
+        "neutral_keywords": [
+          "재구매",
+          "급여량"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "퓨리나 원",
+      "product_name_ko": "헬시 웨이트",
+      "display_brand": "퓨리나 원 / Purina ONE",
+      "display_name": "헬시 웨이트 / Healthy Weight",
+      "search_aliases": [
+        "Healthy Weight",
+        "Purina ONE",
+        "Purina ONE Healthy Weight",
+        "Purina ONE 헬시 웨이트",
+        "healthy weight",
+        "purina",
+        "purina one",
+        "퓨리나",
+        "퓨리나 원",
+        "퓨리나 원 Healthy Weight",
+        "퓨리나 원 헬시 웨이트",
+        "헬시 웨이트"
+      ]
+    },
+    {
+      "product_id": "C13",
+      "brand": "ORIJEN",
+      "product_name": "Fit & Trim Cat",
+      "category": "weight_management",
+      "life_stage": "adult",
+      "target_age": "adult",
+      "food_type": "dry",
+      "nutrition_basis": "guaranteed_analysis",
+      "nutrients": {
+        "protein_pct": {
+          "value": 42,
+          "qualifier": "min"
+        },
+        "fat_pct": {
+          "value": 15,
+          "qualifier": "min"
+        },
+        "fiber_pct": {
+          "value": 6,
+          "qualifier": "max"
+        },
+        "moisture_pct": {
+          "value": 10,
+          "qualifier": "max"
+        },
+        "ash_pct": {
+          "value": 10,
+          "qualifier": "max"
+        },
+        "calcium_pct": {
+          "value": 1.4,
+          "qualifier": "min"
+        },
+        "phosphorus_pct": {
+          "value": 1.1,
+          "qualifier": "min"
+        },
+        "magnesium_pct": {
+          "value": 0.1,
+          "qualifier": "max"
+        },
+        "taurine_pct": {
+          "value": 0.2,
+          "qualifier": "min"
+        },
+        "omega6_pct": {
+          "value": 2.4,
+          "qualifier": "min"
+        },
+        "omega3_pct": {
+          "value": 1.0,
+          "qualifier": "min"
+        },
+        "dha_pct": {
+          "value": 0.3,
+          "qualifier": "min"
+        },
+        "epa_pct": {
+          "value": 0.2,
+          "qualifier": "min"
+        },
+        "carnitine_mg_kg": {
+          "value": 33,
+          "qualifier": "min"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3710,
+        "energy_type": "ME",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked_kr_apac_ns",
+      "source_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ns-fittrim-cat.html",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "체형관리",
+          "고단백",
+          "근육 유지",
+          "소화",
+          "피부·모질"
+        ],
+        "tags": [
+          "body_condition",
+          "high_protein",
+          "muscle_maintenance",
+          "digestion",
+          "skin_coat"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://apac.orijenpetfoods.com/ko-KR/ap-ori-ns-fittrim-cat.html",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 269,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/orijen-fit-trim-grain-free-dry-cat/product-reviews/285961",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "원료/품질",
+          "체중관리 목적 사용",
+          "피모"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "개체별 기호성",
+          "냄새"
+        ],
+        "neutral_keywords": [
+          "건식 선호",
+          "사료 전환"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "오리젠",
+      "product_name_ko": "핏 & 트림 캣",
+      "display_brand": "오리젠 / ORIJEN",
+      "display_name": "핏 & 트림 캣 / Fit & Trim Cat",
+      "search_aliases": [
+        "Fit & Trim Cat",
+        "ORIJEN",
+        "ORIJEN Fit & Trim Cat",
+        "ORIJEN 핏 & 트림 캣",
+        "fit & trim cat",
+        "orijen",
+        "오리젠",
+        "오리젠 Fit & Trim Cat",
+        "오리젠 핏 & 트림 캣",
+        "핏 & 트림 캣"
+      ]
+    },
+    {
+      "product_id": "C14",
+      "brand": "Hill's",
+      "brand_line": "Science Diet",
+      "product_name": "Adult Light Chicken Recipe",
+      "category": "weight_management",
+      "life_stage": "adult",
+      "target_age": "1-6 years",
+      "food_type": "dry",
+      "nutrition_basis": "dry_matter_average",
+      "nutrients": {
+        "protein_pct": {
+          "value": 38.3,
+          "qualifier": "average_dry_matter"
+        },
+        "fat_pct": {
+          "value": 8.5,
+          "qualifier": "average_dry_matter"
+        },
+        "fiber_pct": {
+          "value": 6.0,
+          "qualifier": "average_dry_matter"
+        },
+        "calcium_pct": {
+          "value": 0.98,
+          "qualifier": "average_dry_matter"
+        },
+        "phosphorus_pct": {
+          "value": 0.78,
+          "qualifier": "average_dry_matter"
+        },
+        "potassium_pct": {
+          "value": 0.74,
+          "qualifier": "average_dry_matter"
+        },
+        "sodium_pct": {
+          "value": 0.55,
+          "qualifier": "average_dry_matter"
+        },
+        "magnesium_pct": {
+          "value": 0.086,
+          "qualifier": "average_dry_matter"
+        },
+        "omega3_pct": {
+          "value": 0.12,
+          "qualifier": "average_dry_matter"
+        },
+        "omega6_pct": {
+          "value": 2.22,
+          "qualifier": "average_dry_matter"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3171,
+        "energy_type": "kcal_per_kg",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked",
+      "source_url": "https://www.hillspet.co.kr/cat-food/science-diet-adult-light-dry",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "저칼로리",
+          "활동량 적은 성묘",
+          "L-카르니틴",
+          "체중관리"
+        ],
+        "tags": [
+          "low_calorie",
+          "low_activity_adult",
+          "l_carnitine",
+          "weight_management"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://www.hillspet.co.kr/cat-food/science-diet-adult-light-dry",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 738,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/hills-science-diet-adult-light/product-reviews/29978",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "체중관리 목적 사용",
+          "소화",
+          "낮은 칼로리 선택"
+        ],
+        "mixed_keywords": [
+          "건조한 변에 대한 일부 의견",
+          "기호성 편차",
+          "가격"
+        ],
+        "neutral_keywords": [
+          "다른 사료와 혼합 급여",
+          "급여량"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "힐스",
+      "product_name_ko": "어덜트 라이트 치킨 레시피",
+      "display_brand": "힐스 / Hill's",
+      "display_name": "어덜트 라이트 치킨 레시피 / Adult Light Chicken Recipe",
+      "search_aliases": [
+        "Adult Light Chicken Recipe",
+        "Hill's",
+        "Hill's Adult Light Chicken Recipe",
+        "Hill's 어덜트 라이트 치킨 레시피",
+        "adult light chicken recipe",
+        "hill's",
+        "hills",
+        "science diet",
+        "사이언스 다이어트",
+        "어덜트 라이트 치킨 레시피",
+        "힐스",
+        "힐스 Adult Light Chicken Recipe",
+        "힐스 사이언스 다이어트",
+        "힐스 어덜트 라이트 치킨 레시피"
+      ]
+    },
+    {
+      "product_id": "C15",
+      "brand": "Hill's",
+      "brand_line": "Science Diet",
+      "product_name": "Adult Perfect Weight Chicken Recipe",
+      "category": "weight_management",
+      "life_stage": "adult",
+      "target_age": "1+ years",
+      "food_type": "dry",
+      "nutrition_basis": "dry_matter_average",
+      "nutrients": {
+        "protein_pct": {
+          "value": 39.4,
+          "qualifier": "average_dry_matter"
+        },
+        "fat_pct": {
+          "value": 11.9,
+          "qualifier": "average_dry_matter"
+        },
+        "fiber_pct": {
+          "value": 6.0,
+          "qualifier": "average_dry_matter"
+        },
+        "calcium_pct": {
+          "value": 1.05,
+          "qualifier": "average_dry_matter"
+        },
+        "phosphorus_pct": {
+          "value": 0.77,
+          "qualifier": "average_dry_matter"
+        },
+        "potassium_pct": {
+          "value": 0.83,
+          "qualifier": "average_dry_matter"
+        },
+        "sodium_pct": {
+          "value": 0.41,
+          "qualifier": "average_dry_matter"
+        },
+        "magnesium_pct": {
+          "value": 0.093,
+          "qualifier": "average_dry_matter"
+        },
+        "taurine_pct": {
+          "value": 0.31,
+          "qualifier": "average_dry_matter"
+        },
+        "omega3_pct": {
+          "value": 0.97,
+          "qualifier": "average_dry_matter"
+        },
+        "omega6_pct": {
+          "value": 2.52,
+          "qualifier": "average_dry_matter"
+        },
+        "carnitine_ppm": {
+          "value": 606.7,
+          "qualifier": "average"
+        }
+      },
+      "energy": {
+        "kcal_kg": 3412,
+        "energy_type": "kcal_per_kg",
+        "source_status": "official_verified"
+      },
+      "formula_status": "locked",
+      "source_url": "https://www.hillspet.co.kr/cat-food/science-diet-adult-perfect-weight-dry",
+      "manufacturer_evidence": {
+        "keywords_ko": [
+          "체중관리",
+          "제지방 근육",
+          "L-카르니틴"
+        ],
+        "tags": [
+          "weight_management",
+          "lean_muscle",
+          "l_carnitine"
+        ],
+        "source_type": "manufacturer_official_or_current_kr_product_detail",
+        "source_url": "https://www.hillspet.co.kr/cat-food/science-diet-adult-perfect-weight-dry",
+        "usage_rule": "설명용 보조근거. 제조사 주장/포지셔닝을 객관적 효능으로 변환하지 않는다."
+      },
+      "review_evidence": {
+        "source": "Chewy",
+        "source_region": "US",
+        "review_count_visible": 1969,
+        "visible_reviews_sampled": null,
+        "source_url": "https://www.chewy.com/hills-science-diet-adult-perfect/dp/102145",
+        "confidence": "high",
+        "positive_keywords": [
+          "기호성",
+          "체중관리 목적 사용",
+          "소화",
+          "사료 전환"
+        ],
+        "mixed_keywords": [
+          "가격",
+          "개체별 기호성",
+          "알갱이 크기"
+        ],
+        "neutral_keywords": [
+          "장기 급여",
+          "재구매"
+        ],
+        "notes": "",
+        "usage_rule": "구매자 경험 요약만 허용. 의학적·영양학적 효능의 증거로 사용하지 않는다."
+      },
+      "brand_ko": "힐스",
+      "product_name_ko": "어덜트 퍼펙트 웨이트 치킨 레시피",
+      "display_brand": "힐스 / Hill's",
+      "display_name": "어덜트 퍼펙트 웨이트 치킨 레시피 / Adult Perfect Weight Chicken Recipe",
+      "search_aliases": [
+        "Adult Perfect Weight Chicken Recipe",
+        "Hill's",
+        "Hill's Adult Perfect Weight Chicken Recipe",
+        "Hill's 어덜트 퍼펙트 웨이트 치킨 레시피",
+        "adult perfect weight chicken recipe",
+        "hill's",
+        "hills",
+        "science diet",
+        "사이언스 다이어트",
+        "어덜트 퍼펙트 웨이트 치킨 레시피",
+        "힐스",
+        "힐스 Adult Perfect Weight Chicken Recipe",
+        "힐스 사이언스 다이어트",
+        "힐스 어덜트 퍼펙트 웨이트 치킨 레시피"
+      ]
+    }
+  ]
+}
