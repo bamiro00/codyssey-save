@@ -3532,3 +3532,39 @@ body {
     padding: 22px 20px !important;
   }
 }
+
+@media (max-width: 800px) {
+  .hero-art {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .hero-pets {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    display: block !important;
+    width: min(100%, 430px) !important;
+    max-width: 430px !important;
+    height: auto !important;
+    margin: 8px auto 0 !important;
+    transform: none !important;
+    object-position: center center !important;
+    align-self: center !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-pets {
+    width: calc(100% - 12px) !important;
+    max-width: 390px !important;
+    margin: 8px auto 0 !important;
+  }
+}
