@@ -3533,6 +3533,67 @@ body {
   }
 }
 
+/* =========================================================
+   FINAL POLISH
+   1) Stable data-card icon (no font-dependent glyph)
+   2) Center About quote on desktop + mobile
+   3) Keep final mobile hero image centering
+========================================================= */
+
+/* Replace the font-dependent ▥ glyph with a CSS-drawn icon. */
+.bars {
+  position: relative !important;
+  display: inline-block !important;
+  flex: 0 0 22px !important;
+  width: 22px !important;
+  height: 22px !important;
+  margin-top: 1px !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  color: transparent !important;
+}
+
+.bars::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 1px !important;
+  box-sizing: border-box !important;
+  border: 2px solid #16a69f !important;
+  border-radius: 2px !important;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 27%,
+      #16a69f 27% 35%,
+      transparent 35% 62%,
+      #16a69f 62% 70%,
+      transparent 70% 100%
+    ) !important;
+}
+
+/* Center the About quote card content on every viewport. */
+.quote {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+}
+
+.quote > span,
+.quote strong,
+.quote small {
+  width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+.quote strong {
+  max-width: 300px !important;
+}
+
+/* Final mobile hero alignment: keep the pet image truly centered. */
 @media (max-width: 800px) {
   .hero-art {
     display: flex !important;
