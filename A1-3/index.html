@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ko">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <title>
+   우리 애 사료, 뭐가 찐일까? | pet-food-match-ai
+  </title>
+  <meta content="우리 애 사료, 뭐가 찐일까? 강아지와 고양이 사료를 공식 데이터와 구매후기로 비교합니다." name="description"/>
+  <link href="./css/style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="site-header">
+   <div class="shell nav-row">
+    <a class="brand" href="#home">
+     <span class="brand-paw">
+      🐾
+     </span>
+     <span>
+      <strong>
+       pet-food-match-ai
+      </strong>
+      <small>
+       Better Food. Happier Pets.
+      </small>
+     </span>
+    </a>
+    <nav class="nav-links">
+     <a class="active" href="#home">
+      HOME
+     </a>
+     <a href="#compare">
+      COMPARE
+     </a>
+     <a href="#how">
+      HOW IT WORKS
+     </a>
+     <a href="#about">
+      ABOUT
+     </a>
+    </nav>
+    <div class="top-message">
+     <span>
+      🐾
+     </span>
+     <p>
+      <b>
+       더 건강한
+      </b>
+      <br/>
+      반려생활, 함께
+     </p>
+     <em>
+      ♡
+     </em>
+    </div>
+   </div>
+  </header>
+  <main>
+   <section class="hero" id="home">
+    <span class="wash wash-a">
+    </span>
+    <span class="wash wash-b">
+    </span>
+    <div class="shell hero-grid">
+     <div class="hero-copy">
+      <p class="eyebrow">
+       BETTER FOOD. HAPPIER PETS.
+      </p>
+      <h1>
+       우리 애 사료,
+       <br/>
+       <span>
+        뭐가 찐일까?
+       </span>
+      </h1>
+      <p class="desc">
+       여러 사료의 공식 제품정보, 영양성분, 제조사 강조 정보, 구매후기 데이터를 바탕으로 현재 조건에 상대적으로 잘 맞는 후보를 비교해보세요.
+      </p>
+      <a class="primary" href="#compare">
+       사료 비교 시작하기
+       <b>
+        &rarr;
+       </b>
+      </a>
+      <div class="benefits">
+       <div>
+        <i class="mint">
+         &checkmark;
+        </i>
+        <span>
+         신뢰할 수 있는
+         <br/>
+         <b>
+          공식 데이터 기반
+         </b>
+        </span>
+       </div>
+       <div>
+        <i class="blue benefit-chart-icon" aria-hidden="true">
+         <svg viewBox="0 0 24 24">
+          <rect x="4" y="12" width="3.5" height="8" rx="1.3"></rect>
+          <rect x="10.25" y="7" width="3.5" height="13" rx="1.3"></rect>
+          <rect x="16.5" y="3" width="3.5" height="17" rx="1.3"></rect>
+         </svg>
+        </i>
+        <span>
+         객관적인
+         <br/>
+         <b>
+          비교 분석
+         </b>
+        </span>
+       </div>
+       <div>
+        <i class="coral">
+         &hearts;
+        </i>
+        <span>
+         우리 아이에게 더
+         <br/>
+         <b>
+          건강한 선택
+         </b>
+        </span>
+       </div>
+      </div>
+     </div>
+     <div class="hero-art">
+      <img alt="강아지와 고양이" class="hero-pets" src="./assets/hero-pets.png"/>
+      <aside class="data-card">
+       <span class="bars">
+        ▥
+       </span>
+       <div>
+        <strong>
+         현재 1차 데이터
+        </strong>
+        <p>
+         🐶 강아지 15종 &middot; 🐱 고양이 15종
+        </p>
+        <small>
+         등록 사료는 한글/영어 모두 검색할 수 있습니다.
+        </small>
+       </div>
+      </aside>
+     </div>
+    </div>
+   </section>
+   <section class="compare-section" id="compare">
+    <div class="shell compare-shell">
+     <div class="compare-heading">
+      <span class="leaf-deco">
+       <i>
+       </i>
+       <i>
+       </i>
+       <i>
+       </i>
+      </span>
+      <div>
+       <p class="eyebrow">
+        COMPARE
+       </p>
+       <h2>
+        사료 비교
+       </h2>
+       <p>
+        우리 아이의 정보를 선택하고, 여러 사료를 한눈에 비교해보세요.
+       </p>
+      </div>
+      <div class="compare-slogan">
+       <span>
+        🐾
+       </span>
+       <p>
+        작은 선택이
+        <br/>
+        큰 변화를 만듭니다 ♡
+       </p>
+      </div>
+     </div>
+     <form class="compare-card" id="compareForm">
+      <div class="top-grid">
+       <fieldset>
+        <legend>
+         반려동물
+        </legend>
+        <div class="pet-toggle">
+         <label>
+          <input name="species" type="radio" value="dog"/>
+          <span>
+           🐶 강아지
+          </span>
+         </label>
+         <label>
+          <input checked="" name="species" type="radio" value="cat"/>
+          <span>
+           🐱 고양이
+          </span>
+         </label>
+        </div>
+       </fieldset>
+       <label class="field">
+        나이
+        <div class="age-box">
+         <input id="age" max="30" min="0" required="" step="1" type="number" value="1"/>
+         <span>
+          살
+         </span>
+        </div>
+       </label>
+       <label class="field">
+        가장 신경 쓰이는 부분
+        <select id="concern">
+         <option value="none">
+          특별한 고민 없음
+         </option>
+         <option value="weight">
+          체중 관리
+         </option>
+         <option value="palatability">
+          기호성
+         </option>
+         <option value="digestion">
+          소화
+         </option>
+         <option value="senior">
+          시니어 사료 선택
+         </option>
+        </select>
+       </label>
+      </div>
+      <div class="rule">
+      </div>
+      <div class="picker-title">
+       <h3>
+        비교할 사료
+       </h3>
+       <span>
+        최소 2개, 최대 3개를 선택하세요.
+       </span>
+      </div>
+      <div class="picker-grid">
+       <div class="picker">
+        <label for="foodA">
+         사료 A
+        </label>
+        <div class="search-wrap">
+         <span>
+          &telrec;
+         </span>
+         <input autocomplete="off" class="food-search" id="foodA" placeholder="브랜드 또는 사료명을 검색하세요"/>
+        </div>
+        <div class="suggestions" data-for="foodA">
+        </div>
+       </div>
+       <div class="picker">
+        <label for="foodB">
+         사료 B
+        </label>
+        <div class="search-wrap">
+         <span>
+          &telrec;
+         </span>
+         <input autocomplete="off" class="food-search" id="foodB" placeholder="브랜드 또는 사료명을 검색하세요"/>
+        </div>
+        <div class="suggestions" data-for="foodB">
+        </div>
+       </div>
+       <div class="picker">
+        <label for="foodC">
+         사료 C
+         <small>
+          (선택)
+         </small>
+        </label>
+        <div class="search-wrap">
+         <span>
+          &telrec;
+         </span>
+         <input autocomplete="off" class="food-search" id="foodC" placeholder="브랜드 또는 사료명을 검색하세요"/>
+        </div>
+        <div class="suggestions" data-for="foodC">
+        </div>
+       </div>
+      </div>
+      <div class="actions">
+       <button class="add" id="showCustom" type="button">
+        <i>
+         ＋
+        </i>
+        <span>
+         찾는 사료가 없나요?
+         <b>
+          제품 직접 추가하기
+         </b>
+        </span>
+       </button>
+       <button class="compare-btn" type="submit">
+        비교하기
+        <b>
+         &rarr;
+        </b>
+       </button>
+      </div>
+      <div class="custom-product hidden" id="customProduct">
+       <h3>
+        미등록 제품 직접 추가
+       </h3>
+       <div class="custom-grid">
+        <label>
+         브랜드
+         <input id="customBrand"/>
+        </label>
+        <label>
+         제품명
+         <input id="customName"/>
+        </label>
+        <label>
+         Life Stage
+         <select id="customLifeStage">
+          <option value="">
+           선택
+          </option>
+          <option value="adult">
+           성견/성묘 &middot; Adult
+          </option>
+          <option value="senior">
+           시니어 &middot; Senior
+          </option>
+          <option value="all_life_stages">
+           전연령 &middot; All Life Stages
+          </option>
+         </select>
+        </label>
+        <label>
+         조단백 %
+         <input id="customProtein" step="0.1" type="number"/>
+        </label>
+        <label>
+         조지방 %
+         <input id="customFat" step="0.1" type="number"/>
+        </label>
+        <label>
+         조섬유 %
+         <input id="customFiber" step="0.1" type="number"/>
+        </label>
+        <label>
+         수분 %
+         <input id="customMoisture" step="0.1" type="number"/>
+        </label>
+        <label>
+         kcal/kg
+         <input id="customKcal" step="1" type="number"/>
+        </label>
+       </div>
+       <p>
+        직접 입력한 제품은 결과에서 &lsquo;사용자 입력 제품&rsquo;으로 표시됩니다.
+       </p>
+      </div>
+      <p aria-live="polite" class="form-message" id="formMessage">
+      </p>
+     </form>
+     <section aria-live="polite" class="result-panel hidden" id="result">
+      <div class="result-head">
+       <div>
+        <p class="eyebrow">
+         RESULT
+        </p>
+        <h2>
+         비교 결과
+        </h2>
+       </div>
+       <p id="resultContext">
+       </p>
+      </div>
+      <div class="selected-cards" id="selectedCards">
+      </div>
+      <div class="table-wrap">
+       <table id="compareTable">
+        <thead>
+        </thead>
+        <tbody>
+        </tbody>
+       </table>
+      </div>
+      <div class="notice" id="basisNotice">
+      </div>
+      <div class="evidence-panels" id="evidencePanels">
+      </div>
+      <div aria-live="polite" class="ai-box">
+       <span>
+        AI
+       </span>
+       <div>
+        <h3>
+         AI 비교 설명
+        </h3>
+        <div class="ai-content" id="aiExplanation">
+         <p>
+          비교할 제품을 선택하면 등록된 데이터를 기준으로 AI가 차이를 쉽게 설명합니다.
+         </p>
+        </div>
+       </div>
+      </div>
+     </section>
+    </div>
+   </section>
+   <section class="how-section" id="how">
+    <div class="shell">
+     <div class="how-head">
+      <div>
+       <p class="eyebrow">
+        HOW IT WORKS
+       </p>
+       <h2>
+        어떻게 비교하나요?
+       </h2>
+      </div>
+      <span>
+       <svg aria-hidden="true" class="how-head-paw" viewbox="0 0 24 24">
+        <ellipse cx="12" cy="15.5" rx="4.5" ry="3.5">
+        </ellipse>
+        <circle cx="6.5" cy="10" r="2">
+        </circle>
+        <circle cx="10" cy="6.5" r="2">
+        </circle>
+        <circle cx="14" cy="6.5" r="2">
+        </circle>
+        <circle cx="17.5" cy="10" r="2">
+        </circle>
+       </svg>
+      </span>
+      <p>
+       <b>
+        간단한 5단계
+       </b>
+       로 우리 아이에게 더 잘 맞는 사료를 찾아보세요.
+      </p>
+     </div>
+     <div class="steps">
+      <article>
+       <i class="blue">
+        <svg aria-hidden="true" viewbox="0 0 24 24">
+         <rect height="16" rx="2" width="12" x="4" y="3">
+         </rect>
+         <path d="M7 7h6">
+         </path>
+         <path d="M7 10h5">
+         </path>
+         <path d="M7 13h3">
+         </path>
+         <circle cx="17" cy="17" r="3">
+         </circle>
+         <path d="M19.2 19.2L21 21">
+         </path>
+        </svg>
+       </i>
+       <b>
+        01
+       </b>
+       <p>
+        공식 제품정보와 검증
+        <br/>
+        Seed Catalog를 불러옵니다.
+       </p>
+      </article>
+      <em>
+       &rsaquo;
+      </em>
+      <article>
+       <i class="mint">
+        <svg aria-hidden="true" viewbox="0 0 24 24">
+         <ellipse cx="12" cy="15.5" rx="4.5" ry="3.5">
+         </ellipse>
+         <circle cx="6.5" cy="10" r="2">
+         </circle>
+         <circle cx="10" cy="6.5" r="2">
+         </circle>
+         <circle cx="14" cy="6.5" r="2">
+         </circle>
+         <circle cx="17.5" cy="10" r="2">
+         </circle>
+        </svg>
+       </i>
+       <b>
+        02
+       </b>
+       <p>
+        반려동물의 나이와
+        <br/>
+        관심사항을 확인합니다.
+       </p>
+      </article>
+      <em>
+       &rsaquo;
+      </em>
+      <article>
+       <i class="coral">
+        <svg aria-hidden="true" viewbox="0 0 24 24">
+         <rect height="8" rx="1" width="3" x="4" y="12">
+         </rect>
+         <rect height="13" rx="1" width="3" x="10.5" y="7">
+         </rect>
+         <rect height="16" rx="1" width="3" x="17" y="4">
+         </rect>
+        </svg>
+       </i>
+       <b>
+        03
+       </b>
+       <p>
+        영양표 기준이 같은 항목만
+        <br/>
+        직접 비교합니다.
+       </p>
+      </article>
+      <em>
+       &rsaquo;
+      </em>
+      <article>
+       <i class="blue">
+        <svg aria-hidden="true" viewbox="0 0 24 24">
+         <rect height="18" rx="2" width="14" x="5" y="3">
+         </rect>
+         <path d="M8 8l1.3 1.3L12 6.5">
+         </path>
+         <path d="M14 8h2">
+         </path>
+         <path d="M8 13l1.3 1.3L12 11.5">
+         </path>
+         <path d="M14 13h2">
+         </path>
+         <path d="M8 18h8">
+         </path>
+        </svg>
+       </i>
+       <b>
+        04
+       </b>
+       <p>
+        제조사 강조 정보와
+        <br/>
+        구매후기 경험을 보여줍니다.
+       </p>
+      </article>
+      <em>
+       &rsaquo;
+      </em>
+      <article>
+       <i class="coral">
+        <svg aria-hidden="true" viewbox="0 0 24 24">
+         <path d="M12 20.5S4 15.3 4 9.5C4 6.5 6.1 4.5 8.8 4.5C10.4 4.5 11.5 5.4 12 6.4C12.5 5.4 13.6 4.5 15.2 4.5C17.9 4.5 20 6.5 20 9.5C20 15.3 12 20.5 12 20.5Z">
+         </path>
+        </svg>
+       </i>
+       <b>
+        05
+       </b>
+       <p>
+        AI가 위 사실을 바탕으로
+        <br/>
+        쉬운 설명을 생성합니다.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="about-section" id="about">
+    <span class="about-shape a1">
+    </span>
+    <span class="about-shape a2">
+    </span>
+    <div class="shell about-grid">
+     <div class="about-copy">
+      <p class="eyebrow">
+       ABOUT
+      </p>
+      <h2>
+       서비스 안내
+      </h2>
+      <p>
+       ‘우리 애 사료, 뭐가 찐일까?’는 여러 사료 중 우리 아이의 현재 조건에 상대적으로 잘 맞는 후보를 비교하기 위한 서비스입니다.
+      </p>
+      <p>
+       질병 진단이나 처방사료 추천을 제공하지 않습니다.
+      </p>
+      <p>
+       질병이 있거나 치료 중인 반려동물의 사료 선택은 수의사와 상담하세요.
+      </p>
+      <a href="#compare">
+       사료 비교 다시 하기
+       <span>
+        &rarr;
+       </span>
+      </a>
+     </div>
+     <div class="footer-art">
+      <img alt="파스텔 배경 속 강아지와 고양이" class="about-pets" src="./assets/about-pets.png"/>
+     </div>
+     <aside class="quote">
+      <span>
+       &ldquo;
+      </span>
+      <strong>
+       좋은 사료가
+       <br/>
+       더 건강한 반려 일상을
+       <br/>
+       만듭니다.
+      </strong>
+      <small>
+       pet-food-match-ai 🐾
+      </small>
+     </aside>
+    </div>
+   </section>
+  </main>
+  <script src="./data/pet-foods.js">
+  </script>
+  <script src="./js/app.js">
+  </script>
+ </body>
+</html>

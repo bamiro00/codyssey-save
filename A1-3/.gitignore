@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.vercel/
+__pycache__/
+*.py[cod]
+.vscode/
+.idea/
+node_modules/
+*.zip
+.DS_Store
+Thumbs.db
