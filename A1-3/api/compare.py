@@ -6,7 +6,7 @@ from google import genai
 from google.genai import errors, types
 
 
-MODEL_NAME = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
+MODEL_NAME = os.environ.get("GEMINI_MODEL", "gemini-3.6-flash")
 MAX_BODY_BYTES = 100_000
 
 CONCERN_LABELS = {
