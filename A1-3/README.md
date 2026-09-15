@@ -61,12 +61,13 @@
 
 ## Vercel 배포
 
-1. 이 폴더의 내용을 GitHub 저장소 루트에 올립니다.
-2. Vercel에서 해당 저장소를 새 프로젝트로 가져옵니다.
-3. Framework Preset은 `Other`를 선택합니다.
-4. Vercel 프로젝트의 **Settings → Environment Variables**에 `GEMINI_API_KEY`를 추가합니다.
-5. Production, Preview, Development 환경에 적용한 뒤 배포합니다.
-6. 키를 배포 후 추가하거나 변경했다면 새로 배포합니다.
+1. Vercel에서 `bamiro00/codyssey-save` 저장소를 새 프로젝트로 가져옵니다.
+2. 프로젝트 이름은 `pet-food-match-ai`로 입력합니다.
+3. **Root Directory**는 `A1-3`으로 지정합니다.
+4. Framework Preset은 `Other`를 선택합니다.
+5. Vercel 프로젝트의 **Settings → Environment Variables**에 `GEMINI_API_KEY`를 추가합니다.
+6. Production, Preview, Development 환경에 적용한 뒤 배포합니다.
+7. 키를 배포 후 추가하거나 변경했다면 새로 배포합니다.
 
 ## 배포 후 확인
 
@@ -87,6 +88,6 @@
 
 ## 제출 정보
 
-- GitHub 저장소: 배포 후 입력
+- GitHub 저장소: https://github.com/bamiro00/codyssey-save/tree/main/A1-3
 - Vercel URL: 배포 후 입력
 - 서비스 기획서: `docs/service-plan.md`
