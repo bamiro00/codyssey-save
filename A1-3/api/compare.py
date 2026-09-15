@@ -230,7 +230,15 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
-        self._send_json(200, {"ok": True, "service": "pet-food-match-ai"})
+        self._send_json(
+            200,
+            {
+                "ok": True,
+                "service": "pet-food-match-ai",
+                "model": MODEL_NAME,
+                "api_key_configured": bool(os.environ.get("GEMINI_API_KEY")),
+            },
+        )
 
     def do_POST(self):
         try:
@@ -256,8 +264,8 @@ class handler(BaseHTTPRequestHandler):
                 model=MODEL_NAME,
                 contents=_build_prompt(data),
                 config=types.GenerateContentConfig(
-                    temperature=0.2,
                     max_output_tokens=900,
+                    thinking_config=types.ThinkingConfig(thinking_level="low"),
                     response_mime_type="application/json",
                     response_json_schema=RESPONSE_SCHEMA,
                 ),
@@ -266,10 +274,27 @@ class handler(BaseHTTPRequestHandler):
             result = _validate_ai_result(raw_result, data["products"])
             self._send_json(200, {"ok": True, "result": result})
         except errors.APIError as exc:
-            status = 429 if getattr(exc, "code", None) == 429 else 502
+            code = getattr(exc, "code", None)
+            if code == 429:
+                status = 429
+                error_code = "AI_RATE_LIMIT"
+                message = "AI 사용량 한도에 도달했습니다. 잠시 후 다시 시도해주세요."
+            elif code in (401, 403):
+                status = 502
+                error_code = "AI_AUTH"
+                message = "AI API 키의 인증 또는 권한을 확인해주세요."
+            elif code == 400:
+                status = 502
+                error_code = "AI_BAD_REQUEST"
+                message = "AI 요청 설정을 처리하지 못했습니다. 모델 설정을 확인해주세요."
+            else:
+                status = 502
+                error_code = "AI_UPSTREAM"
+                message = "AI 서비스 호출에 실패했습니다. 잠시 후 다시 시도해주세요."
+            print(f"Gemini API error: code={code}")
             self._send_json(
                 status,
-                {"error": "AI 서비스 호출에 실패했습니다. 잠시 후 다시 시도해주세요."},
+                {"error": message, "error_code": error_code, "model": MODEL_NAME},
             )
         except (ValueError, TypeError, json.JSONDecodeError):
             self._send_json(
