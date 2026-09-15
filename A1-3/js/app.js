@@ -2,7 +2,7 @@ const state={catalog:[],selected:{foodA:null,foodB:null,foodC:null}};
 const speciesLabel={dog:"강아지",cat:"고양이"};
 const concernLabel={none:"특별한 고민 없음",weight:"체중 관리",palatability:"기호성",digestion:"소화",senior:"시니어 사료 선택"};
 const basisLabel={guaranteed_analysis:"보장분석",dry_matter_average:"Dry Matter 평균값",registered_analysis:"등록성분량"};
-const AI_TIMEOUT_MS=35000;
+const AI_TIMEOUT_MS=60000;
 
 function normalize(value){
   return String(value||"").toLowerCase()
