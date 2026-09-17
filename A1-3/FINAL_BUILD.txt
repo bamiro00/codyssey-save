@@ -1,7 +1,6 @@
 pet-food-match-ai FINAL SUBMISSION BUILD
 
 Deployment: https://petfood-match.vercel.app
-Previous deployment URL (still active): https://pet-food-match-ai.vercel.app
 AI model: gemini-3.6-flash
 Seed catalog: 30 products (15 dog + 15 cat)
 

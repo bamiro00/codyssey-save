@@ -7,7 +7,6 @@
 ## 배포 주소
 
 - Vercel: https://petfood-match.vercel.app
-- 기존 주소(계속 사용 가능): https://pet-food-match-ai.vercel.app
 - GitHub: https://github.com/bamiro00/codyssey-save/tree/main/A1-3
 
 ## 주요 기능
