@@ -22,7 +22,7 @@
 
 이 서비스는 여러 HTML 파일로 나눈 다중 페이지 방식이 아니라, **하나의 `index.html` 안에 4개의 주요 콘텐츠 섹션을 구성한 Single Page 방식**입니다.
 
-과제 요구사항의 **“페이지 또는 섹션 최소 3개 이상”** 조건에 따라 다음 **4개 독립 섹션**을 제공합니다.
+서비스는 다음 **4개의 독립적인 주요 섹션**으로 구성했습니다.
 
 | 상단 메뉴 | 섹션 ID | 역할 |
 |---|---|---|
@@ -42,7 +42,7 @@
 
 각 링크는 `index.html` 내부의 `id="home"`, `id="compare"`, `id="how"`, `id="about"` 요소와 연결되어 있습니다. CSS의 `scroll-behavior: smooth`를 적용해 메뉴 클릭 시 부드럽게 이동합니다.
 
-따라서 별도의 `home.html`, `compare.html` 등을 만들지 않았지만, **4개의 독립적인 페이지 역할을 하는 섹션과 실제 동작하는 메뉴 네비게이션을 제공하므로 “페이지 또는 섹션 최소 3개 이상” 요구사항을 충족합니다.**
+별도의 `home.html`, `compare.html` 등을 나누지 않고도, **4개의 주요 섹션을 한 페이지 안에서 독립적으로 구성하고 상단 메뉴로 각 영역을 바로 이동할 수 있게 만들었습니다.**
 
 ---
 
@@ -351,14 +351,14 @@ AI 로딩 상태
 
 React/Vue 등 프런트엔드 프레임워크는 사용하지 않았습니다.
 
-### 과제 핵심 요구사항 대응
+### 구현 구성 요약
 
-- **페이지 또는 섹션 3개 이상**: `HOME`, `COMPARE`, `HOW IT WORKS`, `ABOUT` 총 4개 섹션
-- **메뉴 이동 방식**: 상단 앵커 네비게이션으로 각 섹션 이동
-- **반응형 UI**: 데스크톱/모바일 레이아웃 대응
-- **사용자 입력 → AI 결과**: 비교 조건 입력 후 `/api/compare`를 통해 Gemini 결과 표시
-- **백엔드 분리**: Vercel Python Serverless Function 사용
-- **환경변수 보안**: `GEMINI_API_KEY`를 Vercel Environment Variables로 관리
+- **화면 구성**: `HOME`, `COMPARE`, `HOW IT WORKS`, `ABOUT`의 4개 주요 섹션
+- **메뉴 이동**: 상단 앵커 네비게이션으로 각 섹션 이동
+- **반응형 UI**: 데스크톱과 모바일 레이아웃을 각각 조정
+- **AI 비교 흐름**: 사용자 입력 후 `/api/compare`를 통해 Gemini 결과 표시
+- **백엔드**: Vercel Python Serverless Function으로 분리
+- **환경변수 관리**: `GEMINI_API_KEY`를 Vercel Environment Variables에 저장
 
 ### HTML / CSS / JavaScript 역할
 
@@ -383,7 +383,7 @@ React/Vue 등 프런트엔드 프레임워크는 사용하지 않았습니다.
 
 ### Vanilla JavaScript를 선택한 이유
 
-이 과제는 단일 페이지에서 검색·비교·AI 결과 출력까지 구현하는 규모이므로 React/Vue 같은 프레임워크를 추가하면 빌드 설정과 의존성이 오히려 늘어납니다. 따라서 HTML/CSS/Vanilla JavaScript로 구조를 단순하게 유지하고, Vercel의 정적 파일 + Python Serverless Function 조합으로 배포했습니다.
+이 프로젝트는 단일 페이지에서 검색·비교·AI 결과 출력까지 구현하는 규모라 React/Vue 같은 프레임워크를 추가하면 빌드 설정과 의존성이 오히려 늘어납니다. 따라서 HTML/CSS/Vanilla JavaScript로 구조를 단순하게 유지하고, Vercel의 정적 파일 + Python Serverless Function 조합으로 배포했습니다.
 
 향후 제품 수가 크게 늘거나 로그인, 즐겨찾기, 여러 페이지, 사용자별 저장 상태처럼 화면 상태가 복잡해지면 React/Vue 등 컴포넌트 기반 프레임워크로 마이그레이션할 수 있습니다. 이 경우 검색/비교 카드/AI 결과 영역을 각각 컴포넌트로 분리하고, 현재 `/api/compare` 계약은 그대로 유지하는 방식을 우선 고려합니다.
 
@@ -562,9 +562,9 @@ Gemini에는 전체 페이지 정보가 아니라 아래 범주의 데이터만 
 ## 16. 관련 문서
 
 - [서비스 기획서](docs/service-plan.md)
-- [제출 요구사항 체크리스트](docs/submission-checklist.md)
+- [제출 체크리스트](docs/submission-checklist.md)
 - [증빙자료 캡처 가이드](docs/evidence-guide.md)
-- [최종 코드/요구사항 검증 보고서](docs/verification-report.md)
+- [최종 코드 검증 보고서](docs/verification-report.md)
 
 ---
 
