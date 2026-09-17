@@ -4,7 +4,7 @@
 
 - 서비스명: **우리 애 사료, 뭐가 찐일까?**
 - 프로젝트명: `pet-food-match-ai`
-- 배포 URL: https://pet-food-match-ai.vercel.app
+- 배포 URL: https://petfood-match.vercel.app
 - GitHub: https://github.com/bamiro00/codyssey-save/tree/main/A1-3
 
 ## 2. 서비스 목적
@@ -207,4 +207,3 @@ JavaScript 화면 렌더링
 - AI 코딩 도구 활용 과정: [`07_ai_coding_process.png`](evidence/07_ai_coding_process.png)
 - Vercel API 200 OK 로그: [`08_vercel_api_logs.png`](evidence/08_vercel_api_logs.png)
 - Vercel Production 배포 성공: [`09_vercel_deployment.png`](evidence/09_vercel_deployment.png)
-

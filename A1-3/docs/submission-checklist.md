@@ -4,7 +4,7 @@
 
 ## 1. 배포된 웹 서비스 (Vercel URL) — 충족
 
-- [x] 실제 배포 URL 존재: https://pet-food-match-ai.vercel.app
+- [x] 실제 배포 URL 존재: https://petfood-match.vercel.app
 - [x] 3개 이상 섹션/화면 구성
   - HOME
   - COMPARE
