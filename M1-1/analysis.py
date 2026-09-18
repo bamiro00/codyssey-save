@@ -62,6 +62,16 @@ print("상한:", upper_bound)
 print("\n이상치 후보:")
 print(outliers[["기준월", "무역수지"]])
 
+# 전월 대비 무역수지 변화량 분석
+df["전월대비_변화량"] = (df["무역수지"] / 1_000_000_000).diff()
+
+print("\n전월 대비 무역수지 변화량이 큰 감소 월:")
+print(
+    df[["기준월", "전월대비_변화량"]]
+    .sort_values("전월대비_변화량")
+    .head(10)
+)
+
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
@@ -156,6 +166,26 @@ plt.savefig(
 )
 
 plt.show()
+
+# 월별 평균 무역수지 계산 - 계절성 확인
+monthly_pattern = (
+    df.groupby("월")["무역수지"].mean()
+    / 1_000_000_000
+)
+
+print("\n월별 평균 무역수지 (십억 달러):")
+print(monthly_pattern.round(2))
+
+# 분기별 무역수지 집계 - 월별 분석 결과 재검증
+df["분기"] = df["기준월"].dt.to_period("Q")
+
+quarterly_balance = (
+    df.groupby("분기")["무역수지"].sum()
+    / 1_000_000_000
+)
+
+print("\n분기별 무역수지 (십억 달러):")
+print(quarterly_balance.round(2))
 
 # 연도별 흑자/적자 월 수 계산
 yearly_balance = df.groupby("연도")["무역수지"].agg(
