@@ -6,6 +6,13 @@
 
 월별 수출액 표만으로는 장기적인 변화와 최근 흐름을 빠르게 파악하기 어렵습니다. 이 서비스는 핵심 지표, 월별 데이터 관리, AI 분석과 이전 대화 기록을 하나의 화면에서 제공합니다.
 
+## 배포 주소
+
+- Frontend: https://kbeauty-analytics.vercel.app
+- Backend API: https://kbeauty-analytics.vercel.app/api
+- Health Check: https://kbeauty-analytics.vercel.app/health
+- Swagger: https://kbeauty-analytics.vercel.app/docs
+
 ## 데이터
 
 - 출처: 한국무역협회 K-stat 수출입 무역통계
@@ -243,16 +250,6 @@ uvicorn main:app --reload
 5. AI는 제공된 데이터 안에서만 한국어 답변을 생성합니다.
 6. 데이터만으로 확인할 수 없는 원인은 가능성 또는 추가 확인 필요로 구분합니다.
 7. 질문과 답변을 `conversations` 컬렉션에 자동 저장합니다.
-
-## 배포 주소
-
-- Frontend: https://kbeauty-analytics.vercel.app
-- Backend API: https://kbeauty-analytics.vercel.app/api
-- Health Check: https://kbeauty-analytics.vercel.app/health
-- Swagger: https://kbeauty-analytics.vercel.app/docs
-
-모든 공개 배포 주소는 `https://kbeauty-analytics.vercel.app` 도메인으로 통일했습니다.
-Vercel의 `/api`, `/health`, `/docs` 경로가 내부 Render 백엔드로 연결됩니다.
 
 ## 알려진 제한사항
 
