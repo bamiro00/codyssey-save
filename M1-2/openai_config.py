@@ -1,13 +1,14 @@
 import os
 
-from dotenv import load_dotenv
+from dotenv import dotenv_values, load_dotenv
 from openai import OpenAI
 
 
 render_secret_env_path = "/etc/secrets/.env"
+render_secret_values = {}
 
 if os.path.exists(render_secret_env_path):
-    load_dotenv(render_secret_env_path)
+    render_secret_values = dotenv_values(render_secret_env_path)
 else:
     load_dotenv()
 
@@ -19,7 +20,10 @@ OPENAI_MODEL = os.getenv("OPENAI_MODEL", "gpt-5.4-mini")
 
 
 def get_openai_client() -> OpenAI:
-    api_key = os.getenv("OPENAI_API_KEY")
+    api_key = (
+        os.getenv("OPENAI_API_KEY")
+        or render_secret_values.get("OPENAI_API_KEY")
+    )
 
     if not api_key:
         raise RuntimeError(
