@@ -87,8 +87,10 @@ ALLOWED_ORIGINS=http://127.0.0.1:5500,http://localhost:5500
 
 실제 API 키와 Firebase 인증정보는 README나 GitHub에 올리지 않습니다.
 
-로컬에서는 `FIREBASE_SERVICE_ACCOUNT_PATH`를 사용하고, Render에서는
-`FIREBASE_SERVICE_ACCOUNT_JSON`에 서비스 계정 JSON 전체를 등록합니다.
+로컬에서는 `FIREBASE_SERVICE_ACCOUNT_PATH`를 사용합니다. Render에서는
+`FIREBASE_SERVICE_ACCOUNT_JSON` 환경변수 또는 `/etc/secrets/firebase-key.json`
+Secret File 방식을 사용할 수 있습니다. 현재 배포는 `.env`와
+`firebase-key.json`을 Render Secret Files로 관리합니다.
 
 ## 로컬 실행
 
@@ -134,6 +136,7 @@ uvicorn main:app --reload
 
 | Method | Endpoint | 설명 |
 |---|---|---|
+| GET | `/health` | 배포 서버 상태 확인 |
 | GET | `/api/data` | 데이터 목록 조회 |
 | POST | `/api/data` | 데이터 추가 |
 | PUT | `/api/data/{id}` | 데이터 수정 |
@@ -157,9 +160,13 @@ uvicorn main:app --reload
 
 ## 배포 주소
 
-- Frontend: 배포 후 입력 (`k-beauty-ai.vercel.app` 사용 시도)
-- Backend: 배포 후 입력
-- Swagger: 배포 후 입력
+- Frontend: https://k-beauty-ai-tau.vercel.app
+- Backend: https://k-beauty-ai-api.onrender.com
+- Health Check: https://k-beauty-ai-api.onrender.com/health
+- Swagger: https://k-beauty-ai-api.onrender.com/docs
+
+`k-beauty-ai.vercel.app`은 다른 Vercel 팀이 이미 사용 중이어서,
+Vercel이 발급한 `k-beauty-ai-tau.vercel.app` 주소를 사용합니다.
 
 ## 알려진 제한사항
 
