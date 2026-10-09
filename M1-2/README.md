@@ -162,11 +162,12 @@ uvicorn main:app --reload
 ## 배포 주소
 
 - Frontend: https://kbeauty-analytics.vercel.app
-- Backend: https://k-beauty-ai-api.onrender.com
-- Health Check: https://k-beauty-ai-api.onrender.com/health
-- Swagger: https://k-beauty-ai-api.onrender.com/docs
+- Backend API: https://kbeauty-analytics.vercel.app/api
+- Health Check: https://kbeauty-analytics.vercel.app/health
+- Swagger: https://kbeauty-analytics.vercel.app/docs
 
-프론트엔드 배포 주소는 `https://kbeauty-analytics.vercel.app`으로 통일했습니다.
+모든 공개 배포 주소는 `https://kbeauty-analytics.vercel.app` 도메인으로 통일했습니다.
+Vercel의 `/api`, `/health`, `/docs` 경로가 내부 Render 백엔드로 연결됩니다.
 
 ## 알려진 제한사항
 
