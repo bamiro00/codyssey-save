@@ -15,9 +15,13 @@ const dataError=document.querySelector("#dataError");
 const dataSearchInput=document.querySelector("#dataSearchInput");
 const toast=document.querySelector("#toast");
 const connectionBadge=document.querySelector("#connectionBadge");
+const exportTrendChart=document.querySelector("#exportTrendChart");
+const trendChartPeriod=document.querySelector("#trendChartPeriod");
+const trendChartSummary=document.querySelector("#trendChartSummary");
 let dataItems=[];
 let conversationItems=[];
 let activeConversationId=null;
+let chartRange="all";
 let toastTimer;
 
 if(location.hash)history.replaceState(null,"",location.pathname);
@@ -74,9 +78,34 @@ function renderData(items){
   dataTableBody.innerHTML=items.map(item=>`<tr><td><strong>${escapeHtml(item.date)}</strong></td><td>$${formatMoney(item.value)}</td><td>${escapeHtml(item.unit||"US$")}</td><td>${escapeHtml(item.memo||"")}</td><td class="row-actions"><button type="button" data-action="edit" data-id="${escapeHtml(item.id)}">수정</button><button type="button" data-action="delete" data-id="${escapeHtml(item.id)}">삭제</button></td></tr>`).join("");
 }
 
+function renderExportChart(items){
+  const ordered=[...items].sort((a,b)=>a.date.localeCompare(b.date));
+  const selected=chartRange==="all"?ordered:ordered.slice(-Number(chartRange));
+  if(!selected.length){exportTrendChart.innerHTML="";trendChartSummary.innerHTML="";return}
+  const width=1000,height=280,padding={top:24,right:28,bottom:45,left:78};
+  const values=selected.map(item=>Number(item.value));
+  const min=Math.min(...values),max=Math.max(...values),range=Math.max(max-min,1);
+  const x=index=>padding.left+(index/Math.max(selected.length-1,1))*(width-padding.left-padding.right);
+  const y=value=>padding.top+(1-(value-min)/range)*(height-padding.top-padding.bottom);
+  const points=selected.map((item,index)=>`${x(index).toFixed(1)},${y(Number(item.value)).toFixed(1)}`).join(" ");
+  const area=`M ${x(0).toFixed(1)} ${height-padding.bottom} L ${points.replaceAll(","," ")} L ${x(selected.length-1).toFixed(1)} ${height-padding.bottom} Z`;
+  const grid=Array.from({length:5},(_,index)=>{
+    const ratio=index/4;const gridY=padding.top+ratio*(height-padding.top-padding.bottom);const value=max-ratio*range;
+    return `<g><line x1="${padding.left}" y1="${gridY}" x2="${width-padding.right}" y2="${gridY}"/><text x="${padding.left-14}" y="${gridY+4}" text-anchor="end">${(value/100000000).toFixed(1)}억</text></g>`;
+  }).join("");
+  const labelIndexes=[0,Math.floor((selected.length-1)/2),selected.length-1];
+  const labels=labelIndexes.map(index=>`<text class="chart-x-label" x="${x(index)}" y="${height-15}" text-anchor="${index===0?"start":index===selected.length-1?"end":"middle"}">${escapeHtml(selected[index].date)}</text>`).join("");
+  const latest=selected.at(-1);const latestX=x(selected.length-1);const latestY=y(Number(latest.value));
+  exportTrendChart.innerHTML=`<g class="chart-grid">${grid}</g><path class="chart-area" d="${area}"/><polyline class="chart-line" points="${points}"/><circle class="chart-latest-halo" cx="${latestX}" cy="${latestY}" r="10"/><circle class="chart-latest" cx="${latestX}" cy="${latestY}" r="5"><title>${escapeHtml(latest.date)} · US$ ${formatMoney(latest.value)}</title></circle>${labels}`;
+  const first=selected[0];const change=(Number(latest.value)-Number(first.value))/Math.max(Number(first.value),1)*100;
+  const peak=selected.reduce((best,item)=>Number(item.value)>Number(best.value)?item:best,selected[0]);
+  trendChartPeriod.textContent=`${first.date} — ${latest.date} · ${selected.length}개월`;
+  trendChartSummary.innerHTML=`<span><small>구간 변화</small><strong class="${change>=0?"is-positive":"is-negative"}">${change>=0?"+":""}${change.toFixed(1)}%</strong></span><span><small>구간 최고</small><strong>${escapeHtml(peak.date)} · $${formatMoney(peak.value)}</strong></span><span><small>최근 값</small><strong>${escapeHtml(latest.date)} · $${formatMoney(latest.value)}</strong></span>`;
+}
+
 async function loadData(){
   clearError(dataError);
-  try{const result=await api("/api/data");dataItems=(result.data||[]).sort((a,b)=>b.date.localeCompare(a.date));renderData(dataItems)}catch(error){showError(dataError,error.message);throw error}
+  try{const result=await api("/api/data");dataItems=(result.data||[]).sort((a,b)=>b.date.localeCompare(a.date));renderData(dataItems);renderExportChart(dataItems)}catch(error){showError(dataError,error.message);throw error}
 }
 
 function filterData(){const term=dataSearchInput.value.trim().toLowerCase();renderData(dataItems.filter(item=>!term||item.date.toLowerCase().includes(term)||String(item.memo||"").toLowerCase().includes(term)))}
@@ -149,6 +178,7 @@ dataModal.addEventListener("click",event=>{if(event.target===dataModal)closeData
 document.addEventListener("keydown",event=>{if(event.key==="Escape"&&!dataModal.hidden)closeDataModal()});
 dataForm.addEventListener("submit",saveData);
 dataSearchInput.addEventListener("input",filterData);
+document.querySelectorAll("[data-chart-range]").forEach(button=>button.addEventListener("click",()=>{chartRange=button.dataset.chartRange;document.querySelectorAll("[data-chart-range]").forEach(item=>item.classList.toggle("is-active",item===button));renderExportChart(dataItems)}));
 dataTableBody.addEventListener("click",event=>{const button=event.target.closest("button[data-action]");if(!button)return;const item=dataItems.find(entry=>entry.id===button.dataset.id);if(button.dataset.action==="edit"&&item)openDataModal(item);if(button.dataset.action==="delete")deleteData(button.dataset.id)});
 historyList.addEventListener("click",event=>{const button=event.target.closest("button[data-action]");if(!button)return;if(button.dataset.action==="open-conversation")openConversation(button.dataset.id);if(button.dataset.action==="delete-conversation")deleteConversation(button.dataset.id)});
 document.querySelector("#refreshHistoryButton").addEventListener("click",async()=>{await loadHistory();showToast("대화 목록을 새로고침했습니다.")});

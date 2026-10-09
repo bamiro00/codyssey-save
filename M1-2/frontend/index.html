@@ -36,6 +36,20 @@
         <article class="metric-card compact-card"><p>최고 수출액</p><strong id="summaryMaximum">—</strong><small id="summaryMaximumDate">해당 월</small></article>
         <article class="source-card"><p>데이터 출처</p><strong>한국무역협회 K-stat</strong><small>화장품 · MTI 2273 · 단위 US$</small></article>
       </div>
+      <article class="trend-chart-card" id="trend-chart" aria-labelledby="trendChartTitle">
+        <div class="trend-chart-head">
+          <div><p>EXPORT TREND</p><h3 id="trendChartTitle">월별 수출 추세</h3><span id="trendChartPeriod">실제 데이터를 불러오는 중입니다</span></div>
+          <div class="chart-range" role="group" aria-label="그래프 표시 기간">
+            <button type="button" data-chart-range="12">최근 1년</button>
+            <button type="button" data-chart-range="36">최근 3년</button>
+            <button class="is-active" type="button" data-chart-range="all">전체</button>
+          </div>
+        </div>
+        <div class="trend-chart-wrap">
+          <svg id="exportTrendChart" viewBox="0 0 1000 280" role="img" aria-label="월별 화장품 수출액 선 그래프"></svg>
+        </div>
+        <div class="trend-chart-summary" id="trendChartSummary" aria-live="polite"></div>
+      </article>
     </section>
 
     <section class="workspace-section" id="assistant" aria-labelledby="assistantTitle">
