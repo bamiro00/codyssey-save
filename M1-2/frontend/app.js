@@ -18,6 +18,8 @@ const connectionBadge=document.querySelector("#connectionBadge");
 const exportTrendChart=document.querySelector("#exportTrendChart");
 const trendChartPeriod=document.querySelector("#trendChartPeriod");
 const trendChartSummary=document.querySelector("#trendChartSummary");
+const exportCsvButton=document.querySelector("#exportCsvButton");
+const exportJsonButton=document.querySelector("#exportJsonButton");
 let dataItems=[];
 let conversationItems=[];
 let activeConversationId=null;
@@ -109,6 +111,25 @@ async function loadData(){
 }
 
 function filterData(){const term=dataSearchInput.value.trim().toLowerCase();renderData(dataItems.filter(item=>!term||item.date.toLowerCase().includes(term)||String(item.memo||"").toLowerCase().includes(term)))}
+function downloadExport(content,fileName,type){
+  const blob=new Blob([content],{type});
+  const url=URL.createObjectURL(blob);
+  const link=document.createElement("a");
+  link.href=url;link.download=fileName;document.body.appendChild(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),0);
+}
+function getExportRows(){return [...dataItems].sort((a,b)=>b.date.localeCompare(a.date)).map(({date,value,unit,memo})=>({date,value:Number(value),unit:unit||"US$",memo:memo||""}))}
+function exportCsv(){
+  const rows=getExportRows();if(!rows.length){showToast("내보낼 데이터가 없습니다.");return}
+  const quote=value=>`"${String(value??"").replaceAll('"','""')}"`;
+  const csv=["기준월,수출금액,단위,메모",...rows.map(row=>[row.date,row.value,row.unit,row.memo].map(quote).join(","))].join("\r\n");
+  downloadExport(`\uFEFF${csv}`,`kbeauty-export-${rows[0].date}.csv`,"text/csv;charset=utf-8");showToast("CSV 파일을 내려받았습니다.");
+}
+function exportJson(){
+  const rows=getExportRows();if(!rows.length){showToast("내보낼 데이터가 없습니다.");return}
+  const payload={source:"한국무역협회 K-stat",category:"화장품",mti_code:"2273",unit:"US$",count:rows.length,data:rows};
+  downloadExport(JSON.stringify(payload,null,2),`kbeauty-export-${rows[0].date}.json`,"application/json;charset=utf-8");showToast("JSON 파일을 내려받았습니다.");
+}
 function openDataModal(item=null){
   dataForm.reset();
   document.querySelector("#dataId").value=item?.id||"";
@@ -178,6 +199,8 @@ dataModal.addEventListener("click",event=>{if(event.target===dataModal)closeData
 document.addEventListener("keydown",event=>{if(event.key==="Escape"&&!dataModal.hidden)closeDataModal()});
 dataForm.addEventListener("submit",saveData);
 dataSearchInput.addEventListener("input",filterData);
+exportCsvButton.addEventListener("click",exportCsv);
+exportJsonButton.addEventListener("click",exportJson);
 document.querySelectorAll("[data-chart-range]").forEach(button=>button.addEventListener("click",()=>{chartRange=button.dataset.chartRange;document.querySelectorAll("[data-chart-range]").forEach(item=>item.classList.toggle("is-active",item===button));renderExportChart(dataItems)}));
 dataTableBody.addEventListener("click",event=>{const button=event.target.closest("button[data-action]");if(!button)return;const item=dataItems.find(entry=>entry.id===button.dataset.id);if(button.dataset.action==="edit"&&item)openDataModal(item);if(button.dataset.action==="delete")deleteData(button.dataset.id)});
 historyList.addEventListener("click",event=>{const button=event.target.closest("button[data-action]");if(!button)return;if(button.dataset.action==="open-conversation")openConversation(button.dataset.id);if(button.dataset.action==="delete-conversation")deleteConversation(button.dataset.id)});

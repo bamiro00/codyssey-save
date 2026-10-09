@@ -68,7 +68,7 @@
     </section>
 
     <section class="data-section" id="data-management" aria-labelledby="dataTitle">
-      <div class="section-bar section-bar-action"><div><span>03</span><h2 id="dataTitle">월별 수출 데이터</h2></div><button class="primary-button" id="addDataButton" type="button"><span>＋</span> 데이터 추가</button></div>
+      <div class="section-bar section-bar-action"><div><span>03</span><h2 id="dataTitle">월별 수출 데이터</h2></div><div class="data-actions"><button class="export-button" id="exportCsvButton" type="button"><span>↓</span> CSV</button><button class="export-button" id="exportJsonButton" type="button"><span>↓</span> JSON</button><button class="primary-button" id="addDataButton" type="button"><span>＋</span> 데이터 추가</button></div></div>
       <div class="data-panel"><div class="table-toolbar"><label class="search-field"><span>⌕</span><span class="sr-only">검색</span><input id="dataSearchInput" type="search" placeholder="연월 또는 메모 검색"></label><span class="record-count" id="recordCount">0개 항목</span></div><div class="table-wrap"><table><thead><tr><th>기준월</th><th>수출금액</th><th>단위</th><th>메모</th><th><span class="sr-only">관리</span></th></tr></thead><tbody id="dataTableBody"><tr class="table-empty-row"><td colspan="5"><span>↗</span><strong>데이터 연결을 기다리고 있습니다</strong><small>다음 단계에서 FastAPI와 연결합니다.</small></td></tr></tbody></table></div><div class="table-error" id="dataError" role="alert" hidden></div></div>
     </section>
   </main>
