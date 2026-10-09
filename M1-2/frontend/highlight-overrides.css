@@ -1,0 +1,138 @@
+/* The two user-selected areas only: header mark and data source card. */
+.brand-symbol{
+  border:1px solid #cbdcff;
+  border-radius:12px;
+  color:var(--blue);
+  background:#f2f6ff;
+  box-shadow:none;
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+
+.source-card{
+  position:relative;
+  overflow:hidden;
+  color:var(--ink);
+  border-color:#cbdcff;
+  background:linear-gradient(145deg,#f8faff,#edf3ff);
+}
+
+.source-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:4px;
+  background:var(--blue);
+}
+
+.source-card::after{
+  content:"K-STAT";
+  position:absolute;
+  right:16px;
+  top:16px;
+  padding:4px 6px;
+  border-radius:999px;
+  color:var(--blue);
+  background:#dfe9ff;
+  font-size:7px;
+  font-weight:700;
+  letter-spacing:.08em;
+}
+
+.source-card p{color:var(--blue)}
+.source-card strong{color:var(--ink)}
+.source-card small{color:#7e8ba0}
+
+/* Keep all metric cards consistent; only the source card is highlighted. */
+.trend-card{
+  border-color:var(--line);
+  background:var(--surface);
+}
+
+.trend-card p{color:#78869c}
+.trend-card strong{color:var(--ink)}
+
+/* Softer assistant mark that matches the light interface. */
+.ai-avatar{
+  width:38px;
+  height:38px;
+  border:1px solid #cbdcff;
+  border-radius:50%;
+  color:var(--blue);
+  background:linear-gradient(145deg,#f7f9ff,#e7efff);
+  box-shadow:0 6px 14px rgba(53,104,232,.10);
+  font-size:15px;
+}
+
+/* Live API states and interactive results. */
+.connection-badge.is-connected{color:#168563;border-color:#c5eddf;background:#f0fbf7}
+.connection-badge.is-connected i{background:#22b487;box-shadow:0 0 0 4px rgba(34,180,135,.11)}
+.chat-form button:disabled,.primary-button:disabled{cursor:wait;opacity:.58}
+.chat-loading{display:flex;align-items:center;gap:4px}
+.chat-loading[hidden]{display:none}
+.chat-loading span{width:5px;height:5px;border-radius:50%;background:var(--blue);animation:chat-pulse .9s infinite alternate}
+.chat-loading span:nth-child(2){animation-delay:.18s}.chat-loading span:nth-child(3){animation-delay:.36s}
+@keyframes chat-pulse{to{opacity:.25;transform:translateY(-3px)}}
+.chat-error{padding:9px 11px;border-radius:8px;color:#b44237;background:#fff0ee}
+.chat-error[hidden],.table-error[hidden]{display:none}
+.chat-message{margin-bottom:16px;display:flex;align-items:flex-start;gap:9px}
+.chat-message>span{width:28px;height:28px;flex:0 0 28px;display:grid;place-items:center;border-radius:50%;font-size:8px;font-weight:700}
+.chat-message>div{max-width:78%;padding:11px 13px;border-radius:12px;font-size:10px;line-height:1.65;white-space:normal}
+.chat-message.user{justify-content:flex-end}.chat-message.user>span{order:2;color:#fff;background:var(--blue)}.chat-message.user>div{color:#fff;background:var(--blue);border-bottom-right-radius:4px}
+.chat-message.assistant>span{color:var(--blue);background:var(--pale)}.chat-message.assistant>div{color:var(--text);background:#f3f6fa;border-bottom-left-radius:4px}
+.assistant-layout{align-items:start}
+.history-panel{height:620px;display:flex;align-self:start;flex-direction:column}
+.history-title-row{display:flex;align-items:center;gap:8px}.history-count{padding:3px 7px;border-radius:999px;color:#58709a;background:#eef3fb;font-size:8px;font-weight:700}
+.history-list{min-height:0;max-height:none;margin-top:14px;padding-right:5px;flex:1;overflow:auto;scrollbar-width:thin;scrollbar-color:#cdd7e6 transparent}
+.history-item{position:relative;margin-bottom:6px;padding:8px 7px 8px 10px;display:flex;align-items:center;gap:5px;border:1px solid transparent;border-radius:10px;transition:.18s}
+.history-item:hover{border-color:#e1e8f2;background:#f8fafd}.history-item.is-active{border-color:#c6d7fb;background:#edf3ff}
+.history-item.is-active:before{content:"";position:absolute;left:0;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:var(--blue)}
+.history-open{min-width:0;padding:2px 0;flex:1;text-align:left;border:0;background:transparent}
+.history-open strong,.history-open small{display:block}.history-open strong{display:-webkit-box;overflow:hidden;color:var(--ink);font-size:9px;line-height:1.45;-webkit-box-orient:vertical;-webkit-line-clamp:2}.history-open small{margin-top:5px;color:#8390a4;font-size:7.5px}
+.history-delete{width:25px;height:25px;flex:0 0 25px;border:0;border-radius:7px;color:#b1bac8;background:transparent;opacity:.4;transition:.18s}.history-item:hover .history-delete,.history-item.is-active .history-delete{opacity:1}.history-delete:hover{color:#bd4035;background:#fff0ee}
+.history-footer{padding-top:12px;border-top:1px solid var(--line)}
+.history-footer button{width:100%;height:38px;border:1px solid #c9d8f6;border-radius:9px;color:#315fbf;background:#f2f6ff;font-size:9px;font-weight:700;transition:.18s}
+.history-footer button:hover{border-color:#9fbbf3;background:#e8f0ff}.history-footer button span{margin-right:5px;font-size:12px}
+.row-actions{width:110px;white-space:nowrap}.row-actions button{padding:5px 7px;border:1px solid var(--line);border-radius:6px;color:#65738a;background:#fff;font-size:8px}.row-actions button+button{margin-left:4px}.row-actions button:hover{color:var(--blue);border-color:#bfd1fa;background:var(--pale)}
+
+/* Improve the legibility of metric labels, dates, and change notes. */
+.metric-card p{color:#52627b;font-size:12px;font-weight:700;letter-spacing:-.01em}
+.metric-card small{margin-top:8px;color:#5f708a;font-size:11px;font-weight:600}
+.metric-card strong{font-weight:600;letter-spacing:-.025em}
+.trend-card strong{font-weight:700}
+
+.trend-card.trend-up{border-color:#f3b7ba;background:#fff7f7}
+.trend-card.trend-up strong,.trend-card.trend-up small{color:#df3f47}
+.trend-card.trend-down{border-color:#b9cffb;background:#f5f8ff}
+.trend-card.trend-down strong,.trend-card.trend-down small{color:#3568e8}
+.trend-card.trend-flat strong,.trend-card.trend-flat small{color:#53627a}
+
+.source-card{padding:19px 20px;border-color:#a9c3ff;background:linear-gradient(145deg,#eef4ff,#e5eeff)}
+.source-card::before{width:5px}
+.source-card p{color:#315fcf;font-size:11px;font-weight:800;letter-spacing:.02em}
+.source-card strong{margin-top:15px;color:#152543;font-size:15px;line-height:1.35}
+.source-card small{margin-top:8px;color:#526783;font-size:10.5px;font-weight:600}
+.source-card::after{color:#2858cc;background:#d4e2ff;font-size:7.5px}
+
+/* Use one Korean-first typeface throughout the interface. */
+body,button,input,textarea{font-family:"Noto Sans KR","DM Sans",sans-serif}
+.metric-card strong,th,td{font-variant-numeric:tabular-nums}
+
+/* Table alignment follows the content type for faster scanning. */
+th:nth-child(1),td:nth-child(1),th:nth-child(3),td:nth-child(3),th:nth-child(5),td:nth-child(5){text-align:center}
+th:nth-child(2),td:nth-child(2){text-align:right}
+th:nth-child(4),td:nth-child(4){text-align:left}
+
+/* Make long AI analysis easier to read. */
+.chat-panel{height:620px}
+.message-list{padding:28px 24px}
+.chat-message.assistant>div{max-width:92%;padding:18px 20px;color:#2c3d58;background:#f7f9fd;border:1px solid #dfe7f2;font-size:12px;font-weight:500;line-height:1.78;box-shadow:0 8px 24px rgba(31,58,105,.05)}
+.chat-message.user>div{color:#244b98;background:#e8f0ff;border:1px solid #c9d9fb;font-size:11.5px;font-weight:600;line-height:1.7}
+.chat-message.user>span{color:#fff;background:#4d73cc}
+.chat-message>span{margin-top:2px}
+.answer-heading{display:block;margin:17px 0 7px;padding-bottom:6px;border-bottom:1px solid #dce5f2;color:#173b78;font-size:13px;font-weight:700}.answer-heading:first-child{margin-top:0}
+.answer-subheading{display:block;margin:12px 0 5px;color:#253b61;font-size:12px;font-weight:700}
+.answer-bullet{position:relative;display:block;margin:5px 0;padding-left:4px;color:#3d4e69}
+.answer-divider{margin:14px 0;border:0;border-top:1px solid #dce5f2}

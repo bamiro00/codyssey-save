@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="한국 화장품 수출 데이터 기반 AI 분석 서비스">
+  <title>K-Beauty Data</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="highlight-overrides.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <a class="brand" href="#overview"><span class="brand-symbol">KB</span><span><strong>K-Beauty Data</strong><small>Export Intelligence</small></span></a>
+      <nav class="sidebar" id="sidebar"><a class="nav-link is-active" href="#overview">대시보드</a><a class="nav-link" href="#assistant">AI 분석</a><a class="nav-link" href="#data-management">데이터</a></nav>
+      <div class="header-side"><span class="connection-badge" id="connectionBadge"><i></i>연결 준비</span><button class="menu-button" id="menuButton" type="button" aria-label="메뉴"><span></span><span></span><span></span></button></div>
+    </div>
+  </header>
+
+  <main class="dashboard" id="overview">
+    <section class="page-intro">
+      <div class="intro-content"><p class="overline">KOREA BEAUTY EXPORT · MTI 2273</p><h1>데이터로 읽는<br><em>K-뷰티 수출 흐름</em></h1><p class="intro-copy">10년간의 월별 수출 흐름을 한눈에 살펴보고,<br>AI 분석으로 변화 속 인사이트를 발견해 보세요.</p><div class="intro-actions"><a href="#assistant" class="hero-button">AI에게 질문하기 <span>→</span></a><a href="#data-management" class="text-button">전체 데이터 보기</a></div></div>
+      <div class="hero-visual" aria-hidden="true"><div class="visual-head"><div><small>EXPORT TREND</small><strong>Monthly performance</strong></div><span>LIVE</span></div><div class="mini-chart"><i style="height:38%"></i><i style="height:52%"></i><i style="height:47%"></i><i style="height:68%"></i><i style="height:60%"></i><i style="height:78%"></i><i style="height:92%"></i><i style="height:84%"></i></div><div class="visual-foot"><div><small>DATA PERIOD</small><strong>2017.01 — 2026.08</strong></div><div><small>CATEGORY</small><strong>MTI 2273</strong></div></div></div>
+    </section>
+
+    <section class="summary-section" aria-labelledby="summaryTitle">
+      <div class="section-bar"><div><span>01</span><h2 id="summaryTitle">핵심 지표</h2></div><small id="updatedAt">API 연결 후 갱신</small></div>
+      <div class="summary-grid" aria-live="polite">
+        <article class="metric-card metric-primary"><p>데이터 기간</p><strong id="summaryPeriod">—</strong><small>월별 집계 기간</small></article>
+        <article class="metric-card"><p>데이터 개수</p><strong id="summaryCount">—</strong><small>MONTHS</small></article>
+        <article class="metric-card"><p>월평균 수출액</p><strong id="summaryAverage">—</strong><small>US$</small></article>
+        <article class="metric-card trend-card"><p>최근 추세</p><strong id="summaryTrend">—</strong><small id="summaryChangeRate">최근 3개월 기준</small></article>
+        <article class="metric-card compact-card"><p>최근 수출액</p><strong id="summaryLatest">—</strong><small id="summaryLatestDate">최근 월</small></article>
+        <article class="metric-card compact-card"><p>최저 수출액</p><strong id="summaryMinimum">—</strong><small id="summaryMinimumDate">해당 월</small></article>
+        <article class="metric-card compact-card"><p>최고 수출액</p><strong id="summaryMaximum">—</strong><small id="summaryMaximumDate">해당 월</small></article>
+        <article class="source-card"><p>데이터 출처</p><strong>한국무역협회 K-stat</strong><small>화장품 · MTI 2273 · 단위 US$</small></article>
+      </div>
+    </section>
+
+    <section class="workspace-section" id="assistant" aria-labelledby="assistantTitle">
+      <div class="section-bar"><div><span>02</span><h2 id="assistantTitle">AI 데이터 분석</h2></div><small>실제 Firestore 데이터 기반</small></div>
+      <div class="assistant-layout">
+        <article class="chat-panel">
+          <div class="chat-header"><div class="ai-avatar" aria-hidden="true">✦</div><div><strong>K-Beauty Analyst</strong><span><i></i>질문할 준비가 되었습니다</span></div></div>
+          <div class="message-list" id="messageList" aria-live="polite"><div class="welcome-message"><span class="welcome-icon">✦</span><h3>수출 데이터에서 인사이트를 찾아보세요</h3><p>변화의 의미부터 실무 활용 아이디어까지 분석합니다.</p><div class="suggestion-list"><button type="button" data-question="최근 12개월 수출 흐름과 주목할 변화를 분석해줘">최근 흐름 분석</button><button type="button" data-question="수출액이 급증하거나 급감한 달을 찾아서 의미를 설명해줘">변곡점 찾기</button><button type="button" data-question="이 데이터에서 얻을 수 있는 K-뷰티 수출 전략 인사이트를 알려줘">전략 인사이트</button></div></div></div>
+          <div class="chat-error" id="chatError" role="alert" hidden></div>
+          <form class="chat-form" id="chatForm"><label class="sr-only" for="questionInput">질문</label><textarea id="questionInput" rows="1" placeholder="예: 최근 변화에서 얻을 수 있는 수출 전략을 알려줘" required></textarea><button type="submit"><span>전송</span><b>↑</b></button></form>
+          <div class="chat-loading" id="chatLoading" hidden><span></span><span></span><span></span> 데이터를 분석하고 있습니다</div>
+        </article>
+        <aside class="history-panel" aria-labelledby="historyTitle"><div class="panel-head"><div><p>HISTORY</p><div class="history-title-row"><h3 id="historyTitle">이전 대화</h3><span class="history-count" id="historyCount">0개</span></div></div><button class="icon-button" id="refreshHistoryButton" type="button" aria-label="새로고침">↻</button></div><div class="history-list" id="historyList"><div class="empty-state"><span>⌁</span><strong>저장된 대화가 없습니다</strong><p>AI와 나눈 대화가 이곳에 표시됩니다.</p></div></div><div class="history-footer"><button id="newConversationButton" type="button"><span>＋</span> 새 대화</button></div></aside>
+      </div>
+    </section>
+
+    <section class="data-section" id="data-management" aria-labelledby="dataTitle">
+      <div class="section-bar section-bar-action"><div><span>03</span><h2 id="dataTitle">월별 수출 데이터</h2></div><button class="primary-button" id="addDataButton" type="button"><span>＋</span> 데이터 추가</button></div>
+      <div class="data-panel"><div class="table-toolbar"><label class="search-field"><span>⌕</span><span class="sr-only">검색</span><input id="dataSearchInput" type="search" placeholder="연월 또는 메모 검색"></label><span class="record-count" id="recordCount">0개 항목</span></div><div class="table-wrap"><table><thead><tr><th>기준월</th><th>수출금액</th><th>단위</th><th>메모</th><th><span class="sr-only">관리</span></th></tr></thead><tbody id="dataTableBody"><tr class="table-empty-row"><td colspan="5"><span>↗</span><strong>데이터 연결을 기다리고 있습니다</strong><small>다음 단계에서 FastAPI와 연결합니다.</small></td></tr></tbody></table></div><div class="table-error" id="dataError" role="alert" hidden></div></div>
+    </section>
+  </main>
+
+  <footer><div><strong>K-Beauty Data</strong><span>한국 화장품 수출 데이터 기반 AI 서비스</span></div><p>Source · Korea International Trade Association K-stat</p></footer>
+
+  <div class="modal-backdrop" id="dataModal" hidden><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-header"><div><p>DATA EDITOR</p><h2 id="modalTitle">새 데이터 추가</h2></div><button class="modal-close" id="modalCloseButton" type="button" aria-label="닫기">×</button></div><form id="dataForm"><input id="dataId" type="hidden"><label><span>기준월</span><input id="dataDate" type="month" required></label><label><span>수출금액 (US$)</span><input id="dataValue" type="number" min="0" step="1" required></label><label><span>메모</span><textarea id="dataMemo" rows="3" placeholder="화장품(MTI 2273) 월별 수출액"></textarea></label><div class="modal-actions"><button class="secondary-button" id="modalCancelButton" type="button">취소</button><button class="primary-button" type="submit">저장</button></div></form></section></div>
+  <div class="toast" id="toast" role="status"></div><script src="config.js"></script><script src="app.js"></script>
+</body></html>
