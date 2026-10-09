@@ -1,4 +1,5 @@
 import json
+import os
 from typing import Literal
 
 from fastapi import FastAPI, HTTPException
@@ -23,10 +24,17 @@ app = FastAPI(
 )
 
 
+allowed_origins = [
+    origin.strip()
+    for origin in os.getenv("ALLOWED_ORIGINS", "*").split(",")
+    if origin.strip()
+]
+
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=allowed_origins or ["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -95,6 +103,14 @@ class ChatRequest(BaseModel):
 def root():
     return {
         "message": "K-Beauty AI API 서버가 정상 실행 중입니다."
+    }
+
+
+@app.get("/health")
+def health():
+    return {
+        "status": "ok",
+        "service": "K-Beauty AI API"
     }
 
 

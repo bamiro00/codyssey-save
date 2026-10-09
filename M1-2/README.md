@@ -81,10 +81,14 @@ OPENAI_API_KEY=
 OPENAI_BASE_URL=https://copa.codyssey.kr/v1
 OPENAI_MODEL=gpt-5.4-mini
 FIREBASE_SERVICE_ACCOUNT_PATH=firebase-key.json
+FIREBASE_SERVICE_ACCOUNT_JSON=
 ALLOWED_ORIGINS=http://127.0.0.1:5500,http://localhost:5500
 ```
 
 실제 API 키와 Firebase 인증정보는 README나 GitHub에 올리지 않습니다.
+
+로컬에서는 `FIREBASE_SERVICE_ACCOUNT_PATH`를 사용하고, Render에서는
+`FIREBASE_SERVICE_ACCOUNT_JSON`에 서비스 계정 JSON 전체를 등록합니다.
 
 ## 로컬 실행
 
