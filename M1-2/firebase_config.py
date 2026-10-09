@@ -6,7 +6,13 @@ from dotenv import load_dotenv
 from firebase_admin import credentials, firestore
 
 
-load_dotenv()
+render_secret_env_path = "/etc/secrets/.env"
+render_firebase_key_path = "/etc/secrets/firebase-key.json"
+
+if os.path.exists(render_secret_env_path):
+    load_dotenv(render_secret_env_path)
+else:
+    load_dotenv()
 
 if not firebase_admin._apps:
     firebase_service_account_json = os.getenv(
@@ -25,8 +31,10 @@ if not firebase_admin._apps:
             ) from error
 
         cred = credentials.Certificate(service_account_info)
-    elif firebase_key_path:
+    elif firebase_key_path and os.path.exists(firebase_key_path):
         cred = credentials.Certificate(firebase_key_path)
+    elif os.path.exists(render_firebase_key_path):
+        cred = credentials.Certificate(render_firebase_key_path)
     else:
         raise ValueError(
             "FIREBASE_SERVICE_ACCOUNT_JSON 또는 "

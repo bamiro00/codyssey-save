@@ -4,7 +4,12 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 
-load_dotenv()
+render_secret_env_path = "/etc/secrets/.env"
+
+if os.path.exists(render_secret_env_path):
+    load_dotenv(render_secret_env_path)
+else:
+    load_dotenv()
 
 OPENAI_BASE_URL = os.getenv(
     "OPENAI_BASE_URL",
