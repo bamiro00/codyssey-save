@@ -62,6 +62,54 @@
 - 화면 오른쪽 위의 달 또는 해 버튼으로 라이트·다크 모드를 전환합니다.
 - 선택한 화면 모드는 브라우저에 저장되어 새로고침 후에도 유지됩니다.
 
+## 화면 미리보기
+
+### 메인 대시보드
+
+배포된 서비스의 핵심 지표, 데이터 출처, API 연결 상태를 한 화면에서 확인할 수 있습니다.
+
+![K-Beauty Data 메인 대시보드](docs/images/dashboard-light.jpg)
+
+### 실제 데이터 기반 AI 분석과 이전 대화
+
+사용자의 질문과 AI 답변을 표시하며, 오른쪽 목록에서 Firestore에 저장된 이전 대화를 다시 불러올 수 있습니다.
+
+![AI 질문과 데이터 기반 답변](docs/images/ai-analysis.jpg)
+
+### 데이터 CRUD 검증
+
+검증용 `2026-09` 데이터를 추가·수정·삭제한 뒤 원래 116개 데이터 상태로 복구했습니다.
+
+| 검증 전: 116개 | 추가 후: 117개 |
+|---|---|
+| ![CRUD 검증 전](docs/images/crud-before.png) | ![데이터 추가 후](docs/images/crud-create.png) |
+
+| 수정 후 | 삭제 후: 116개 복구 |
+|---|---|
+| ![데이터 수정 후](docs/images/crud-update.png) | ![데이터 삭제 후](docs/images/crud-delete.png) |
+
+### 실제 116개월 수출 추세 그래프
+
+Firestore에서 조회한 월별 데이터를 사용하며 최근 1년·3년·전체 기간을 선택할 수 있습니다.
+
+![실제 데이터 수출 추세 선 그래프](docs/images/trend-chart.png)
+
+### 다크 모드
+
+대시보드, 핵심 지표, 그래프, AI 대화와 데이터 표에 다크 모드를 적용하며 선택 상태를 저장합니다.
+
+![K-Beauty Data 다크 모드](docs/images/dark-mode.png)
+
+### API 및 배포 확인
+
+FastAPI Swagger에서 필수 API를 확인할 수 있고, Render 백엔드와 Vercel 프런트엔드에 배포했습니다.
+
+![FastAPI Swagger API 문서](docs/images/swagger.jpg)
+
+| Render 백엔드 | Vercel 프런트엔드 |
+|---|---|
+| ![Render 백엔드 Live 상태](docs/images/render-live.jpg) | ![Vercel 프런트엔드 정상 동작](docs/images/vercel-live.jpg) |
+
 ## 사용 기술
 
 - Backend: Python, FastAPI, Uvicorn, Pydantic
@@ -74,6 +122,9 @@
 
 ```text
 K-beauty_AI/
+├─ docs/
+│  └─ images/
+│     └─ README 화면 캡처
 ├─ frontend/
 │  ├─ index.html
 │  ├─ styles.css
