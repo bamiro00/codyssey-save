@@ -166,8 +166,7 @@ uvicorn main:app --reload
 - Health Check: https://k-beauty-ai-api.onrender.com/health
 - Swagger: https://k-beauty-ai-api.onrender.com/docs
 
-`k-beauty-ai.vercel.app`은 다른 Vercel 팀이 이미 사용 중이어서,
-프로젝트 성격이 드러나는 `kbeauty-analytics.vercel.app` 주소를 사용합니다.
+프론트엔드 배포 주소는 `https://kbeauty-analytics.vercel.app`으로 통일했습니다.
 
 ## 알려진 제한사항
 
