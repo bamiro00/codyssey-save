@@ -1,6 +1,7 @@
 const API_BASE_URL=(window.K_BEAUTY_API_URL||"http://127.0.0.1:8000").replace(/\/$/,"");
 const sidebar=document.querySelector("#sidebar");
 const menuButton=document.querySelector("#menuButton");
+const themeToggle=document.querySelector("#themeToggle");
 const navLinks=document.querySelectorAll(".nav-link");
 const questionInput=document.querySelector("#questionInput");
 const chatForm=document.querySelector("#chatForm");
@@ -43,6 +44,19 @@ function formatMoney(value){return new Intl.NumberFormat("ko-KR").format(Number(
 function formatDateTime(value){if(!value)return "";const date=new Date(value);return Number.isNaN(date.getTime())?"":new Intl.DateTimeFormat("ko-KR",{month:"long",day:"numeric",hour:"2-digit",minute:"2-digit"}).format(date)}
 function setConnection(connected){connectionBadge.classList.toggle("is-connected",connected);connectionBadge.innerHTML=`<i></i>${connected?"API 연결됨":"연결 오류"}`}
 function showToast(message){clearTimeout(toastTimer);toast.textContent=message;toast.classList.add("is-visible");toastTimer=setTimeout(()=>toast.classList.remove("is-visible"),2800)}
+function applyTheme(theme){
+  const isDark=theme==="dark";
+  document.documentElement.dataset.theme=isDark?"dark":"light";
+  themeToggle.setAttribute("aria-pressed",String(isDark));
+  themeToggle.setAttribute("aria-label",isDark?"라이트 모드로 전환":"다크 모드로 전환");
+  themeToggle.querySelector("span").textContent=isDark?"☀":"☾";
+}
+function toggleTheme(){
+  const nextTheme=document.documentElement.dataset.theme==="dark"?"light":"dark";
+  try{localStorage.setItem("kbeauty-theme",nextTheme)}catch{}
+  applyTheme(nextTheme);
+  showToast(nextTheme==="dark"?"다크 모드로 전환했습니다.":"라이트 모드로 전환했습니다.");
+}
 function showError(element,message){element.textContent=message;element.hidden=false}
 function clearError(element){element.textContent="";element.hidden=true}
 
@@ -185,6 +199,8 @@ async function sendQuestion(event){
 
 function bindSuggestions(){document.querySelectorAll("[data-question]").forEach(button=>button.addEventListener("click",()=>{questionInput.value=button.dataset.question;questionInput.focus()}))}
 
+applyTheme(document.documentElement.dataset.theme||"light");
+themeToggle.addEventListener("click",toggleTheme);
 menuButton.addEventListener("click",()=>{const open=sidebar.classList.toggle("is-open");menuButton.setAttribute("aria-expanded",String(open))});
 navLinks.forEach(link=>link.addEventListener("click",event=>{event.preventDefault();navLinks.forEach(item=>item.classList.remove("is-active"));link.classList.add("is-active");document.querySelector(link.getAttribute("href")).scrollIntoView({behavior:"smooth"});history.replaceState(null,"",location.pathname);sidebar.classList.remove("is-open");menuButton.setAttribute("aria-expanded","false")}));
 document.querySelector(".brand").addEventListener("click",event=>{event.preventDefault();document.querySelector("#overview").scrollIntoView({behavior:"smooth"});history.replaceState(null,"",location.pathname)});

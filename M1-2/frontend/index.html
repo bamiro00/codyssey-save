@@ -4,6 +4,7 @@
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="한국 화장품 수출 데이터 기반 AI 분석 서비스">
   <link rel="canonical" href="https://kbeauty-analytics.vercel.app/">
+  <script>try{document.documentElement.dataset.theme=localStorage.getItem("kbeauty-theme")||"light"}catch{document.documentElement.dataset.theme="light"}</script>
   <title>K-Beauty Data</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,7 +16,7 @@
     <div class="header-inner">
       <a class="brand" href="#overview"><span class="brand-symbol">KB</span><span><strong>K-Beauty Data</strong><small>Export Intelligence</small></span></a>
       <nav class="sidebar" id="sidebar"><a class="nav-link is-active" href="#overview">대시보드</a><a class="nav-link" href="#assistant">AI 분석</a><a class="nav-link" href="#data-management">데이터</a></nav>
-      <div class="header-side"><span class="connection-badge" id="connectionBadge"><i></i>연결 준비</span><button class="menu-button" id="menuButton" type="button" aria-label="메뉴"><span></span><span></span><span></span></button></div>
+      <div class="header-side"><button class="theme-toggle" id="themeToggle" type="button" aria-label="다크 모드로 전환" aria-pressed="false"><span aria-hidden="true">☾</span></button><span class="connection-badge" id="connectionBadge"><i></i>연결 준비</span><button class="menu-button" id="menuButton" type="button" aria-label="메뉴"><span></span><span></span><span></span></button></div>
     </div>
   </header>
 
