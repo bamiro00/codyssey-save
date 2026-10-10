@@ -250,17 +250,19 @@ Swagger에서 데이터 CRUD, 요약, AI 채팅, 대화 저장·조회·삭제�
 
 | Method | Endpoint | 성공 | 주요 오류 |
 |---|---|---|---|
-| GET | `/health` | `200`, 상태 객체 | `500` |
-| GET | `/api/data` | `200`, `{count, data}` | `500` |
-| POST | `/api/data` | `200`, `{message, id}` | `409`, `422` |
-| PUT | `/api/data/{id}` | `200`, `{message, id}` | `400`, `404`, `422` |
-| DELETE | `/api/data/{id}` | `200`, `{message, id}` | `404`, `500` |
-| GET | `/api/data/summary` | `200`, 요약 객체 | `404`, `500` |
-| POST | `/api/chat` | `200`, `{conversation_id, answer, model}` | `422`, `500` |
-| POST | `/api/conversations` | `200`, `{message, id}` | `422`, `500` |
-| GET | `/api/conversations` | `200`, 목록 객체 | `500` |
-| GET | `/api/conversations/{id}` | `200`, 대화 객체 | `404`, `500` |
-| DELETE | `/api/conversations/{id}` | `200`, `{message, id}` | `404`, `500` |
+| GET | `/health` | `200`, 상태 객체 | 별도 오류 응답 없음(서버 미기동 시 연결 실패) |
+| GET | `/api/data` | `200`, `{count, data}` | `500` Firestore 목록 조회 실패 |
+| POST | `/api/data` | `200`, `{message, id}` | `409` 중복 기준월 · `422` 입력 형식 오류 · `500` 저장 실패 |
+| PUT | `/api/data/{id}` | `200`, `{message, id}` | `400` 경로 ID와 기준월 불일치 · `404` 데이터 없음 · `422` 입력 형식 오류 · `500` 수정 실패 |
+| DELETE | `/api/data/{id}` | `200`, `{message, id}` | `404` 데이터 없음 · `500` 삭제 실패 |
+| GET | `/api/data/summary` | `200`, 요약 객체 | `404` 저장 데이터 없음 · `500` Firestore 요약 조회 실패 |
+| POST | `/api/chat` | `200`, `{conversation_id, answer, model}` | `404` 분석 데이터 없음 · `422` 질문 형식 오류 · `500` AI 호출·대화 저장 실패 |
+| POST | `/api/conversations` | `200`, `{message, id}` | `422` 대화 형식 오류 · `500` 대화 저장 실패 |
+| GET | `/api/conversations` | `200`, 목록 객체 | `500` 대화 목록 조회 실패 |
+| GET | `/api/conversations/{id}` | `200`, 대화 객체 | `404` 대화 없음 · `500` 대화 조회 실패 |
+| DELETE | `/api/conversations/{id}` | `200`, `{message, id}` | `404` 대화 없음 · `500` 대화 삭제 실패 |
+
+상태 코드 의미: `400` 요청 내용 불일치, `404` 대상 없음, `409` 중복 충돌, `422` 입력값 검증 실패, `500` 외부 서비스 또는 서버 처리 실패입니다.
 
 ```bash
 curl https://kbeauty-analytics.vercel.app/health
