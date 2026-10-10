@@ -27,8 +27,9 @@
 | 기간 | 2017-01 ~ 2026-08 |
 | 개수 | 116개, 월 누락·중복 없음 |
 | 지표·단위 | 월별 수출금액·US$ |
+| 원본 파일 | `K뷰티_월별_수출액_통합.xlsx` |
 
-업로드 전에 월 개수, 누락·중복, `YYYY-MM` 형식, 숫자형 수출액, 빈 값을 확인했습니다. Firestore `data`의 문서 ID는 기준월인 `YYYY-MM`을 사용합니다.
+`upload_data.py`로 원본 엑셀 파일을 읽어 Firestore에 등록했습니다. 업로드 전에 월 개수, 누락·중복, `YYYY-MM` 형식, 숫자형 수출액, 빈 값을 확인했습니다. Firestore `data`의 문서 ID는 기준월인 `YYYY-MM`을 사용합니다.
 
 ## 2. 기술 선택과 프로젝트 구조
 
@@ -98,13 +99,26 @@ ALLOWED_ORIGINS=http://127.0.0.1:5500,http://localhost:5500
 
 ### 로컬 실행
 
+백엔드는 프로젝트 루트에서 실행합니다.
+
 ```powershell
 uvicorn main:app --reload
 ```
 
 - API: `http://127.0.0.1:8000`
 - Swagger: `http://127.0.0.1:8000/docs`
-- Frontend: `frontend/index.html`을 열거나 정적 서버로 실행
+
+프런트엔드는 `file://`로 직접 열지 않고 정적 서버로 실행합니다.
+
+```powershell
+cd frontend
+python -m http.server 5500
+```
+
+- Frontend: `http://localhost:5500`
+- 로컬 프런트엔드는 기본적으로 `frontend/config.js`에 설정된 배포 Render API를 사용합니다.
+- 로컬 백엔드에 연결하려면 `frontend/config.js`의 API 주소를 `http://127.0.0.1:8000`으로 변경합니다.
+- `http://localhost:5500`과 `http://127.0.0.1:5500`은 `.env`의 `ALLOWED_ORIGINS`에 등록합니다.
 
 ## 4. Firestore와 데이터 CRUD
 
@@ -142,9 +156,9 @@ uvicorn main:app --reload
 | 컬렉션 | 문서 ID | 현재 조회 | 현재 인덱스 |
 |---|---|---|---|
 | `data` | `YYYY-MM` | 전체 조회 후 `date` 정렬 | 문서 ID·단일 필드 자동 인덱스 |
-| `conversations` | 자동 ID | `created_at` 내림차순 정렬 | 단일 필드 자동 인덱스 |
+| `conversations` | 자동 ID | 전체 조회 후 애플리케이션에서 `created_at` 내림차순 정렬 | 단일 필드 자동 인덱스 |
 
-현재 116건이며 복합 조건 쿼리가 없어 별도 복합 인덱스는 만들지 않았습니다. 국가별 기능을 추가해 `where("country", "==", "US")`와 `order_by("date", DESC)`를 함께 사용한다면 문서상 식별명 `idx_data_country_date`로 `country ASC + date DESC` 복합 인덱스를 생성합니다.
+현재 월별 데이터는 116건이며 복합 조건 쿼리가 없어 별도 복합 인덱스는 만들지 않았습니다. 대화 목록도 현재는 Firestore에서 전체 조회한 뒤 Python에서 최신순으로 정렬합니다. 대화량이 늘면 Firestore의 `order_by("created_at", DESC)`와 커서 페이지네이션으로 전환합니다. 국가별 기능을 추가해 `where("country", "==", "US")`와 `order_by("date", DESC)`를 함께 사용한다면 문서상 식별명 `idx_data_country_date`로 `country ASC + date DESC` 복합 인덱스를 생성합니다.
 
 ```json
 {
@@ -298,6 +312,15 @@ curl https://kbeauty-analytics.vercel.app/health
 6. 상단 버튼으로 라이트·다크 모드를 바꿉니다.
 
 ## 9. 전체 테스트와 화면 증거
+
+| 검증 항목 | 결과 |
+|---|---|
+| 월별 데이터 조회와 요약 | 116개 조회, 기간·평균·최고·최저·최근 추세 확인 |
+| 데이터 CRUD | 검증용 `2026-09` 추가·수정·삭제 후 116개로 복구 |
+| AI 분석 | 실제 월별 데이터와 요약을 바탕으로 답변 생성 확인 |
+| 이전 대화 | 질문·답변 저장, 최신순 조회, 다시 불러오기, 삭제 확인 |
+| 입력·오류 처리 | 중복 월 `409`, 잘못된 입력 `422`, 없는 대상 `404` 확인 |
+| 반응형 화면 | 390px 모바일 메뉴·카드·표·그래프 동작 확인 |
 
 ### 메인 대시보드
 
