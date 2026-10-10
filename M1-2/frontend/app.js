@@ -42,7 +42,12 @@ function formatMessageContent(value){
 }
 function formatMoney(value){return new Intl.NumberFormat("ko-KR").format(Number(value||0))}
 function formatDateTime(value){if(!value)return "";const date=new Date(value);return Number.isNaN(date.getTime())?"":new Intl.DateTimeFormat("ko-KR",{month:"long",day:"numeric",hour:"2-digit",minute:"2-digit"}).format(date)}
-function setConnection(connected){connectionBadge.classList.toggle("is-connected",connected);connectionBadge.innerHTML=`<i></i>${connected?"API 연결됨":"연결 오류"}`}
+function setConnectionStatus(status){
+  const labels={checking:"API 확인 중",waking:"서버 준비 중",connected:"API 연결됨",error:"연결 오류"};
+  connectionBadge.classList.toggle("is-connected",status==="connected");
+  connectionBadge.classList.toggle("is-waking",status==="checking"||status==="waking");
+  connectionBadge.innerHTML=`<i></i>${labels[status]||labels.error}`;
+}
 function showToast(message){clearTimeout(toastTimer);toast.textContent=message;toast.classList.add("is-visible");toastTimer=setTimeout(()=>toast.classList.remove("is-visible"),2800)}
 function applyTheme(theme){
   const isDark=theme==="dark";
@@ -224,8 +229,14 @@ document.querySelector("#refreshHistoryButton").addEventListener("click",async()
 document.querySelector("#newConversationButton").addEventListener("click",()=>{activeConversationId=null;renderHistory(conversationItems);renderMessages([]);questionInput.focus();showToast("새 질문을 시작할 수 있습니다.")});
 
 async function initialize(){
+  setConnectionStatus("checking");
+  const wakingTimer=setTimeout(()=>{
+    setConnectionStatus("waking");
+    showToast("무료 서버를 깨우는 중입니다. 최대 1분 정도 기다려 주세요.");
+  },7000);
   const results=await Promise.allSettled([loadSummary(),loadData(),loadHistory()]);
-  const connected=results.slice(0,2).some(result=>result.status==="fulfilled");setConnection(connected);
+  clearTimeout(wakingTimer);
+  const connected=results.slice(0,2).some(result=>result.status==="fulfilled");setConnectionStatus(connected?"connected":"error");
   if(!connected)showToast("API 서버에 연결할 수 없습니다. 서버 실행 상태를 확인해 주세요.");
 }
 initialize();

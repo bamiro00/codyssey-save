@@ -69,6 +69,9 @@
 /* Live API states and interactive results. */
 .connection-badge.is-connected{color:#168563;border-color:#c5eddf;background:#f0fbf7}
 .connection-badge.is-connected i{background:#22b487;box-shadow:0 0 0 4px rgba(34,180,135,.11)}
+.connection-badge.is-waking{color:#9a651e;border-color:#f1d39c;background:#fff9ed}
+.connection-badge.is-waking i{background:#f0a54a;animation:connection-pulse 1.2s ease-in-out infinite}
+@keyframes connection-pulse{50%{opacity:.35;transform:scale(.72)}}
 .chat-form button:disabled,.primary-button:disabled{cursor:wait;opacity:.58}
 .data-actions{display:flex;align-items:center;gap:8px}
 .export-button{height:38px;padding:0 13px;border:1px solid #cfdaeb;border-radius:9px;color:#3f526f;background:#fff;font-size:9px;font-weight:700;transition:border-color .2s,color .2s,background .2s,transform .2s}
@@ -182,6 +185,7 @@ html[data-theme="dark"] .nav-link{color:#8e9cb2}
 html[data-theme="dark"] .nav-link:hover,html[data-theme="dark"] .nav-link.is-active{color:var(--ink)}
 html[data-theme="dark"] .theme-toggle,html[data-theme="dark"] .menu-button,html[data-theme="dark"] .connection-badge{color:#aebbd0;border-color:var(--line);background:#131e31}
 html[data-theme="dark"] .connection-badge.is-connected{color:#62d6b2;border-color:#245b4e;background:#102820}
+html[data-theme="dark"] .connection-badge.is-waking{color:#f2be6c;border-color:#674d27;background:#2b2114}
 html[data-theme="dark"] .page-intro{border-color:#293a58;background:linear-gradient(125deg,#121e34 0%,#101a2d 58%,#12243a 100%)}
 html[data-theme="dark"] .page-intro:before{background:rgba(68,111,214,.12)}
 html[data-theme="dark"] .page-intro:after{background:rgba(35,181,137,.09)}

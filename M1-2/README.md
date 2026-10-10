@@ -1,12 +1,8 @@
 # K-Beauty Data
 
-한국 화장품 월별 수출 데이터를 Firestore에 저장하고, 실제 데이터와 요약 통계를 바탕으로 AI가 질문에 답하는 웹 애플리케이션입니다.
+한국무역협회 K-stat의 화장품 수출 데이터를 Firestore에 저장하고, 실제 월별 값과 요약 통계를 근거로 AI가 답변하는 웹 애플리케이션입니다. 흩어진 월별 수치를 핵심 지표·그래프·AI 분석·데이터 관리·이전 대화로 한 화면에서 확인하도록 만들었습니다.
 
-## 서비스 목적
-
-월별 수출액 표만으로는 장기적인 변화와 최근 흐름을 빠르게 파악하기 어렵습니다. 이 서비스는 핵심 지표, 월별 데이터 관리, AI 분석과 이전 대화 기록을 하나의 화면에서 제공합니다.
-
-## 배포 주소
+## 0. 결과 바로 확인
 
 - Frontend: https://kbeauty-analytics.vercel.app
 - Backend API: https://kbeauty-analytics.vercel.app/api
@@ -14,155 +10,62 @@
 - Swagger: https://k-beauty-ai-api.onrender.com/docs
 - Firebase Firestore: https://console.firebase.google.com/project/k-beauty-ai-e815a/firestore/databases/-default-/data
 
-## 데이터
+### 주요 기능
 
-- 출처: 한국무역협회 K-stat 수출입 무역통계
-- 품목: 화장품
-- MTI 코드: 2273
-- 기간: 2017-01 ~ 2026-08
-- 개수: 116개
-- 주기: 월별
-- 지표: 수출금액
-- 단위: US$
+- 기간·개수·평균·최댓값·최솟값·최근 값·최근 추세 표시
+- 116개월 수출 추세 그래프와 최근 1년·3년·전체 기간 전환
+- 월별 데이터 검색, 추가, 수정, 삭제 및 CSV·JSON 내보내기
+- 실제 Firestore 데이터를 근거로 한 AI 분석과 이전 대화 관리
+- 라이트·다크 모드, 반응형 화면, 입력 검증과 상태 안내
 
-## 주요 기능
+## 1. 데이터 준비
 
-- 데이터 기간·개수·평균·최댓값·최솟값·최근 값·최근 추세 표시
-- 실제 116개월 데이터를 이용한 수출 추세 선 그래프와 최근 1년·3년·전체 기간 전환
-- 월별 수출 데이터 검색
-- 전체 월별 데이터를 최신순 CSV·JSON 파일로 내보내기
-- 데이터 추가·수정·삭제
-- 실제 Firestore 데이터를 근거로 한 AI 분석
-- 질문과 AI 답변 자동 저장
-- 이전 대화 목록 조회·불러오기·삭제
-- 라이트·다크 모드 전환 및 선택 상태 저장
-- 입력값 검증과 이해하기 쉬운 오류 메시지
-
-## 주요 기능 사용 방법
-
-### AI에게 데이터 질문하기
-
-1. 배포된 프런트엔드에 접속합니다.
-2. `AI 데이터 분석` 영역에서 추천 질문을 누르거나 질문을 직접 입력합니다.
-3. `전송`을 누르면 Firestore에 저장된 실제 월별 수출 데이터와 요약 통계를 바탕으로 답변합니다.
-4. 서버가 처음 깨어나는 경우 응답 준비에 최대 1분 정도 걸릴 수 있습니다.
-
-### 이전 대화 확인하기
-
-- 오른쪽 `이전 대화`에서 항목을 선택하면 저장된 질문과 답변 전체를 다시 불러옵니다.
-- `새 대화`를 누르면 현재 화면을 비우고 새로운 질문을 시작합니다.
-- 각 항목의 `×` 버튼을 누르면 확인 후 해당 대화만 삭제합니다.
-
-### 월별 데이터 관리하기
-
-- `데이터 추가`에서 기준월, 수출금액, 메모를 입력해 새 데이터를 저장합니다.
-- 표 오른쪽의 `수정`과 `삭제` 버튼으로 각 월의 데이터를 관리합니다.
-- 이미 존재하는 기준월은 중복으로 추가할 수 없습니다.
-- 검색창에 `YYYY-MM` 또는 메모 일부를 입력하면 해당 데이터만 표시됩니다.
-
-### 그래프와 파일 내보내기
-
-- `월별 수출 추세`의 `최근 1년`, `최근 3년`, `전체` 버튼으로 그래프 표시 기간을 바꿉니다.
-- 데이터 영역의 `CSV` 또는 `JSON`을 누르면 116개월 데이터가 최신순으로 저장됩니다.
-
-### 화면 테마 바꾸기
-
-- 화면 오른쪽 위의 달 또는 해 버튼으로 라이트·다크 모드를 전환합니다.
-- 선택한 화면 모드는 브라우저에 저장되어 새로고침 후에도 유지됩니다.
-
-## 화면 미리보기
-
-### 메인 대시보드
-
-배포된 서비스의 핵심 지표, 데이터 출처, API 연결 상태를 한 화면에서 확인할 수 있습니다.
-
-![K-Beauty Data 메인 대시보드](docs/images/dashboard-light.jpg)
-
-### 실제 데이터 기반 AI 분석과 이전 대화
-
-사용자의 질문과 AI 답변을 표시하며, 오른쪽 목록에서 Firestore에 저장된 이전 대화를 다시 불러올 수 있습니다.
-
-![AI 질문과 데이터 기반 답변](docs/images/ai-analysis.jpg)
-
-### 데이터 CRUD 검증
-
-검증용 `2026-09` 데이터를 추가·수정·삭제한 뒤 원래 116개 데이터 상태로 복구했습니다.
-
-| 검증 전: 116개 | 추가 후: 117개 |
+| 항목 | 내용 |
 |---|---|
-| ![CRUD 검증 전](docs/images/crud-before.png) | ![데이터 추가 후](docs/images/crud-create.png) |
+| 출처 | 한국무역협회 K-stat 수출입 무역통계 |
+| 품목 | 화장품(MTI 2273) |
+| 기간 | 2017-01 ~ 2026-08 |
+| 개수 | 116개, 월 누락·중복 없음 |
+| 지표·단위 | 월별 수출금액·US$ |
 
-| 수정 후 | 삭제 후: 116개 복구 |
-|---|---|
-| ![데이터 수정 후](docs/images/crud-update.png) | ![데이터 삭제 후](docs/images/crud-delete.png) |
+업로드 전에 월 개수, 누락·중복, `YYYY-MM` 형식, 숫자형 수출액, 빈 값을 확인했습니다. Firestore `data`의 문서 ID는 기준월인 `YYYY-MM`을 사용합니다.
 
-### 실제 116개월 수출 추세 그래프
-
-Firestore에서 조회한 월별 데이터를 사용하며 최근 1년·3년·전체 기간을 선택할 수 있습니다.
-
-![실제 데이터 수출 추세 선 그래프](docs/images/trend-chart.png)
-
-### 다크 모드
-
-대시보드, 핵심 지표, 그래프, AI 대화와 데이터 표에 다크 모드를 적용하며 선택 상태를 저장합니다.
-
-![K-Beauty Data 다크 모드](docs/images/dark-mode.png)
-
-### API 및 배포 확인
-
-FastAPI Swagger에서 필수 API를 확인할 수 있고, Render 백엔드와 Vercel 프런트엔드에 배포했습니다.
-
-![FastAPI Swagger API 문서](docs/images/swagger.jpg)
-
-| Render 백엔드 | Vercel 프런트엔드 |
-|---|---|
-| ![Render 백엔드 Live 상태](docs/images/render-live.jpg) | ![Vercel 프런트엔드 정상 동작](docs/images/vercel-live.jpg) |
-
-## 사용 기술
+## 2. 기술 선택과 프로젝트 구조
 
 - Backend: Python, FastAPI, Uvicorn, Pydantic
 - Database: Firebase Firestore
 - AI: Codyssey OpenAI 호환 API, GPT-5.4 mini
 - Frontend: HTML, CSS, JavaScript
-- Deployment: Render, Vercel
-
-## 프로젝트 구조
+- Deployment: GitHub, Render, Vercel
 
 ```text
-K-beauty_AI/
-├─ docs/
-│  └─ images/
-│     └─ README 화면 캡처
+M1-2/
+├─ docs/images/              # README 검증 화면
 ├─ frontend/
-│  ├─ index.html
-│  ├─ styles.css
-│  ├─ highlight-overrides.css
-│  ├─ config.js
-│  └─ app.js
-├─ main.py
-├─ firebase_config.py
-├─ openai_config.py
-├─ upload_data.py
-├─ test_openai.py
+│  ├─ index.html             # 화면 구조
+│  ├─ styles.css             # 기본·반응형 스타일
+│  ├─ highlight-overrides.css# 그래프·다크 모드·상태 스타일
+│  ├─ config.js              # 공개 API 기본 주소
+│  └─ app.js                 # API 호출과 화면 상태
+├─ main.py                   # 스키마, API, 요약, AI 흐름
+├─ firebase_config.py        # Firebase 연결
+├─ openai_config.py          # AI 클라이언트 설정
+├─ upload_data.py            # 원본 데이터 업로드
+├─ test_openai.py            # AI 연결 확인
 ├─ requirements.txt
 ├─ .env.example
 └─ README.md
 ```
 
-`.env`, Firebase 서비스 계정 파일, 가상환경과 캐시 파일은 Git에 포함되지 않습니다.
+현재 과제 규모와 배포 단순성을 위해 백엔드는 `main.py`에 두되 영역별 블록으로 구분했습니다. 확장 시 아래 책임대로 옮기면 URL 계약을 유지한 채 분리할 수 있습니다.
 
-### 백엔드 책임 분리 설계
-
-현재 과제는 배포 단순성과 작은 규모를 고려해 FastAPI 엔드포인트를 `main.py`에 모아 두었지만, 코드 안에서는 데이터·요약·대화·AI 영역을 독립된 엔드포인트 블록으로 구분했습니다. 프로젝트가 커질 때는 아래 기준으로 파일을 분리합니다.
-
-| 계층 | 책임 | 분리 시 파일 예시 |
+| 현재 위치 | 역할 | 확장 시 파일 |
 |---|---|---|
-| Router | URL, 요청 수신, HTTP 상태 코드와 응답 형식 | `routers/data.py`, `routers/conversations.py`, `routers/chat.py` |
-| Service | Firestore 조회·저장, 통계 계산, AI 컨텍스트 생성 | `services/data_service.py`, `services/summary_service.py`, `services/chat_service.py` |
-| Schema | 요청 데이터 형식과 입력 검증 | `schemas/data.py`, `schemas/conversation.py`, `schemas/chat.py` |
-| Infrastructure | 외부 서비스 연결과 비밀정보 로딩 | `firebase_config.py`, `openai_config.py` |
-
-Router는 입력을 받아 Service를 호출하고, Service는 특정 HTTP 프레임워크에 의존하지 않는 업무 로직만 담당합니다. Schema는 Router 진입 전에 잘못된 요청을 차단합니다. 이 기준을 사용하면 통계 계산을 대시보드와 AI에서 재사용하고, 각 계층을 독립적으로 테스트할 수 있습니다.
+| `/api/data` 블록 | 데이터 CRUD와 HTTP 응답 | `routers/data.py`, `services/data_service.py` |
+| `get_data_summary()` | 집계와 최근 추세 | `services/summary_service.py` |
+| `/api/conversations` 블록 | 대화 저장·조회·삭제 | `routers/conversations.py`, `services/conversation_service.py` |
+| `chat()` | AI 컨텍스트·호출·저장 | `routers/chat.py`, `services/chat_service.py` |
+| Pydantic 모델 | 요청 형식과 입력 검증 | `schemas/*.py` |
 
 ```text
 Browser → FastAPI Router → Service → Firestore / AI API
@@ -170,24 +73,17 @@ Browser → FastAPI Router → Service → Firestore / AI API
               Pydantic Schema
 ```
 
-## 설치 방법
+## 3. 설치와 환경 설정
 
-Python 3.10 이상이 필요합니다.
-
-```bash
-python -m venv venv
-```
-
-Windows PowerShell:
+Python 3.10 이상에서 실행합니다.
 
 ```powershell
+python -m venv venv
 .\venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
-## 환경변수
-
-`.env.example`을 참고해 프로젝트 루트에 `.env` 파일을 만듭니다.
+`.env.example`을 복사해 `.env`를 만들고 실제 값은 로컬 또는 배포 서비스의 비밀 설정에만 입력합니다.
 
 ```env
 OPENAI_API_KEY=
@@ -198,54 +94,29 @@ FIREBASE_SERVICE_ACCOUNT_JSON=
 ALLOWED_ORIGINS=http://127.0.0.1:5500,http://localhost:5500
 ```
 
-실제 API 키와 Firebase 인증정보는 README나 GitHub에 올리지 않습니다.
+`.env`, `firebase-key.json`, 서비스 계정 JSON, `venv/`, `__pycache__/`는 `.gitignore`로 제외합니다. 실제 비밀정보는 코드·README·GitHub에 기록하지 않습니다.
 
-로컬에서는 `FIREBASE_SERVICE_ACCOUNT_PATH`를 사용합니다. Render에서는
-`FIREBASE_SERVICE_ACCOUNT_JSON` 환경변수 또는 `/etc/secrets/firebase-key.json`
-Secret File 방식을 사용할 수 있습니다. 현재 배포는 `.env`와
-`firebase-key.json`을 Render Secret Files로 관리합니다.
-
-### 배포 환경변수와 CORS 설정
-
-- Render의 `Environment`에 `OPENAI_API_KEY`, `OPENAI_BASE_URL`, `OPENAI_MODEL`, `ALLOWED_ORIGINS`를 등록합니다.
-- Firebase 인증정보는 Render의 `Secret File` 또는 `FIREBASE_SERVICE_ACCOUNT_JSON`으로 등록합니다.
-- Vercel 프런트엔드는 `frontend/config.js`에 공개 API 기본 주소만 사용하며 비밀키를 포함하지 않습니다.
-- 환경변수를 변경한 뒤에는 해당 서비스를 재배포해야 새 값이 적용됩니다.
-- 운영 환경의 `ALLOWED_ORIGINS`에는 실제 프런트엔드 주소만 허용하고 `*`는 사용하지 않는 것을 원칙으로 합니다.
-
-```env
-ALLOWED_ORIGINS=https://kbeauty-analytics.vercel.app,http://127.0.0.1:5500,http://localhost:5500
-```
-
-로컬 주소는 개발용이고 `https://kbeauty-analytics.vercel.app`은 운영용입니다. 허용 출처를 최소화해 임의의 외부 사이트가 브라우저에서 API를 호출하는 범위를 줄입니다.
-
-## 로컬 실행
-
-백엔드 실행:
+### 로컬 실행
 
 ```powershell
 uvicorn main:app --reload
 ```
 
-- API 기본 주소: `http://127.0.0.1:8000`
+- API: `http://127.0.0.1:8000`
 - Swagger: `http://127.0.0.1:8000/docs`
+- Frontend: `frontend/index.html`을 열거나 정적 서버로 실행
 
-프론트엔드는 `frontend/index.html`을 열어 사용할 수 있습니다. 로컬 API 주소는 `frontend/config.js`에서 관리합니다.
+## 4. Firestore와 데이터 CRUD
 
-## Firestore 구조
+### 컬렉션 구조
 
-### `data`
+`data` 문서:
 
 ```json
-{
-  "date": "2026-08",
-  "value": 1311432871,
-  "memo": "화장품(MTI 2273) 월별 수출액",
-  "unit": "US$"
-}
+{"date":"2026-08","value":1311432871,"memo":"화장품(MTI 2273) 월별 수출액","unit":"US$"}
 ```
 
-### `conversations`
+`conversations` 문서:
 
 ```json
 {
@@ -259,56 +130,54 @@ uvicorn main:app --reload
 }
 ```
 
-### 컬렉션 설계와 인덱스
+### 중복과 동시 요청 처리
 
-| 컬렉션 | 문서 ID | 설계 이유 | 주요 조회 방식 |
+- `data`는 `YYYY-MM` 문서 ID로 같은 월을 한 문서로 식별합니다.
+- 추가 시 Firestore의 원자적 `create()`를 사용합니다. 동시에 같은 월을 요청해도 최초 한 건만 저장되고 나머지는 `409 Conflict`를 반환합니다.
+- CRUD 성공 후 프런트엔드는 목록과 요약을 함께 재조회합니다.
+- 여러 관리자의 동시 수정으로 확장할 때는 `updated_at` 또는 버전 필드와 트랜잭션으로 낙관적 잠금을 적용합니다.
+
+### 인덱스 설계
+
+| 컬렉션 | 문서 ID | 현재 조회 | 현재 인덱스 |
 |---|---|---|---|
-| `data` | `YYYY-MM` | 월별 데이터의 자연 키를 사용해 같은 월의 중복 저장을 문서 ID 수준에서 방지 | 전체 조회 후 `date` 기준 정렬 |
-| `conversations` | Firestore 자동 ID | 여러 대화를 독립적으로 저장하고 생성 시점 충돌을 방지 | 전체 조회 후 `created_at` 내림차순 정렬 |
+| `data` | `YYYY-MM` | 전체 조회 후 `date` 정렬 | 문서 ID·단일 필드 자동 인덱스 |
+| `conversations` | 자동 ID | `created_at` 내림차순 정렬 | 단일 필드 자동 인덱스 |
 
-현재 데이터는 116개의 월별 레코드로 작고 복합 조건 쿼리를 사용하지 않아 별도의 복합 인덱스가 필요하지 않습니다. 데이터가 커지면 서버에서 `order_by`와 `limit`을 사용해 페이지네이션하고, `conversations.created_at` 단일 필드 인덱스를 활용합니다. 향후 국가·품목·채널 필드를 추가해 복합 필터와 정렬을 함께 사용하면 해당 조합에 맞는 Firestore 복합 인덱스를 생성합니다.
-
-### Pydantic 스키마와 검증 규칙
-
-| 스키마 | 목적 | 주요 검증 규칙 |
-|---|---|---|
-| `DataItem` | 월별 수출 데이터 추가·수정 | `date`는 `YYYY-MM`, `value`는 0 이상의 정수, `unit`은 `US$`, `memo`는 최대 200자 |
-| `Message` | 저장되는 대화 메시지 | `role`은 `user` 또는 `assistant`, 내용은 1~12,000자 |
-| `ConversationCreate` | 질문과 답변 묶음 저장 | 제목은 최대 80자, 메시지는 1~20개 |
-| `ChatRequest` | AI 질문 요청 | 공백 제거 후 1~1,000자 |
-
-문자열은 앞뒤 공백을 제거하며 줄바꿈·탭을 제외한 제어문자를 거부합니다. 프런트엔드에서는 화면에 출력하기 전에 HTML 특수문자를 이스케이프해 저장된 문자열이 HTML로 실행되지 않도록 합니다.
-
-## API
-
-| Method | Endpoint | 설명 |
-|---|---|---|
-| GET | `/health` | 배포 서버 상태 확인 |
-| GET | `/api/data` | 데이터 목록 조회 |
-| POST | `/api/data` | 데이터 추가 |
-| PUT | `/api/data/{id}` | 데이터 수정 |
-| DELETE | `/api/data/{id}` | 데이터 삭제 |
-| GET | `/api/data/summary` | 데이터 요약 조회 |
-| POST | `/api/chat` | 실제 데이터 기반 AI 질문 |
-| GET | `/api/conversations` | 대화 목록 조회 |
-| GET | `/api/conversations/{id}` | 특정 대화 불러오기 |
-| POST | `/api/conversations` | 대화 저장 |
-| DELETE | `/api/conversations/{id}` | 대화 삭제 |
-
-### Health Check 응답
-
-`GET /health`는 프런트엔드와 운영자가 백엔드 준비 상태를 확인할 때 사용합니다.
+현재 116건이며 복합 조건 쿼리가 없어 별도 복합 인덱스는 만들지 않았습니다. 국가별 기능을 추가해 `where("country", "==", "US")`와 `order_by("date", DESC)`를 함께 사용한다면 문서상 식별명 `idx_data_country_date`로 `country ASC + date DESC` 복합 인덱스를 생성합니다.
 
 ```json
 {
-  "status": "ok",
-  "service": "K-Beauty AI API"
+  "collectionGroup": "data",
+  "queryScope": "COLLECTION",
+  "fields": [
+    {"fieldPath": "country", "order": "ASCENDING"},
+    {"fieldPath": "date", "order": "DESCENDING"}
+  ]
 }
 ```
 
-### 요약 엔드포인트를 분리한 이유
+### Pydantic 검증과 오류 기록
 
-`GET /api/data`는 원본 월별 목록을 반환하고, `GET /api/data/summary`는 대시보드와 AI가 사용하는 집계 결과만 반환합니다. 목록 조회와 통계 계산을 분리하면 프런트엔드는 필요한 결과를 독립적으로 요청할 수 있고, 동일한 통계 규칙을 여러 화면에서 재사용할 수 있습니다. 또한 전체 원본 응답 형식이 바뀌더라도 요약 응답 계약을 안정적으로 유지할 수 있습니다.
+| 스키마 | 목적 | 규칙 |
+|---|---|---|
+| `DataItem` | 데이터 추가·수정 | `YYYY-MM`, 0 이상 정수, `US$`, 메모 최대 200자 |
+| `Message` | 저장 메시지 | 역할은 `user`·`assistant`, 1~12,000자 |
+| `ConversationCreate` | 대화 저장 | 제목 최대 80자, 메시지 1~20개 |
+| `ChatRequest` | AI 질문 | 공백 제거 후 1~1,000자 |
+
+검증 실패는 `422`를 반환합니다. 서버 로그에는 입력 원문 대신 요청 경로, 실패 필드 위치, 오류 유형만 기록해 개인정보 노출을 줄입니다. 운영에서는 Render 로그 알림 또는 Sentry를 연결할 수 있습니다.
+
+```json
+{
+  "detail": "입력값 형식을 확인해 주세요.",
+  "errors": [{"location": "body.date", "type": "string_pattern_mismatch"}]
+}
+```
+
+## 5. 데이터 요약 API
+
+`GET /api/data`는 원본 목록을, `GET /api/data/summary`는 대시보드와 AI가 사용하는 집계를 반환합니다. 분리 덕분에 화면별 요청이 단순하고 요약 규칙을 재사용할 수 있습니다.
 
 ```json
 {
@@ -324,72 +193,188 @@ uvicorn main:app --reload
 }
 ```
 
-최근 추세는 날짜순 값의 최근 3개월 평균과 그 직전 3개월 평균을 비교합니다.
-
 ```text
 직전 3개월 = values[-6:-3]
 최근 3개월 = values[-3:]
 변화율 = (최근 평균 - 직전 평균) / 직전 평균 × 100
 
-변화율 > 3%  → 증가
-변화율 < -3% → 감소
-그 외         → 유지
-6개월 미만    → 데이터 부족
+> 3% 증가 / < -3% 감소 / 나머지 유지 / 6개월 미만 데이터 부족
 ```
 
-## AI가 실제 데이터를 사용하는 방식
+기간은 Firestore의 첫 월과 마지막 월로 결정됩니다. 데이터를 바꾸면 `main.py`의 `get_data_summary()`가 다음 요청에서 모든 통계와 추세를 다시 계산합니다. 기준을 변경할 때는 이 함수의 `previous_3`, `recent_3`, ±3% 임계값과 README 예시를 함께 수정합니다.
 
-1. 사용자의 질문을 검사합니다.
-2. Firestore에서 116개의 월별 수출 데이터를 조회합니다.
-3. 기간, 평균, 최댓값, 최솟값, 최근 값과 최근 추세를 계산합니다.
-4. 요약과 실제 월별 값을 AI 컨텍스트에 전달합니다.
-5. AI는 제공된 데이터 안에서만 한국어 답변을 생성합니다.
-6. 데이터만으로 확인할 수 없는 원인은 가능성 또는 추가 확인 필요로 구분합니다.
-7. 질문과 답변을 `conversations` 컬렉션에 자동 저장합니다.
+현재는 매 요청에 재계산합니다. 트래픽이 늘면 60초 TTL 인메모리 캐시를 적용하고 CRUD 성공 시 즉시 무효화합니다. 여러 인스턴스에서는 Redis 같은 공유 캐시를 사용합니다.
+
+## 6. AI 연결과 `POST /api/chat`
+
+1. 질문을 검사합니다.
+2. Firestore의 실제 월별 데이터를 조회합니다.
+3. `get_data_summary()`로 요약을 계산합니다.
+4. 요약과 월별 값을 AI 컨텍스트로 전달합니다.
+5. AI가 한국어 답변을 생성합니다.
+6. 성공한 질문·답변을 `conversations`에 저장합니다.
+7. 대화 ID, 답변, 모델명을 반환합니다.
 
 ```mermaid
 flowchart LR
-  A[Firestore data] --> B[월별 데이터 조회]
-  B --> C[요약 통계 계산]
-  B --> D[실제 월별 값 정렬]
-  C --> E[AI 컨텍스트]
+  A[질문] --> B[Pydantic 검증]
+  C[Firestore] --> D[월별 값과 요약]
+  B --> E[AI 요청]
   D --> E
-  E --> F[AI 답변 생성]
-  F --> G[conversations 저장]
-  G --> H[이전 대화 표시]
+  E --> F[AI 답변]
+  F --> G[대화 저장]
+  G --> H[이전 대화]
 ```
 
-### AI 컨텍스트 범위와 저장 정책
+### 컨텍스트 방어와 길이 정책
 
-- AI에는 기간·개수·평균·최댓값·최솟값·최근 값·최근 추세와 제공 기간의 실제 월별 값을 전달합니다.
-- 국가별·품목별·채널별 원인처럼 데이터에 없는 사실은 확정하지 않고 가능성 또는 추가 확인 필요로 표시합니다.
-- AI 응답 생성이 성공한 뒤 사용자 질문과 답변을 하나의 대화로 저장합니다. AI 호출이 실패하면 불완전한 대화를 저장하지 않습니다.
-- 메시지는 스키마에서 개수와 길이를 제한합니다. 더 긴 대화를 지원해야 할 때는 이전 메시지를 요약하거나 여러 문서로 분할하는 방식을 사용합니다.
+- 사용자 질문은 분석 대상이며 시스템 지시가 아님을 최우선 규칙으로 둡니다.
+- 프롬프트 공개·변경·무시, 역할 변경, 근거 없는 수치 생성 요청은 거부합니다.
+- 규칙, 조회 데이터, 사용자 질문을 별도 메시지로 분리합니다.
+- 데이터 문자열도 명령으로 실행하지 않도록 지시합니다.
+- 질문 최대 1,000자, 데이터 컨텍스트 최대 32,000자, 출력 `max_tokens=2400`입니다.
+- 현재 116개월은 전부 전달하며 제한을 넘으면 요약과 최신 120개월만 제공합니다.
+- `temperature=0`으로 변동을 줄이고 빈 응답은 한 번 재시도합니다.
+- 기간 밖 질문은 확인 불가로, 데이터에 없는 원인은 가능성 또는 추가 확인 필요로 구분합니다.
 
-### 반응형 및 상태 흐름 확인
+### 대화 저장 정책
 
-| 확인 너비 | 확인 내용 | 결과 |
-|---|---|---|
-| 1440px | 대시보드, AI 대화와 데이터 표의 데스크톱 배치 | 정상 |
-| 768px | 카드 줄바꿈, 메뉴, 표 영역 스크롤 | 정상 |
-| 390px | 모바일 메뉴, 세로 카드 배치, 버튼 터치 영역 | 정상 |
+- AI 성공 후에만 질문과 답변을 저장하며 AI 실패 시 불완전한 대화를 남기지 않습니다.
+- 저장 실패 시 `500`과 안내를 반환하고 서버에는 질문 원문 대신 길이와 예외 스택을 기록합니다.
+- 제목은 질문 앞 40자, 문서당 메시지 최대 20개·메시지당 12,000자입니다.
+- 대량 운영 시 `created_at` 커서 페이지네이션을 적용하고 90일 이후 기록을 보관 컬렉션으로 이동하거나 삭제합니다.
 
-프런트엔드는 초기화 시 요약·데이터·대화 목록을 동시에 요청합니다. 요청 중에는 로딩 상태를, 성공 시에는 데이터와 연결 상태를, 실패 시에는 사용자에게 오류 메시지와 연결 오류 상태를 표시합니다.
+## 7. API 목록과 응답 계약
 
-### 콜드 스타트와 운영 대응
+Swagger에서 데이터 CRUD, 요약, AI 채팅, 대화 저장·조회·삭제를 확인할 수 있습니다.
 
-무료 Render 인스턴스는 유휴 상태 후 첫 요청에서 준비에 최대 1분 정도 걸릴 수 있습니다. 현재 UI는 연결 상태와 요청 오류를 표시해 사용자가 서버 준비 상태를 구분할 수 있게 합니다.
+| Method | Endpoint | 성공 | 주요 오류 |
+|---|---|---|---|
+| GET | `/health` | `200`, 상태 객체 | `500` |
+| GET | `/api/data` | `200`, `{count, data}` | `500` |
+| POST | `/api/data` | `200`, `{message, id}` | `409`, `422` |
+| PUT | `/api/data/{id}` | `200`, `{message, id}` | `400`, `404`, `422` |
+| DELETE | `/api/data/{id}` | `200`, `{message, id}` | `404`, `500` |
+| GET | `/api/data/summary` | `200`, 요약 객체 | `404`, `500` |
+| POST | `/api/chat` | `200`, `{conversation_id, answer, model}` | `422`, `500` |
+| POST | `/api/conversations` | `200`, `{message, id}` | `422`, `500` |
+| GET | `/api/conversations` | `200`, 목록 객체 | `500` |
+| GET | `/api/conversations/{id}` | `200`, 대화 객체 | `404`, `500` |
+| DELETE | `/api/conversations/{id}` | `200`, `{message, id}` | `404`, `500` |
 
-- 배포 확인에는 `/health`를 사용합니다.
-- 운영 환경에서는 외부 스케줄러가 `/health`를 주기적으로 호출하는 웜업 방식을 선택할 수 있습니다.
-- 일시적인 연결 실패에는 지수 백오프를 적용한 제한적 재시도를 추가할 수 있습니다.
-- 116개월 요약처럼 변경 빈도가 낮은 결과는 짧은 TTL 캐시를 적용해 Firestore 조회와 첫 응답 시간을 줄일 수 있습니다.
-- 무료 인스턴스의 절전 정책 때문에 콜드 스타트를 완전히 제거해야 한다면 상시 실행 인스턴스로 전환해야 합니다.
+```bash
+curl https://kbeauty-analytics.vercel.app/health
+```
 
-## 알려진 제한사항
+```json
+{"status":"ok","service":"K-Beauty AI API"}
+```
 
-- 무료 백엔드 서버는 처음 접속할 때 준비에 최대 1분 정도 걸릴 수 있습니다.
+일반 오류 예시: `{"detail":"해당 데이터가 없습니다."}`
+
+## 8. 프론트엔드 연결과 사용 순서
+
+초기화 시 요약·데이터·대화 목록을 동시에 요청합니다.
+
+| 상태 | 화면 동작 |
+|---|---|
+| API 확인 중 | 헤더에 주황색 상태 표시 |
+| 7초 이상 지연 | `서버 준비 중`과 “최대 1분” 토스트 |
+| 성공 | 지표·표·대화 갱신, `API 연결됨` |
+| 일부 실패 | 해당 영역만 오류 표시, 성공 영역 유지 |
+| 전체 실패 | `연결 오류`와 서버 확인 안내 |
+| CRUD 성공 | 목록과 요약 동시 재조회 |
+| AI 요청·오류 | 버튼 비활성화·로딩 또는 채팅 오류 표시 |
+
+사용 순서:
+
+1. 대시보드에서 기간과 핵심 지표를 확인합니다.
+2. 추천 질문 또는 직접 입력한 질문을 전송합니다.
+3. 이전 대화에서 저장된 질문과 답변을 불러옵니다.
+4. 월별 데이터를 검색·추가·수정·삭제합니다.
+5. 그래프 기간을 전환하고 CSV·JSON을 내려받습니다.
+6. 상단 버튼으로 라이트·다크 모드를 바꿉니다.
+
+## 9. 전체 테스트와 화면 증거
+
+### 메인 대시보드
+
+![K-Beauty Data 메인 대시보드](docs/images/dashboard-light.jpg)
+
+### AI 분석과 이전 대화
+
+![AI 질문과 데이터 기반 답변](docs/images/ai-analysis.jpg)
+
+### 데이터 CRUD 검증
+
+검증용 `2026-09`를 추가·수정·삭제하고 116개로 복구했습니다.
+
+| 검증 전 | 추가 후 |
+|---|---|
+| ![CRUD 검증 전](docs/images/crud-before.png) | ![추가 후](docs/images/crud-create.png) |
+
+| 수정 후 | 삭제 후 |
+|---|---|
+| ![수정 후](docs/images/crud-update.png) | ![삭제 후](docs/images/crud-delete.png) |
+
+### 그래프와 390px 모바일 실제 화면
+
+| 수출 추세 | 모바일 대시보드 |
+|---|---|
+| ![수출 추세](docs/images/trend-chart.png) | ![모바일 화면](docs/images/mobile-dashboard.png) |
+
+모바일에서는 메뉴와 카드가 세로 배치되고 표·그래프는 가로 스크롤을 제공합니다.
+
+### 다크 모드
+
+![다크 모드](docs/images/dark-mode.png)
+
+### API와 배포
+
+![Swagger](docs/images/swagger.jpg)
+
+| Render | Vercel |
+|---|---|
+| ![Render](docs/images/render-live.jpg) | ![Vercel](docs/images/vercel-live.jpg) |
+
+## 10. GitHub·Render·Vercel 배포
+
+### Render
+
+1. GitHub 저장소를 Web Service에 연결하고 Root Directory를 `M1-2`로 지정합니다.
+2. Build는 `pip install -r requirements.txt`, Start는 `uvicorn main:app --host 0.0.0.0 --port $PORT`로 설정합니다.
+3. `Environment`에 `OPENAI_API_KEY`, `OPENAI_BASE_URL`, `OPENAI_MODEL`, `ALLOWED_ORIGINS`를 등록합니다.
+4. Firebase 키는 `FIREBASE_SERVICE_ACCOUNT_JSON` 또는 `/etc/secrets/firebase-key.json` Secret File로 등록합니다.
+5. 재배포 후 `/health`, `/docs`, 데이터·요약·채팅 API와 로그를 확인합니다.
+
+### Vercel
+
+1. GitHub 저장소와 정적 프런트·`vercel.json` 프록시 설정을 배포합니다.
+2. `frontend/config.js`에는 공개 API 주소만 두고 비밀키를 넣지 않습니다.
+3. 고정 운영 주소를 Render의 `ALLOWED_ORIGINS`에 등록하고 백엔드를 재배포합니다.
+4. Vercel 미리보기 주소는 Render에 자동 등록되지 않습니다. 사용할 주소를 직접 추가하고 다시 배포해야 합니다.
+
+```env
+ALLOWED_ORIGINS=https://kbeauty-analytics.vercel.app,http://127.0.0.1:5500,http://localhost:5500
+```
+
+운영에서는 `*` 대신 실제 프런트엔드와 필요한 로컬 주소만 허용합니다.
+
+## 11. 콜드 스타트와 운영 계획
+
+무료 Render는 유휴 후 첫 요청에 최대 1분이 걸릴 수 있습니다. 7초 이상 지연되면 UI가 `서버 준비 중`으로 바뀌어 일반 오류와 구분합니다.
+
+- `/health`로 상태를 확인합니다.
+- 일시적 실패에는 제한 횟수의 지수 백오프를 추가할 수 있습니다.
+- 필요하면 외부 스케줄러로 `/health`를 호출하되 무료 정책을 먼저 확인합니다.
+- 응답 시간이 중요하면 상시 실행 인스턴스로 전환합니다.
+- 요약 캐시는 60초 TTL과 CRUD 성공 시 무효화 원칙을 사용합니다.
+- 오류는 Render 로그에서 확인하고 운영 규모가 커지면 Sentry와 알림을 연결합니다.
+
+## 12. 알려진 제한사항
+
+- 무료 서버의 첫 응답은 최대 1분 정도 걸릴 수 있습니다.
 - 현재 데이터만으로 국가별·품목별·채널별 원인을 확정할 수 없습니다.
 - AI의 외부 시장 해석은 사실이 아니라 가능성으로 구분합니다.
-- 동일한 질문도 표현이 조금 달라질 수 있으나 낮은 변동성 설정으로 편차를 줄였습니다.
-
+- 동일 질문도 표현이 조금 달라질 수 있으나 `temperature=0`으로 편차를 줄였습니다.
+- 대화 목록은 시연 규모를 전제로 전체 조회하며 대량 운영 시 페이지네이션·보관 정책이 필요합니다.
