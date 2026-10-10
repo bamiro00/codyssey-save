@@ -44,6 +44,14 @@ app.add_middleware(
 DEFAULT_MEMO = "화장품(MTI 2273) 월별 수출액"
 
 
+def reject_control_characters(value: str, field_name: str) -> str:
+    """줄바꿈과 탭을 제외한 제어문자가 저장되는 것을 막습니다."""
+    if any(ord(char) < 32 and char not in "\n\r\t" for char in value):
+        raise ValueError(f"{field_name}에 허용되지 않는 제어문자가 포함되어 있습니다.")
+
+    return value
+
+
 class DataItem(BaseModel):
     date: str = Field(
         ...,
@@ -51,7 +59,7 @@ class DataItem(BaseModel):
         description="YYYY-MM 형식"
     )
     value: int = Field(..., ge=0, strict=True)
-    memo: str = DEFAULT_MEMO
+    memo: str = Field(default=DEFAULT_MEMO, max_length=200)
     unit: Literal["US$"] = "US$"
 
     @field_validator("date", mode="before")
@@ -65,24 +73,27 @@ class DataItem(BaseModel):
         if value is None or not str(value).strip():
             return DEFAULT_MEMO
 
-        return str(value).strip()
+        return reject_control_characters(str(value).strip(), "메모")
 
 
 # 대화 메시지 형식
 class Message(BaseModel):
     role: Literal["user", "assistant"]
-    content: str = Field(..., min_length=1)
+    content: str = Field(..., min_length=1, max_length=12000)
 
     @field_validator("content", mode="before")
     @classmethod
     def strip_content(cls, value):
-        return value.strip() if isinstance(value, str) else value
+        if not isinstance(value, str):
+            return value
+
+        return reject_control_characters(value.strip(), "메시지")
 
 
 # 대화 저장 요청 형식
 class ConversationCreate(BaseModel):
-    title: str = "새 대화"
-    messages: list[Message] = Field(..., min_length=1)
+    title: str = Field(default="새 대화", max_length=80)
+    messages: list[Message] = Field(..., min_length=1, max_length=20)
 
     @field_validator("title", mode="before")
     @classmethod
@@ -90,12 +101,20 @@ class ConversationCreate(BaseModel):
         if value is None or not str(value).strip():
             return "새 대화"
 
-        return str(value).strip()
+        return reject_control_characters(str(value).strip(), "대화 제목")
 
 
 # AI 채팅 요청 형식
 class ChatRequest(BaseModel):
-    question: str
+    question: str = Field(..., min_length=1, max_length=1000)
+
+    @field_validator("question", mode="before")
+    @classmethod
+    def normalize_question(cls, value):
+        if not isinstance(value, str):
+            return value
+
+        return reject_control_characters(value.strip(), "질문")
 
 
 # 기본 화면
