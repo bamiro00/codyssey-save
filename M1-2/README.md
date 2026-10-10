@@ -11,12 +11,8 @@
 - Frontend: https://kbeauty-analytics.vercel.app
 - Backend API: https://kbeauty-analytics.vercel.app/api
 - Health Check: https://kbeauty-analytics.vercel.app/health
-- Swagger: https://kbeauty-analytics.vercel.app/docs
+- Swagger: https://k-beauty-ai-api.onrender.com/docs
 - Firebase Firestore: https://console.firebase.google.com/project/k-beauty-ai-e815a/firestore/databases/-default-/data
-- `data` 컬렉션: https://console.firebase.google.com/project/k-beauty-ai-e815a/firestore/databases/-default-/data/~2Fdata
-- `conversations` 컬렉션: https://console.firebase.google.com/project/k-beauty-ai-e815a/firestore/databases/-default-/data/~2Fconversations
-
-Firebase Console 링크는 프로젝트 접근 권한이 있는 Google 계정으로 로그인해야 열 수 있습니다. 동료평가 시 `data` 컬렉션에서 116개월의 실제 수출 데이터 구조를, `conversations` 컬렉션에서 질문과 AI 답변의 저장 구조를 확인할 수 있습니다.
 
 ## 데이터
 
